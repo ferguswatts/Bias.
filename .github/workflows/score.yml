@@ -1,0 +1,42 @@
+name: Daily Scoring Pipeline
+
+on:
+  schedule:
+    - cron: '23 3 * * *'  # 3:23 AM UTC daily (3:23 PM NZST)
+  workflow_dispatch:  # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r pipeline/requirements.txt
+          playwright install chromium --with-deps
+
+      - name: Run scoring pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python -m pipeline.run
+
+      - name: Commit updated data
+        run: |
+          git config user.name "Byline Card Bot"
+          git config user.email "bot@bylinecard.nz"
+          git add extension/public/data.json
+          git diff --cached --quiet || git commit -m "data: update journalist scores $(date +%Y-%m-%d)"
+          git push

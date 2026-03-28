@@ -1,0 +1,37 @@
+{
+  "nzherald.co.nz": {
+    "selectors": {
+      "byline": ".author-name, .article__author-name, [class*='author'] a"
+    }
+  },
+  "stuff.co.nz": {
+    "selectors": {
+      "byline": ".author-name, .sics-component__byline a, [class*='author']"
+    }
+  },
+  "rnz.co.nz": {
+    "selectors": {
+      "byline": ".author, .article__author, [class*='author']"
+    }
+  },
+  "1news.co.nz": {
+    "selectors": {
+      "byline": ".author-name, [class*='author'], [class*='byline']"
+    }
+  },
+  "newsroom.co.nz": {
+    "selectors": {
+      "byline": ".author-name, [class*='author']"
+    }
+  },
+  "thespinoff.co.nz": {
+    "selectors": {
+      "byline": ".author-name, .byline a, [class*='author']"
+    }
+  },
+  "interest.co.nz": {
+    "selectors": {
+      "byline": ".author, [class*='author']"
+    }
+  }
+}
