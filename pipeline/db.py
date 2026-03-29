@@ -2,7 +2,10 @@
 
 import sqlite3
 import json
+import logging
 from pathlib import Path
+
+log = logging.getLogger(__name__)
 
 DB_PATH = Path(__file__).parent / "bylinecard.db"
 
@@ -37,12 +40,14 @@ def init_db(conn: sqlite3.Connection) -> None:
             title TEXT,
             publish_date TEXT,
             outlet TEXT,
+            text_body TEXT,
             text_hash TEXT,
             score_claude REAL,
             score_gpt REAL,
             score_grok REAL,
             median_score REAL,
             bucket TEXT,
+            score_prompt_version TEXT,
             scored_at TEXT
         );
 
@@ -140,6 +145,46 @@ def load_facts_from_csv(conn: sqlite3.Connection, csv_path: Path) -> int:
             count += 1
     conn.commit()
     return count
+
+
+def migrate_db(conn: sqlite3.Connection) -> None:
+    """Add new columns to existing databases. Safe to run multiple times."""
+    cursor = conn.cursor()
+    existing_cols = {row[1] for row in cursor.execute("PRAGMA table_info(articles)").fetchall()}
+
+    if "text_body" not in existing_cols:
+        cursor.execute("ALTER TABLE articles ADD COLUMN text_body TEXT")
+        log.info("Migration: added text_body column to articles")
+
+    if "score_prompt_version" not in existing_cols:
+        cursor.execute("ALTER TABLE articles ADD COLUMN score_prompt_version TEXT")
+        log.info("Migration: added score_prompt_version column to articles")
+
+    conn.commit()
+
+
+def get_articles_needing_rescore(conn: sqlite3.Connection, prompt_version: str) -> list[dict]:
+    """Get articles that have text stored but were scored with an older prompt version."""
+    rows = conn.execute(
+        """SELECT * FROM articles
+           WHERE text_body IS NOT NULL
+           AND LENGTH(text_body) > 100
+           AND (score_prompt_version IS NULL OR score_prompt_version != ?)
+           ORDER BY id""",
+        (prompt_version,),
+    ).fetchall()
+    return [dict(r) for r in rows]
+
+
+def get_articles_needing_text(conn: sqlite3.Connection) -> list[dict]:
+    """Get articles that have been scored but don't have text stored."""
+    rows = conn.execute(
+        """SELECT * FROM articles
+           WHERE text_body IS NULL
+           AND score_claude IS NOT NULL
+           ORDER BY id"""
+    ).fetchall()
+    return [dict(r) for r in rows]
 
 
 def get_journalist_by_slug(conn: sqlite3.Connection, slug: str) -> dict | None:

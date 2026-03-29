@@ -18,8 +18,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env")
 
-from .db import get_connection, init_db, load_journalists_from_csv, load_connections_from_csv, load_facts_from_csv
-from .scorer import score_article_claude, score_to_bucket
+from .db import (
+    get_connection, init_db, migrate_db, load_journalists_from_csv,
+    load_connections_from_csv, load_facts_from_csv,
+    get_articles_needing_text, get_articles_needing_rescore,
+)
+from .scorer import score_article_claude, score_to_bucket, PROMPT_VERSION
 from .aggregator import update_journalist_stats
 from .exporter import export_to_json
 
@@ -107,13 +111,13 @@ async def scrape_and_score_journalist(conn, journalist: dict, adapters: dict, ca
 
         conn.execute(
             """INSERT OR IGNORE INTO articles
-               (journalist_id, url, title, publish_date, outlet, text_hash,
-                score_claude, median_score, bucket, scored_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))""",
+               (journalist_id, url, title, publish_date, outlet, text_body, text_hash,
+                score_claude, median_score, bucket, score_prompt_version, scored_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))""",
             (
                 journalist["id"], url, article.title, article.publish_date,
-                article.outlet, text_hash, result.score, result.score,
-                result.bucket,
+                article.outlet, article.text, text_hash, result.score, result.score,
+                result.bucket, PROMPT_VERSION,
             ),
         )
         conn.commit()
@@ -130,12 +134,15 @@ async def main():
     parser.add_argument("--export-only", action="store_true", help="Just regenerate JSON")
     parser.add_argument("--cap", type=int, default=20, help="Max articles to score per journalist per run (default: 20)")
     parser.add_argument("--backfill", action="store_true", help="Backfill mode: raise cap to 200 to collect historical articles")
+    parser.add_argument("--refetch", action="store_true", help="Re-fetch text for articles missing text_body")
+    parser.add_argument("--rescore", action="store_true", help="Re-score articles that have text but were scored with an older prompt")
     args = parser.parse_args()
 
     article_cap = 200 if args.backfill else args.cap
 
     conn = get_connection()
     init_db(conn)
+    migrate_db(conn)
 
     # Load seed data
     journalists_csv = DATA_DIR / "journalists.csv"
@@ -163,7 +170,7 @@ async def main():
         conn.close()
         return
 
-    # Initialize adapters
+    # Initialize adapters (needed for refetch too)
     from .sites.nzherald import NZHeraldAdapter
     from .sites.stuff import StuffAdapter
     from .sites.rnz import RNZAdapter
@@ -181,6 +188,89 @@ async def main():
         "thespinoff": SpinoffAdapter(),
         "newstalkzb": NewstalkZBAdapter(),
     }
+
+    # --- REFETCH MODE: re-fetch text for articles that don't have text_body stored ---
+    if args.refetch:
+        articles = get_articles_needing_text(conn)
+        log.info(f"REFETCH: {len(articles)} articles need text re-fetched")
+
+        # Map outlet to adapter
+        outlet_adapter_map = {
+            "NZ Herald": adapters.get("nzherald"),
+            "Stuff": adapters.get("stuff"),
+            "The Post": adapters.get("stuff"),  # Same CMS
+            "RNZ": adapters.get("rnz"),
+            "1News": adapters.get("1news"),
+        }
+
+        fetched = 0
+        for art in articles:
+            adapter = outlet_adapter_map.get(art["outlet"])
+            if not adapter:
+                continue
+            async with SCRAPING_SEMAPHORE:
+                try:
+                    extracted = await adapter.extract_article(art["url"])
+                except Exception as e:
+                    log.debug(f"Refetch failed for {art['url']}: {e}")
+                    continue
+
+            if extracted and extracted.text and len(extracted.text) > 100:
+                text_hash = hashlib.sha256(extracted.text.encode()).hexdigest()
+                conn.execute(
+                    "UPDATE articles SET text_body = ?, text_hash = ? WHERE id = ?",
+                    (extracted.text, text_hash, art["id"]),
+                )
+                conn.commit()
+                fetched += 1
+                if fetched % 20 == 0:
+                    log.info(f"  Refetched {fetched}/{len(articles)} articles...")
+
+        log.info(f"REFETCH complete: {fetched}/{len(articles)} articles got text stored")
+
+        if not args.rescore:
+            conn.close()
+            return
+
+    # --- RESCORE MODE: re-score articles that have text but old/missing prompt version ---
+    if args.rescore:
+        articles = get_articles_needing_rescore(conn, PROMPT_VERSION)
+        log.info(f"RESCORE: {len(articles)} articles need re-scoring (prompt version: {PROMPT_VERSION})")
+
+        rescored = 0
+        for art in articles:
+            async with SCORING_SEMAPHORE:
+                result = await score_article_claude(art["text_body"])
+
+            if not result:
+                log.warning(f"Rescore failed: {art['url']}")
+                continue
+
+            conn.execute(
+                """UPDATE articles SET
+                   score_claude = ?, median_score = ?, bucket = ?,
+                   score_prompt_version = ?, scored_at = datetime('now')
+                   WHERE id = ?""",
+                (result.score, result.score, result.bucket, PROMPT_VERSION, art["id"]),
+            )
+            conn.commit()
+            rescored += 1
+            if rescored % 10 == 0:
+                log.info(f"  Re-scored {rescored}/{len(articles)}...")
+
+        log.info(f"RESCORE complete: {rescored}/{len(articles)} articles re-scored")
+
+        # Update all journalist stats
+        journalist_ids = set(art["journalist_id"] for art in articles)
+        for jid in journalist_ids:
+            update_journalist_stats(conn, jid)
+
+        if not args.dry_run:
+            count = export_to_json(conn, EXTENSION_DATA)
+            log.info(f"Exported {count} journalists to {EXTENSION_DATA}")
+
+        conn.close()
+        return
 
     # Get journalists to process
     journalists = conn.execute("SELECT * FROM journalists ORDER BY name").fetchall()

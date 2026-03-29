@@ -10,9 +10,9 @@
       "confidence": "medium",
       "distribution": {
         "left": 5,
-        "centre_left": 40,
+        "centre_left": 45,
         "centre": 45,
-        "centre_right": 10,
+        "centre_right": 5,
         "right": 0
       },
       "connections": [
@@ -46,9 +46,9 @@
       "confidence": "medium",
       "distribution": {
         "left": 0,
-        "centre_left": 28,
+        "centre_left": 31,
         "centre": 61,
-        "centre_right": 11,
+        "centre_right": 8,
         "right": 0
       },
       "connections": [],
@@ -64,9 +64,9 @@
       "confidence": "medium",
       "distribution": {
         "left": 0,
-        "centre_left": 36,
-        "centre": 58,
-        "centre_right": 6,
+        "centre_left": 56,
+        "centre": 42,
+        "centre_right": 3,
         "right": 0
       },
       "connections": [
@@ -101,8 +101,8 @@
       "distribution": {
         "left": 0,
         "centre_left": 40,
-        "centre": 57,
-        "centre_right": 3,
+        "centre": 49,
+        "centre_right": 11,
         "right": 0
       },
       "connections": [],
@@ -208,9 +208,9 @@
       "confidence": "medium",
       "distribution": {
         "left": 0,
-        "centre_left": 6,
-        "centre": 91,
-        "centre_right": 3,
+        "centre_left": 15,
+        "centre": 76,
+        "centre_right": 9,
         "right": 0
       },
       "connections": [
@@ -238,8 +238,8 @@
       "confidence": "medium",
       "distribution": {
         "left": 0,
-        "centre_left": 40,
-        "centre": 60,
+        "centre_left": 44,
+        "centre": 56,
         "centre_right": 0,
         "right": 0
       },
@@ -255,8 +255,8 @@
       "article_count": 17,
       "confidence": "low",
       "distribution": {
-        "left": 18,
-        "centre_left": 47,
+        "left": 12,
+        "centre_left": 53,
         "centre": 35,
         "centre_right": 0,
         "right": 0
@@ -298,8 +298,8 @@
       "confidence": "low",
       "distribution": {
         "left": 0,
-        "centre_left": 18,
-        "centre": 82,
+        "centre_left": 9,
+        "centre": 91,
         "centre_right": 0,
         "right": 0
       },
@@ -339,10 +339,10 @@
       "article_count": 36,
       "confidence": "medium",
       "distribution": {
-        "left": 0,
-        "centre_left": 8,
-        "centre": 89,
-        "centre_right": 3,
+        "left": 3,
+        "centre_left": 22,
+        "centre": 67,
+        "centre_right": 8,
         "right": 0
       },
       "connections": [
