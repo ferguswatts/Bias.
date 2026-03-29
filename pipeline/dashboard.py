@@ -314,7 +314,16 @@ def generate_html(conn) -> str:
             </div>
         </div>""")
 
-    sections_html = "\n".join(journalist_sections)
+    # Split cards into 3 fixed columns (round-robin) so expanding
+    # a card in one column doesn't affect the others
+    cols = [[], [], []]
+    for i, s in enumerate(journalist_sections):
+        cols[i % 3].append(s)
+    sections_html = (
+        '<div class="card-column">' + "\n".join(cols[0]) + '</div>'
+        '<div class="card-column">' + "\n".join(cols[1]) + '</div>'
+        '<div class="card-column">' + "\n".join(cols[2]) + '</div>'
+    )
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Build outlet filter buttons
@@ -343,10 +352,10 @@ def generate_html(conn) -> str:
   .stat-label {{ font-size: 11px; color: #888; }}
 
   .container {{ max-width: 1600px; margin: 0 auto; padding: 24px 16px; }}
-  .card-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }}
-  .card-column {{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }}
-  @media (max-width: 1200px) {{ .card-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
-  @media (max-width: 768px) {{ .card-grid {{ grid-template-columns: 1fr; }} }}
+  .card-grid {{ display: flex; gap: 8px; align-items: flex-start; }}
+  .card-column {{ flex: 1; min-width: 0; }}
+  @media (max-width: 1200px) {{ .card-grid {{ flex-wrap: wrap; }} .card-column {{ flex: 0 0 calc(50% - 4px); }} }}
+  @media (max-width: 768px) {{ .card-column {{ flex: 0 0 100%; }} }}
 
   .journalist-card {{ background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }}
   .journalist-card.empty {{ }}
@@ -567,17 +576,21 @@ function collapseAll() {{
 function sortCards(mode, btn) {{
   document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  const grid = document.querySelector('.card-grid');
-  const cards = Array.from(grid.children);
+  const columns = document.querySelectorAll('.card-column');
+  const cards = [];
+  columns.forEach(col => {{
+    col.querySelectorAll('.journalist-card').forEach(c => cards.push(c));
+  }});
   cards.sort((a, b) => {{
     const sa = parseFloat(a.dataset.score);
     const sb = parseFloat(b.dataset.score);
-    if (mode === 'left') return sa - sb;          // most negative first
-    if (mode === 'right') return sb - sa;          // most positive first (unscored=999 go last)
-    if (mode === 'centre') return Math.abs(sa) - Math.abs(sb);  // closest to 0 first
-    return a.dataset.name.localeCompare(b.dataset.name);        // alpha
+    if (mode === 'left') return sa - sb;
+    if (mode === 'right') return sb - sa;
+    if (mode === 'centre') return Math.abs(sa) - Math.abs(sb);
+    return a.dataset.name.localeCompare(b.dataset.name);
   }});
-  cards.forEach(c => grid.appendChild(c));
+  columns.forEach(col => {{ while (col.firstChild) col.removeChild(col.firstChild); }});
+  cards.forEach((c, i) => columns[i % columns.length].appendChild(c));
 }}
 </script>
 </body>
