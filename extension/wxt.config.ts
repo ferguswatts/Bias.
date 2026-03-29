@@ -10,8 +10,8 @@ export default defineConfig({
     host_permissions: ["https://raw.githubusercontent.com/*"],
     web_accessible_resources: [
       {
-        resources: ["data.json"],
-        matches: ["*://*.nzherald.co.nz/*", "*://*.stuff.co.nz/*", "*://*.thepost.co.nz/*", "*://*.rnz.co.nz/*", "*://*.1news.co.nz/*", "*://*.newsroom.co.nz/*", "*://*.thespinoff.co.nz/*", "*://*.interest.co.nz/*"],
+        resources: ["data.json", "dashboard.html"],
+        matches: ["*://*.nzherald.co.nz/*", "*://*.stuff.co.nz/*", "*://*.thepost.co.nz/*", "*://*.rnz.co.nz/*", "*://*.1news.co.nz/*", "*://*.tvnz.co.nz/*", "*://*.newsroom.co.nz/*", "*://*.thespinoff.co.nz/*", "*://*.interest.co.nz/*"],
       },
     ],
   },

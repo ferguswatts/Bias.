@@ -28,6 +28,7 @@ export interface JournalistData {
     text: string;
     source: string;
   }>;
+  bio?: string;
   methodology: string;
 }
 

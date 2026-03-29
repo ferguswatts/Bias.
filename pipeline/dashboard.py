@@ -173,20 +173,13 @@ def generate_html(conn) -> str:
             bio_html = f'<div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">{bio}</p></div>'
 
         if not articles:
-            has_details = connections_html or bio_html
-            empty_toggle = f'<span class="toggle-icon toggle-details">▼</span>' if has_details else ''
-            empty_onclick = f'onclick="toggleDetails(\'{j["slug"]}\')"' if has_details else ''
             journalist_sections.append(f"""
-            <div class="journalist-card empty" data-outlet="{j['outlet']}" data-name="{j['name'].lower()}">
-                <div class="j-header" {empty_onclick}>
+            <div class="journalist-card empty" data-outlet="{j['outlet']}" data-name="{j['name'].lower()}" data-score="999">
+                <div class="j-header" onclick="toggleDetails('{j['slug']}')">
                     {avatar_html}
                     <div class="j-left">
                         <div class="j-name">{j['name']}</div>
                         <div class="j-meta">{j['outlet']} · {j['beat'] or 'No beat set'}</div>
-                    </div>
-                    <div class="j-right">
-                        <span class="article-count">No data</span>
-                        {empty_toggle}
                     </div>
                 </div>
                 <div class="details-section" id="details-{j['slug']}" style="display:none">
@@ -265,7 +258,7 @@ def generate_html(conn) -> str:
             facts_html = f'<div class="card-connections"><div class="card-section-label">Key facts</div>{fact_rows}</div>'
 
         journalist_sections.append(f"""
-        <div class="journalist-card" data-outlet="{j['outlet']}" data-name="{j['name'].lower()}">
+        <div class="journalist-card" data-outlet="{j['outlet']}" data-name="{j['name'].lower()}" data-score="{avg_score:.4f}">
             <div class="j-header" onclick="toggleDetails('{j['slug']}')">
                 {avatar_html}
                 <div class="j-left">
@@ -288,8 +281,6 @@ def generate_html(conn) -> str:
                         <span class="spectrum-label-r">Right</span>
                     </div>
                     <span class="lean-text" style="color:{avg_color}">{lean_text}</span>
-                    <span class="article-count">{total} articles</span>
-                    <span class="toggle-icon toggle-details">▼</span>
                 </div>
             </div>
             <div class="details-section" id="details-{j['slug']}" style="display:none">
@@ -323,15 +314,7 @@ def generate_html(conn) -> str:
             </div>
         </div>""")
 
-    # Split cards into two columns (alternating)
-    col1 = []
-    col2 = []
-    for i, s in enumerate(journalist_sections):
-        (col1 if i % 2 == 0 else col2).append(s)
-    sections_html = (
-        '<div class="card-column">' + "\n".join(col1) + '</div>'
-        '<div class="card-column">' + "\n".join(col2) + '</div>'
-    )
+    sections_html = "\n".join(journalist_sections)
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Build outlet filter buttons
@@ -359,24 +342,25 @@ def generate_html(conn) -> str:
   .stat-value {{ font-size: 22px; font-weight: 700; color: #fff; }}
   .stat-label {{ font-size: 11px; color: #888; }}
 
-  .container {{ max-width: 1400px; margin: 0 auto; padding: 24px 16px; }}
-  .card-grid {{ display: flex; gap: 12px; }}
+  .container {{ max-width: 1600px; margin: 0 auto; padding: 24px 16px; }}
+  .card-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }}
   .card-column {{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }}
-  @media (max-width: 960px) {{ .card-grid {{ flex-direction: column; }} }}
+  @media (max-width: 1200px) {{ .card-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
+  @media (max-width: 768px) {{ .card-grid {{ grid-template-columns: 1fr; }} }}
 
-  .journalist-card {{ background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }}
+  .journalist-card {{ background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }}
   .journalist-card.empty {{ }}
 
-  .j-header {{ padding: 14px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }}
+  .j-header {{ padding: 10px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }}
   .j-header:hover {{ background: #f9fafb; }}
-  .j-avatar {{ width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; overflow: hidden; }}
+  .j-avatar {{ width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; overflow: hidden; }}
   .j-avatar img {{ width: 100%; height: 100%; object-fit: cover; }}
   .j-avatar svg {{ display: block; }}
   .j-left {{ flex: 1; min-width: 0; }}
   .j-name {{ font-size: 15px; font-weight: 600; color: #1a1a1a; }}
   .j-meta {{ font-size: 12px; color: #888; margin-top: 2px; }}
   .j-right {{ display: flex; align-items: center; gap: 12px; flex-shrink: 0; }}
-  .spectrum-wrap {{ display: flex; align-items: center; gap: 6px; width: 200px; flex-shrink: 0; }}
+  .spectrum-wrap {{ display: flex; align-items: center; gap: 4px; width: 140px; flex-shrink: 0; }}
   .spectrum-label-l {{ font-size: 10px; font-weight: 700; color: #dc2626; }}
   .spectrum-label-r {{ font-size: 10px; font-weight: 700; color: #1d4ed8; }}
   .spectrum-track {{ flex: 1; position: relative; height: 28px; }}
@@ -472,7 +456,12 @@ def generate_html(conn) -> str:
     <button class="filter-btn active" onclick="filterCards('all', this)">All ({len(journalists)})</button>
     <button class="filter-btn" onclick="filterCards('scored', this)">Scored ({scored_journalists})</button>
     <button class="filter-btn" onclick="filterCards('empty', this)">No data ({len(journalists) - scored_journalists})</button>
-    <button class="filter-btn" style="margin-left:auto" onclick="expandAll()">Expand all</button>
+    <span class="filter-label" style="margin-left:auto">Sort:</span>
+    <button class="filter-btn sort-btn" onclick="sortCards('alpha', this)">A–Z</button>
+    <button class="filter-btn sort-btn" onclick="sortCards('left', this)">Most Left</button>
+    <button class="filter-btn sort-btn" onclick="sortCards('right', this)">Most Right</button>
+    <button class="filter-btn sort-btn" onclick="sortCards('centre', this)">Most Centre</button>
+    <button class="filter-btn" onclick="expandAll()">Expand all</button>
     <button class="filter-btn" onclick="collapseAll()">Collapse all</button>
   </div>
   <div class="filter-bar">
@@ -573,6 +562,22 @@ function collapseAll() {{
   document.querySelectorAll('.articles-section').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.articles-content').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.toggle-icon').forEach(el => el.classList.remove('open'));
+}}
+
+function sortCards(mode, btn) {{
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.querySelector('.card-grid');
+  const cards = Array.from(grid.children);
+  cards.sort((a, b) => {{
+    const sa = parseFloat(a.dataset.score);
+    const sb = parseFloat(b.dataset.score);
+    if (mode === 'left') return sa - sb;          // most negative first
+    if (mode === 'right') return sb - sa;          // most positive first (unscored=999 go last)
+    if (mode === 'centre') return Math.abs(sa) - Math.abs(sb);  // closest to 0 first
+    return a.dataset.name.localeCompare(b.dataset.name);        // alpha
+  }});
+  cards.forEach(c => grid.appendChild(c));
 }}
 </script>
 </body>

@@ -74,6 +74,7 @@ def export_to_json(conn: sqlite3.Connection, output_path: Path) -> int:
                 {"text": f["fact_text"], "source": f["source_url"]}
                 for f in facts
             ],
+            "bio": j["bio"] or "",
             "methodology": f"Based on {dist['article_count']} articles scored by AI",
         }
 
