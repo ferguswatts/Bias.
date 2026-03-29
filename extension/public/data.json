@@ -1,6 +1,79 @@
 {
   "version": "2026-03-29",
   "journalists": {
+    "andrea-vance-stuff": {
+      "name": "Andrea Vance",
+      "aliases": [],
+      "outlet": "Stuff",
+      "beat": "Political journalism",
+      "article_count": 20,
+      "confidence": "medium",
+      "distribution": {
+        "left": 5,
+        "centre_left": 40,
+        "centre": 45,
+        "centre_right": 10,
+        "right": 0
+      },
+      "connections": [
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        },
+        {
+          "type": "employer",
+          "target": "Stuff Limited",
+          "role": "Formerly Fairfax NZ",
+          "source": "https://www.stuff.co.nz/about-stuff"
+        }
+      ],
+      "facts": [],
+      "methodology": "Based on 20 articles scored by AI"
+    },
     "audrey-young-nzherald": {
       "name": "Audrey Young",
       "aliases": [],
@@ -45,6 +118,48 @@
           "target": "NZME",
           "role": "Parent company of NZ Herald",
           "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
         }
       ],
       "facts": [],
@@ -67,6 +182,170 @@
       "connections": [],
       "facts": [],
       "methodology": "Based on 35 articles scored by AI"
+    },
+    "guyon-espiner-rnz": {
+      "name": "Guyon Espiner",
+      "aliases": [],
+      "outlet": "RNZ",
+      "beat": "Investigative",
+      "article_count": 25,
+      "confidence": "medium",
+      "distribution": {
+        "left": 0,
+        "centre_left": 80,
+        "centre": 20,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        }
+      ],
+      "facts": [],
+      "methodology": "Based on 25 articles scored by AI"
+    },
+    "henry-cooke-stuff": {
+      "name": "Henry Cooke",
+      "aliases": [],
+      "outlet": "Stuff",
+      "beat": "Political journalism",
+      "article_count": 12,
+      "confidence": "low",
+      "distribution": {
+        "left": 0,
+        "centre_left": 0,
+        "centre": 100,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [],
+      "facts": [],
+      "methodology": "Based on 12 articles scored by AI"
+    },
+    "jane-patterson-rnz": {
+      "name": "Jane Patterson",
+      "aliases": [],
+      "outlet": "RNZ",
+      "beat": "Political editor",
+      "article_count": 2,
+      "confidence": "low",
+      "distribution": {
+        "left": 0,
+        "centre_left": 0,
+        "centre": 100,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        }
+      ],
+      "facts": [],
+      "methodology": "Based on 2 articles scored by AI"
     },
     "jason-walls-nzherald": {
       "name": "Jason Walls",
@@ -94,10 +373,161 @@
           "target": "NZME",
           "role": "Parent company of NZ Herald",
           "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
         }
       ],
       "facts": [],
       "methodology": "Based on 34 articles scored by AI"
+    },
+    "jo-moir-rnz": {
+      "name": "Jo Moir",
+      "aliases": [],
+      "outlet": "RNZ",
+      "beat": "Political journalism",
+      "article_count": 25,
+      "confidence": "medium",
+      "distribution": {
+        "left": 0,
+        "centre_left": 40,
+        "centre": 60,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [],
+      "facts": [],
+      "methodology": "Based on 25 articles scored by AI"
+    },
+    "john-campbell-1news": {
+      "name": "John Campbell",
+      "aliases": [],
+      "outlet": "1News",
+      "beat": "Senior correspondent",
+      "article_count": 17,
+      "confidence": "low",
+      "distribution": {
+        "left": 18,
+        "centre_left": 47,
+        "centre": 35,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [],
+      "facts": [],
+      "methodology": "Based on 17 articles scored by AI"
+    },
+    "katie-bradford-1news": {
+      "name": "Katie Bradford",
+      "aliases": [],
+      "outlet": "1News",
+      "beat": "Parliamentary politics",
+      "article_count": 11,
+      "confidence": "low",
+      "distribution": {
+        "left": 0,
+        "centre_left": 18,
+        "centre": 82,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        },
+        {
+          "type": "family",
+          "target": "Sue Bradford",
+          "role": "Former Green MP",
+          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+        }
+      ],
+      "facts": [],
+      "methodology": "Based on 11 articles scored by AI"
     },
     "thomas-coughlan-nzherald": {
       "name": "Thomas Coughlan",
@@ -125,6 +555,48 @@
           "target": "NZME",
           "role": "Parent company of NZ Herald",
           "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
+        },
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Parent company of NZ Herald",
+          "source": "https://www.nzme.co.nz/"
         }
       ],
       "facts": [],
@@ -138,6 +610,11 @@
       }
     },
     "stuff.co.nz": {
+      "selectors": {
+        "byline": ".author-name, .sics-component__byline a, [class*='author']"
+      }
+    },
+    "thepost.co.nz": {
       "selectors": {
         "byline": ".author-name, .sics-component__byline a, [class*='author']"
       }

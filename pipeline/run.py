@@ -59,7 +59,11 @@ async def scrape_and_score_journalist(conn, journalist: dict, adapters: dict, ca
 
     async with SCRAPING_SEMAPHORE:
         try:
-            urls = await adapter.get_article_urls(author_slug=author_slug)
+            # Pass backfill=True to adapters that support historical URL discovery
+            get_urls_kwargs: dict = {"author_slug": author_slug}
+            if cap > 20:  # backfill mode
+                get_urls_kwargs["backfill"] = True
+            urls = await adapter.get_article_urls(**get_urls_kwargs)
         except Exception as e:
             log.error(f"Failed to get URLs from {adapter.name}: {e}")
             return 0

@@ -29,7 +29,7 @@ class RNZAdapter(SiteAdapter):
     domain = "rnz.co.nz"
     needs_playwright = False
 
-    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None) -> list[str]:
+    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None, backfill: bool = False) -> list[str]:
         if author_slug:
             urls = await self._get_author_page_urls(author_slug)
             if urls:

@@ -23,8 +23,19 @@ class SiteAdapter(ABC):
     needs_playwright: bool = False
 
     @abstractmethod
-    async def get_article_urls(self, since_date: str | None = None) -> list[str]:
-        """Get URLs of recent articles. Uses RSS or sitemap."""
+    async def get_article_urls(
+        self,
+        since_date: str | None = None,
+        author_slug: str | None = None,
+        backfill: bool = False,
+    ) -> list[str]:
+        """Get URLs of recent articles. Uses RSS, sitemap, or author page.
+
+        Args:
+            since_date: ISO date string — skip articles older than this (optional).
+            author_slug: Journalist slug (e.g., "john-campbell") for author-scoped fetches.
+            backfill: If True, fetch historical articles beyond the recent pool.
+        """
         ...
 
     @abstractmethod

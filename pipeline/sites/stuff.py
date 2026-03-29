@@ -82,7 +82,7 @@ class StuffAdapter(SiteAdapter):
     domain = "stuff.co.nz"
     needs_playwright = False  # API-based, no browser rendering needed
 
-    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None) -> list[str]:
+    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None, backfill: bool = False) -> list[str]:
         if author_slug:
             urls = await self._get_author_urls(author_slug)
             if urls:

@@ -36,7 +36,7 @@ class NZHeraldAdapter(SiteAdapter):
         "david-farrar": "https://www.nzherald.co.nz/author/david-farrar/",
     }
 
-    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None) -> list[str]:
+    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None, backfill: bool = False) -> list[str]:
         """Scrape article URLs from an author's archive page using Playwright."""
         if not async_playwright or not author_slug:
             return []
