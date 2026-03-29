@@ -5,6 +5,11 @@ Their internal API provides:
   - Author pages:   GET /api/v1.0/stuff/page?path=authors/{slug}
   - Article data:   GET /api/v1.0/stuff/story/{article_id}
 
+Historical article discovery via the Wayback Machine CDX API:
+  - https://web.archive.org/cdx/search/cdx?url=stuff.co.nz/{section}/&matchType=prefix
+  - Provides 250K+ unique article URLs across all sections
+  - Articles can then be fetched via Stuff's story API using the numeric ID
+
 Article body is returned as HTML in content.contentBody.body — no Playwright needed.
 The article ID is always embedded in the URL: /section/{numeric_id}/{slug}.
 
@@ -37,11 +42,15 @@ STUFF_SLUG_OVERRIDES: dict[str, str] = {
     "andrea-vance": "andrea-vance-0",
 }
 
+WAYBACK_CDX_URL = "https://web.archive.org/cdx/search/cdx"
+WAYBACK_SECTIONS = ["politics", "nz-news", "national"]
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json, text/html, */*",
 }
 TIMEOUT = aiohttp.ClientTimeout(total=15)
+WAYBACK_TIMEOUT = aiohttp.ClientTimeout(total=90)
 
 # Stuff article IDs are 9-digit numbers embedded in every article URL
 ARTICLE_ID_RE = re.compile(r"/(\d{9,})/")
@@ -82,14 +91,68 @@ class StuffAdapter(SiteAdapter):
     domain = "stuff.co.nz"
     needs_playwright = False  # API-based, no browser rendering needed
 
-    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None, backfill: bool = False) -> list[str]:
-        if author_slug:
-            urls = await self._get_author_urls(author_slug)
-            if urls:
-                return urls
+    _wayback_urls: list[str] | None = None
 
-        # Fallback: politics section
-        return await self._get_section_urls("politics")
+    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None, backfill: bool = False) -> list[str]:
+        urls: list[str] = []
+
+        if author_slug:
+            author_urls = await self._get_author_urls(author_slug)
+            urls.extend(author_urls)
+
+        # Load historical URLs from Wayback Machine (cached)
+        if self._wayback_urls is None:
+            self._wayback_urls = await self._load_wayback_urls()
+        urls.extend(self._wayback_urls)
+
+        # Supplement with current section API
+        if not urls:
+            section_urls = await self._get_section_urls("politics")
+            urls.extend(section_urls)
+
+        # Deduplicate
+        seen: set[str] = set()
+        deduped: list[str] = []
+        for u in urls:
+            clean = u.split("?")[0].rstrip("/")
+            if clean not in seen and ARTICLE_ID_RE.search(clean):
+                seen.add(clean)
+                deduped.append(clean)
+
+        return deduped
+
+    async def _load_wayback_urls(self) -> list[str]:
+        """Fetch historical article URLs from the Wayback Machine CDX API."""
+        all_urls: list[str] = []
+
+        async with aiohttp.ClientSession() as session:
+            for section in WAYBACK_SECTIONS:
+                params = {
+                    "url": f"stuff.co.nz/{section}/",
+                    "matchType": "prefix",
+                    "output": "text",
+                    "fl": "original",
+                    "filter": "statuscode:200",
+                    "collapse": "urlkey",
+                }
+                try:
+                    async with session.get(WAYBACK_CDX_URL, params=params, headers=HEADERS, timeout=WAYBACK_TIMEOUT) as resp:
+                        if resp.status != 200:
+                            log.warning(f"Stuff Wayback CDX returned {resp.status} for {section}")
+                            continue
+                        text = await resp.text()
+                except Exception as e:
+                    log.warning(f"Stuff Wayback CDX failed for {section}: {e}")
+                    continue
+
+                urls = [line.strip() for line in text.strip().split("\n") if line.strip()]
+                # Filter to only URLs with article IDs
+                article_urls = [u for u in urls if ARTICLE_ID_RE.search(u)]
+                all_urls.extend(article_urls)
+                log.info(f"Stuff Wayback: {len(article_urls)} article URLs from /{section}/")
+
+        log.info(f"Stuff Wayback: {len(all_urls)} total historical URLs")
+        return all_urls
 
     async def _get_author_urls(self, author_slug: str) -> list[str]:
         """Check both Stuff and The Post author pages — they share the same CMS."""
