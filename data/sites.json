@@ -9,6 +9,11 @@
       "byline": ".author-name, .sics-component__byline a, [class*='author']"
     }
   },
+  "thepost.co.nz": {
+    "selectors": {
+      "byline": ".author-name, .sics-component__byline a, [class*='author']"
+    }
+  },
   "rnz.co.nz": {
     "selectors": {
       "byline": ".author, .article__author, [class*='author']"

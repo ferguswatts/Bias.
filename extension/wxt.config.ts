@@ -11,7 +11,7 @@ export default defineConfig({
     web_accessible_resources: [
       {
         resources: ["data.json"],
-        matches: ["*://*.nzherald.co.nz/*", "*://*.stuff.co.nz/*", "*://*.rnz.co.nz/*", "*://*.1news.co.nz/*", "*://*.newsroom.co.nz/*", "*://*.thespinoff.co.nz/*", "*://*.interest.co.nz/*"],
+        matches: ["*://*.nzherald.co.nz/*", "*://*.stuff.co.nz/*", "*://*.thepost.co.nz/*", "*://*.rnz.co.nz/*", "*://*.1news.co.nz/*", "*://*.newsroom.co.nz/*", "*://*.thespinoff.co.nz/*", "*://*.interest.co.nz/*"],
       },
     ],
   },
