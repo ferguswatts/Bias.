@@ -173,18 +173,26 @@ def generate_html(conn) -> str:
             bio_html = f'<div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">{bio}</p></div>'
 
         if not articles:
+            has_details = connections_html or bio_html
+            empty_toggle = f'<span class="toggle-icon toggle-details">▼</span>' if has_details else ''
+            empty_onclick = f'onclick="toggleDetails(\'{j["slug"]}\')"' if has_details else ''
             journalist_sections.append(f"""
-            <div class="journalist-card empty">
-                <div class="j-header">
+            <div class="journalist-card empty" data-outlet="{j['outlet']}" data-name="{j['name'].lower()}">
+                <div class="j-header" {empty_onclick}>
                     {avatar_html}
                     <div class="j-left">
                         <div class="j-name">{j['name']}</div>
                         <div class="j-meta">{j['outlet']} · {j['beat'] or 'No beat set'}</div>
                     </div>
+                    <div class="j-right">
+                        <span class="article-count">No data</span>
+                        {empty_toggle}
+                    </div>
                 </div>
-                {connections_html}
-                {bio_html}
-                <div class="no-data">No articles scored yet</div>
+                <div class="details-section" id="details-{j['slug']}" style="display:none">
+                    {connections_html}
+                    {bio_html}
+                </div>
             </div>""")
             continue
 
@@ -257,15 +265,14 @@ def generate_html(conn) -> str:
             facts_html = f'<div class="card-connections"><div class="card-section-label">Key facts</div>{fact_rows}</div>'
 
         journalist_sections.append(f"""
-        <div class="journalist-card">
-            <div class="j-header" onclick="toggleArticles('{j['slug']}')">
+        <div class="journalist-card" data-outlet="{j['outlet']}" data-name="{j['name'].lower()}">
+            <div class="j-header" onclick="toggleDetails('{j['slug']}')">
                 {avatar_html}
                 <div class="j-left">
                     <div class="j-name">{j['name']}</div>
                     <div class="j-meta">{j['outlet']} · {j['beat'] or 'Politics'}</div>
                 </div>
                 <div class="j-right">
-                    {confidence_badge}
                     <div class="spectrum-wrap" title="{avg_label} ({avg_score:+.2f})">
                         <span class="spectrum-label-l">Left</span>
                         <div class="spectrum-track">
@@ -282,34 +289,57 @@ def generate_html(conn) -> str:
                     </div>
                     <span class="lean-text" style="color:{avg_color}">{lean_text}</span>
                     <span class="article-count">{total} articles</span>
-                    <span class="toggle-icon">▼</span>
+                    <span class="toggle-icon toggle-details">▼</span>
                 </div>
             </div>
-            <div class="dist-section">
-                {dist_bars}
+            <div class="details-section" id="details-{j['slug']}" style="display:none">
+                <div class="dist-section">
+                    {dist_bars}
+                </div>
+                {connections_html}
+                {facts_html}
+                {bio_html}
             </div>
-            {connections_html}
-            {facts_html}
-            {bio_html}
             <div class="articles-section" id="articles-{j['slug']}" style="display:none">
-                <table class="art-table">
-                    <thead>
-                        <tr>
-                            <th>Article</th>
-                            <th>Date</th>
-                            <th>Bucket</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {article_rows}
-                    </tbody>
-                </table>
+                <div class="articles-toggle" onclick="toggleArticles('{j['slug']}')">
+                    <span>Articles ({total})</span>
+                    <span class="toggle-icon toggle-articles">▼</span>
+                </div>
+                <div class="articles-content" id="articles-content-{j['slug']}" style="display:none">
+                    <table class="art-table">
+                        <thead>
+                            <tr>
+                                <th>Article</th>
+                                <th>Date</th>
+                                <th>Bucket</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {article_rows}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>""")
 
-    sections_html = "\n".join(journalist_sections)
+    # Split cards into two columns (alternating)
+    col1 = []
+    col2 = []
+    for i, s in enumerate(journalist_sections):
+        (col1 if i % 2 == 0 else col2).append(s)
+    sections_html = (
+        '<div class="card-column">' + "\n".join(col1) + '</div>'
+        '<div class="card-column">' + "\n".join(col2) + '</div>'
+    )
     generated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Build outlet filter buttons
+    outlets = sorted(set(j['outlet'] for j in journalists if j['outlet']))
+    outlet_buttons = ''.join(
+        f'<button class="filter-btn outlet-btn" onclick="filterOutlet(\'{o}\', this)">{o}</button>'
+        for o in outlets
+    )
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -329,7 +359,10 @@ def generate_html(conn) -> str:
   .stat-value {{ font-size: 22px; font-weight: 700; color: #fff; }}
   .stat-label {{ font-size: 11px; color: #888; }}
 
-  .container {{ max-width: 960px; margin: 0 auto; padding: 24px 16px; }}
+  .container {{ max-width: 1400px; margin: 0 auto; padding: 24px 16px; }}
+  .card-grid {{ display: flex; gap: 12px; }}
+  .card-column {{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }}
+  @media (max-width: 960px) {{ .card-grid {{ flex-direction: column; }} }}
 
   .journalist-card {{ background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }}
   .journalist-card.empty {{ }}
@@ -343,7 +376,7 @@ def generate_html(conn) -> str:
   .j-name {{ font-size: 15px; font-weight: 600; color: #1a1a1a; }}
   .j-meta {{ font-size: 12px; color: #888; margin-top: 2px; }}
   .j-right {{ display: flex; align-items: center; gap: 12px; flex-shrink: 0; }}
-  .spectrum-wrap {{ display: flex; align-items: center; gap: 6px; width: 300px; flex-shrink: 0; }}
+  .spectrum-wrap {{ display: flex; align-items: center; gap: 6px; width: 200px; flex-shrink: 0; }}
   .spectrum-label-l {{ font-size: 10px; font-weight: 700; color: #dc2626; }}
   .spectrum-label-r {{ font-size: 10px; font-weight: 700; color: #1d4ed8; }}
   .spectrum-track {{ flex: 1; position: relative; height: 28px; }}
@@ -390,6 +423,9 @@ def generate_html(conn) -> str:
   .card-bio {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; }}
   .bio-text {{ font-size: 12px; color: #555; line-height: 1.6; margin: 0; }}
 
+  .details-section {{ }}
+  .articles-toggle {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; font-size: 12px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.4px; }}
+  .articles-toggle:hover {{ background: #f9fafb; }}
   .articles-section {{ border-top: 1px solid #f3f4f6; }}
   .art-table {{ width: 100%; border-collapse: collapse; font-size: 13px; }}
   .art-table thead th {{ padding: 8px 18px; text-align: left; font-size: 11px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid #f3f4f6; background: #fafafa; }}
@@ -405,6 +441,8 @@ def generate_html(conn) -> str:
   .filter-btn {{ padding: 5px 12px; border-radius: 20px; border: 1px solid #e5e7eb; background: #fff; font-size: 12px; cursor: pointer; color: #555; }}
   .filter-btn:hover, .filter-btn.active {{ background: #1a1a1a; color: #fff; border-color: #1a1a1a; }}
   .filter-label {{ font-size: 12px; color: #888; margin-right: 4px; }}
+  .search-input {{ padding: 5px 12px; border-radius: 20px; border: 1px solid #e5e7eb; font-size: 12px; outline: none; width: 180px; margin-left: auto; }}
+  .search-input:focus {{ border-color: #1a1a1a; }}
 
   footer {{ text-align: center; font-size: 11px; color: #bbb; padding: 24px; }}
 </style>
@@ -437,16 +475,46 @@ def generate_html(conn) -> str:
     <button class="filter-btn" style="margin-left:auto" onclick="expandAll()">Expand all</button>
     <button class="filter-btn" onclick="collapseAll()">Collapse all</button>
   </div>
+  <div class="filter-bar">
+    <span class="filter-label">Outlet:</span>
+    <button class="filter-btn outlet-btn active" onclick="filterOutlet('all', this)">All</button>
+    {outlet_buttons}
+    <input type="text" class="search-input" placeholder="Search by name…" oninput="searchCards(this.value)">
+  </div>
 
+  <div class="card-grid">
   {sections_html}
+  </div>
 </div>
 
 <footer>Byline Card pipeline · SQLite data · Refresh by running <code>python -m pipeline.dashboard --open</code></footer>
 
 <script>
+function toggleDetails(slug) {{
+  const el = document.getElementById('details-' + slug);
+  const card = el.closest('.journalist-card');
+  const icon = card.querySelector('.toggle-details');
+  const articlesSection = document.getElementById('articles-' + slug);
+  if (el.style.display === 'none') {{
+    el.style.display = 'block';
+    if (articlesSection) articlesSection.style.display = 'block';
+    icon.classList.add('open');
+  }} else {{
+    el.style.display = 'none';
+    if (articlesSection) articlesSection.style.display = 'none';
+    icon.classList.remove('open');
+    // Also collapse articles content when collapsing details
+    const artContent = document.getElementById('articles-content-' + slug);
+    const artIcon = card.querySelector('.toggle-articles');
+    if (artContent) artContent.style.display = 'none';
+    if (artIcon) artIcon.classList.remove('open');
+  }}
+}}
+
 function toggleArticles(slug) {{
-  const el = document.getElementById('articles-' + slug);
-  const icon = el.closest('.journalist-card').querySelector('.toggle-icon');
+  const el = document.getElementById('articles-content-' + slug);
+  const card = el.closest('.journalist-card');
+  const icon = card.querySelector('.toggle-articles');
   if (el.style.display === 'none') {{
     el.style.display = 'block';
     icon.classList.add('open');
@@ -456,23 +524,54 @@ function toggleArticles(slug) {{
   }}
 }}
 
-function filterCards(type, btn) {{
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+let activeShowFilter = 'all';
+let activeOutletFilter = 'all';
+let activeSearchTerm = '';
+
+function applyFilters() {{
   document.querySelectorAll('.journalist-card').forEach(card => {{
-    if (type === 'all') card.style.display = '';
-    else if (type === 'scored') card.style.display = card.classList.contains('empty') ? 'none' : '';
-    else if (type === 'empty') card.style.display = card.classList.contains('empty') ? '' : 'none';
+    let show = true;
+    // Show filter
+    if (activeShowFilter === 'scored' && card.classList.contains('empty')) show = false;
+    if (activeShowFilter === 'empty' && !card.classList.contains('empty')) show = false;
+    // Outlet filter
+    if (activeOutletFilter !== 'all' && card.dataset.outlet !== activeOutletFilter) show = false;
+    // Search filter
+    if (activeSearchTerm && !card.dataset.name.includes(activeSearchTerm)) show = false;
+    card.style.display = show ? '' : 'none';
   }});
 }}
 
+function filterCards(type, btn) {{
+  btn.closest('.filter-bar').querySelectorAll('.filter-btn:not(.outlet-btn)').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeShowFilter = type;
+  applyFilters();
+}}
+
+function filterOutlet(outlet, btn) {{
+  btn.closest('.filter-bar').querySelectorAll('.outlet-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeOutletFilter = outlet;
+  applyFilters();
+}}
+
+function searchCards(term) {{
+  activeSearchTerm = term.toLowerCase();
+  applyFilters();
+}}
+
 function expandAll() {{
+  document.querySelectorAll('.details-section').forEach(el => el.style.display = 'block');
   document.querySelectorAll('.articles-section').forEach(el => el.style.display = 'block');
+  document.querySelectorAll('.articles-content').forEach(el => el.style.display = 'block');
   document.querySelectorAll('.toggle-icon').forEach(el => el.classList.add('open'));
 }}
 
 function collapseAll() {{
+  document.querySelectorAll('.details-section').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.articles-section').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.articles-content').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.toggle-icon').forEach(el => el.classList.remove('open'));
 }}
 </script>
