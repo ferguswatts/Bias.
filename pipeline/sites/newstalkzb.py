@@ -33,6 +33,7 @@ ARTICLE_RE = re.compile(r'href="(/(?:news|opinion)/[a-z0-9-]+/[a-z0-9-]+/?)"')
 SLUG_TO_NAME = {
     "barry-soper": "Barry Soper",
     "heather-du-plessis-allan": "Heather du Plessis-Allan",
+    "mike-hosking": "Mike Hosking",
 }
 
 
@@ -87,6 +88,8 @@ class NewstalkZBAdapter(SiteAdapter):
         raw = ARTICLE_RE.findall(html)
         # Also match opinion pieces at top level
         raw += re.findall(r'href="(/opinion/[a-z0-9-]+/?)"', html)
+        # Also match on-air opinion pieces (e.g. Mike's Minute)
+        raw += re.findall(r'href="(/on-air/[a-z0-9-]+/opinion/[a-z0-9-]+/?)"', html)
 
         seen: set[str] = set()
         urls: list[str] = []
@@ -109,9 +112,9 @@ class NewstalkZBAdapter(SiteAdapter):
             except Exception:
                 return []
 
-        urls = re.findall(r'<link>(https?://www\.newstalkzb\.co\.nz/(?:news|opinion)/[^<]+)</link>', xml)
+        urls = re.findall(r'<link>(https?://www\.newstalkzb\.co\.nz/(?:news|opinion|on-air)/[^<]+)</link>', xml)
         if not urls:
-            urls = re.findall(r'<guid[^>]*>(https?://www\.newstalkzb\.co\.nz/(?:news|opinion)/[^<]+)</guid>', xml)
+            urls = re.findall(r'<guid[^>]*>(https?://www\.newstalkzb\.co\.nz/(?:news|opinion|on-air)/[^<]+)</guid>', xml)
         return [u.rstrip("/") for u in urls]
 
     async def extract_article(self, url: str) -> Article | None:
