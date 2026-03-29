@@ -1,10 +1,12 @@
 """Main orchestrator for the Byline Card pipeline.
 
 Usage:
-    python -m pipeline.run                    # Full run
-    python -m pipeline.run --journalists 5    # Limit to first 5 journalists
-    python -m pipeline.run --dry-run          # Scrape + score but don't export
-    python -m pipeline.run --export-only      # Just regenerate JSON from existing data
+    python -m pipeline.run                         # Full run (cap: 20 articles/journalist)
+    python -m pipeline.run --journalists 5         # Limit to first 5 journalists
+    python -m pipeline.run --backfill              # Historical backfill (cap: 200 articles/journalist)
+    python -m pipeline.run --cap 50               # Custom cap
+    python -m pipeline.run --dry-run              # Scrape + score but don't export
+    python -m pipeline.run --export-only          # Just regenerate JSON from existing data
 """
 
 import argparse
@@ -12,6 +14,9 @@ import asyncio
 import hashlib
 import logging
 from pathlib import Path
+
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 from .db import get_connection, init_db, load_journalists_from_csv, load_connections_from_csv
 from .scorer import score_article_claude, score_to_bucket
@@ -29,7 +34,7 @@ SCORING_SEMAPHORE = asyncio.Semaphore(5)
 SCRAPING_SEMAPHORE = asyncio.Semaphore(3)
 
 
-async def scrape_and_score_journalist(conn, journalist: dict, adapters: dict) -> int:
+async def scrape_and_score_journalist(conn, journalist: dict, adapters: dict, cap: int = 20) -> int:
     """Scrape new articles for a journalist and score them. Returns count of new articles scored."""
     outlet_key = journalist["outlet"].lower().replace(" ", "")
 
@@ -48,14 +53,19 @@ async def scrape_and_score_journalist(conn, journalist: dict, adapters: dict) ->
     adapter = adapters[adapter_key]
     scored = 0
 
+    # Extract author slug from journalist slug (e.g., "thomas-coughlan-nzherald" → "thomas-coughlan")
+    author_slug = "-".join(journalist["slug"].split("-")[:-1])
+
     async with SCRAPING_SEMAPHORE:
         try:
-            urls = await adapter.get_article_urls()
+            urls = await adapter.get_article_urls(author_slug=author_slug)
         except Exception as e:
             log.error(f"Failed to get URLs from {adapter.name}: {e}")
             return 0
 
-    for url in urls[:20]:  # Cap per journalist per run
+    log.info(f"  Found {len(urls)} article URLs for {journalist['name']}")
+
+    for url in urls[:cap]:
         # Skip if already in database
         existing = conn.execute("SELECT id FROM articles WHERE url = ?", (url,)).fetchone()
         if existing:
@@ -110,7 +120,11 @@ async def main():
     parser.add_argument("--journalists", type=int, default=0, help="Limit to first N journalists")
     parser.add_argument("--dry-run", action="store_true", help="Scrape + score but don't export")
     parser.add_argument("--export-only", action="store_true", help="Just regenerate JSON")
+    parser.add_argument("--cap", type=int, default=20, help="Max articles to score per journalist per run (default: 20)")
+    parser.add_argument("--backfill", action="store_true", help="Backfill mode: raise cap to 200 to collect historical articles")
     args = parser.parse_args()
+
+    article_cap = 200 if args.backfill else args.cap
 
     conn = get_connection()
     init_db(conn)
@@ -138,10 +152,12 @@ async def main():
     # Initialize adapters
     from .sites.nzherald import NZHeraldAdapter
     from .sites.stuff import StuffAdapter
+    from .sites.rnz import RNZAdapter
 
     adapters = {
         "nzherald": NZHeraldAdapter(),
         "stuff": StuffAdapter(),
+        "rnz": RNZAdapter(),
     }
 
     # Get journalists to process
@@ -153,9 +169,12 @@ async def main():
 
     log.info(f"Processing {len(journalists)} journalists with {len(adapters)} site adapters")
 
+    if args.backfill:
+        log.info(f"BACKFILL MODE — cap raised to {article_cap} articles per journalist")
+
     total_scored = 0
     for journalist in journalists:
-        scored = await scrape_and_score_journalist(conn, journalist, adapters)
+        scored = await scrape_and_score_journalist(conn, journalist, adapters, cap=article_cap)
         if scored:
             update_journalist_stats(conn, journalist["id"])
             total_scored += scored

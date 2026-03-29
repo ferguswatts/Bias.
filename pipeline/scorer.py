@@ -1,8 +1,11 @@
 """LLM-based article scoring for political lean analysis."""
 
 import json
+import logging
 import os
 from dataclasses import dataclass
+
+log = logging.getLogger(__name__)
 
 SCORING_PROMPT = """You are a political bias analyst for New Zealand media. Score the following
 news article on a scale from -1.0 (hard left) to +1.0 (hard right).
@@ -69,15 +72,21 @@ async def score_article_claude(article_text: str) -> ScoreResult | None:
     try:
         import anthropic
     except ImportError:
+        log.error("anthropic package not installed. Run: pip install anthropic")
         return None
 
-    client = anthropic.AsyncAnthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key or api_key == "your_key_here":
+        log.error("ANTHROPIC_API_KEY not set. Add it to your .env file.")
+        return None
+
+    client = anthropic.AsyncAnthropic(api_key=api_key)
     prompt = SCORING_PROMPT.replace("{article_text}", article_text[:8000])
 
     for attempt in range(3):
         try:
             response = await client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-opus-4-5",
                 max_tokens=1024,
                 messages=[{"role": "user", "content": prompt}],
             )
@@ -102,11 +111,13 @@ async def score_article_claude(article_text: str) -> ScoreResult | None:
                 bucket=score_to_bucket(score),
                 model="claude",
             )
-        except (json.JSONDecodeError, KeyError, IndexError):
+        except (json.JSONDecodeError, KeyError, IndexError) as e:
+            log.warning(f"JSON parse error on attempt {attempt + 1}: {e}")
             if attempt == 2:
                 return None
             continue
-        except Exception:
+        except Exception as e:
+            log.warning(f"API error on attempt {attempt + 1}: {e}")
             if attempt == 2:
                 return None
             continue

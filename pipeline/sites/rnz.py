@@ -13,7 +13,7 @@ class RNZAdapter(SiteAdapter):
     needs_playwright = False
     RSS_URL = "https://www.rnz.co.nz/rss/political.xml"
 
-    async def get_article_urls(self, since_date: str | None = None) -> list[str]:
+    async def get_article_urls(self, since_date: str | None = None, author_slug: str | None = None) -> list[str]:
         async with aiohttp.ClientSession() as session:
             async with session.get(self.RSS_URL) as resp:
                 if resp.status != 200:
