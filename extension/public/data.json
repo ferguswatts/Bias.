@@ -23,55 +23,18 @@
           "source": "https://www.stuff.co.nz/about-stuff"
         },
         {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
-        },
-        {
-          "type": "employer",
-          "target": "Stuff Limited",
-          "role": "Formerly Fairfax NZ",
-          "source": "https://www.stuff.co.nz/about-stuff"
+          "type": "political",
+          "target": "Peter Dunne",
+          "role": "United Future leader and Revenue Minister — Textgate 2013 (86 emails in 13 days; Dunne resigned; Vance's phone records and parliamentary swipe card data were improperly accessed)",
+          "source": "https://en.wikipedia.org/wiki/Textgate_(New_Zealand)"
         }
       ],
-      "facts": [],
+      "facts": [
+        {
+          "text": "'Textgate' (2013): exchanged 86 emails over 13 days with Revenue Minister Peter Dunne about GCSB leak inquiry; Dunne resigned; a subsequent inquiry improperly accessed Vance's phone records AND parliamentary swipe card movement data — a major NZ privacy scandal",
+          "source": "https://en.wikipedia.org/wiki/Textgate_(New_Zealand)"
+        }
+      ],
       "methodology": "Based on 20 articles scored by AI"
     },
     "audrey-young-nzherald": {
@@ -115,54 +78,17 @@
         },
         {
           "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
+          "target": "NZ Police",
+          "role": "Chief Media and Communications Adviser (from May 2025 — revolving door from NZ Herald Political Editor)",
+          "source": "https://www.police.govt.nz/"
         }
       ],
-      "facts": [],
+      "facts": [
+        {
+          "text": "Left NZ Herald in May 2025 after almost two decades as Political Editor to become Chief Media and Communications Adviser to the NZ Police Commissioner",
+          "source": "https://en.wikipedia.org/wiki/Claire_Trevett"
+        }
+      ],
       "methodology": "Based on 36 articles scored by AI"
     },
     "derek-cheng-nzherald": {
@@ -205,55 +131,24 @@
           "source": "https://www.rnz.co.nz/about"
         },
         {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
+          "type": "spouse",
+          "target": "Emma Wehipeihana",
+          "role": "Former personal assistant to Labour MP Darren Hughes (married 2012 separated 2023)",
+          "source": "https://en.wikipedia.org/wiki/Guyon_Espiner"
         },
         {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
+          "type": "political",
+          "target": "Darren Hughes",
+          "role": "Labour MP — Espiner's wife Emma Wehipeihana was his personal assistant",
+          "source": "https://en.wikipedia.org/wiki/Darren_Hughes"
         }
       ],
-      "facts": [],
+      "facts": [
+        {
+          "text": "Political journalist Duncan Garner served as best man at Espiner's 2012 wedding to Emma Wehipeihana",
+          "source": "https://en.wikipedia.org/wiki/Guyon_Espiner"
+        }
+      ],
       "methodology": "Based on 25 articles scored by AI"
     },
     "henry-cooke-stuff": {
@@ -271,7 +166,12 @@
         "right": 0
       },
       "connections": [],
-      "facts": [],
+      "facts": [
+        {
+          "text": "Left journalism to work in public relations in London for several years before returning as deputy political reporter at The Post in September 2025; runs the 'Museum Street' politics newsletter",
+          "source": "https://www.stuff.co.nz/"
+        }
+      ],
       "methodology": "Based on 12 articles scored by AI"
     },
     "jane-patterson-rnz": {
@@ -289,54 +189,6 @@
         "right": 0
       },
       "connections": [
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
-        {
-          "type": "employer",
-          "target": "RNZ",
-          "role": "Public broadcaster funded by NZ Government",
-          "source": "https://www.rnz.co.nz/about"
-        },
         {
           "type": "employer",
           "target": "RNZ",
@@ -367,57 +219,14 @@
           "target": "NZME",
           "role": "Parent company of NZ Herald",
           "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
         }
       ],
-      "facts": [],
+      "facts": [
+        {
+          "text": "Moved from NZ Herald to Newstalk ZB Political Editor then to TVNZ 1News Business Correspondent (replacing Katie Bradford)",
+          "source": "https://www.tvnz.co.nz/"
+        }
+      ],
       "methodology": "Based on 34 articles scored by AI"
     },
     "jo-moir-rnz": {
@@ -452,8 +261,32 @@
         "centre_right": 0,
         "right": 0
       },
-      "connections": [],
-      "facts": [],
+      "connections": [
+        {
+          "type": "employer",
+          "target": "RNZ",
+          "role": "Public broadcaster funded by NZ Government",
+          "source": "https://www.rnz.co.nz/about"
+        },
+        {
+          "type": "spouse",
+          "target": "Emma Patterson",
+          "role": "Documentary editor",
+          "source": "https://en.wikipedia.org/wiki/John_Campbell_(journalist)"
+        },
+        {
+          "type": "employer",
+          "target": "TVNZ",
+          "role": "Chief Correspondent at TVNZ/1News",
+          "source": "https://www.tvnz.co.nz/"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Chief Correspondent at TVNZ/1News; announced in late 2025 to join RNZ Morning Report in 2026",
+          "source": "https://www.rnz.co.nz/"
+        }
+      ],
       "methodology": "Based on 17 articles scored by AI"
     },
     "katie-bradford-1news": {
@@ -478,55 +311,24 @@
           "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
         },
         {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+          "type": "political",
+          "target": "Judith Collins",
+          "role": "National MP who publicly attacked Bradford on social media in May 2014 and later apologised",
+          "source": "https://en.wikipedia.org/wiki/Judith_Collins"
         },
         {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
-        },
-        {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
-        },
-        {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
-        },
-        {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
-        },
-        {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
-        },
-        {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
-        },
-        {
-          "type": "family",
-          "target": "Sue Bradford",
-          "role": "Former Green MP",
-          "source": "https://en.wikipedia.org/wiki/Sue_Bradford"
+          "type": "employer",
+          "target": "Infrastructure New Zealand",
+          "role": "Director of Advocacy and Policy (from April 2025 — revolving door from TVNZ)",
+          "source": "https://www.infrastructure.org.nz/"
         }
       ],
-      "facts": [],
+      "facts": [
+        {
+          "text": "Left TVNZ in April 2025 to join Infrastructure New Zealand as Director of Advocacy and Policy after more than two decades in journalism",
+          "source": "https://www.infrastructure.org.nz/"
+        }
+      ],
       "methodology": "Based on 11 articles scored by AI"
     },
     "thomas-coughlan-nzherald": {
@@ -544,54 +346,6 @@
         "right": 0
       },
       "connections": [
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
-        {
-          "type": "employer",
-          "target": "NZME",
-          "role": "Parent company of NZ Herald",
-          "source": "https://www.nzme.co.nz/"
-        },
         {
           "type": "employer",
           "target": "NZME",

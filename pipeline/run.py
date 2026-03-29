@@ -18,7 +18,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env")
 
-from .db import get_connection, init_db, load_journalists_from_csv, load_connections_from_csv
+from .db import get_connection, init_db, load_journalists_from_csv, load_connections_from_csv, load_facts_from_csv
 from .scorer import score_article_claude, score_to_bucket
 from .aggregator import update_journalist_stats
 from .exporter import export_to_json
@@ -147,6 +147,12 @@ async def main():
         added = load_connections_from_csv(conn, connections_csv)
         if added:
             log.info(f"Loaded {added} new connections from CSV")
+
+    facts_csv = DATA_DIR / "facts.csv"
+    if facts_csv.exists():
+        added = load_facts_from_csv(conn, facts_csv)
+        if added:
+            log.info(f"Loaded {added} new facts from CSV")
 
     if args.export_only:
         count = export_to_json(conn, EXTENSION_DATA)

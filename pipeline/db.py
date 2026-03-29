@@ -114,6 +114,34 @@ def load_connections_from_csv(conn: sqlite3.Connection, csv_path: Path) -> int:
     return count
 
 
+def load_facts_from_csv(conn: sqlite3.Connection, csv_path: Path) -> int:
+    """Load journalist facts from CSV. Returns count of new facts added."""
+    import csv
+    count = 0
+    with open(csv_path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            journalist = conn.execute(
+                "SELECT id FROM journalists WHERE slug = ?", (row["journalist_slug"],)
+            ).fetchone()
+            if not journalist:
+                continue
+            # Check for duplicate (same journalist + same fact text)
+            existing = conn.execute(
+                "SELECT id FROM facts WHERE journalist_id = ? AND fact_text = ?",
+                (journalist["id"], row["fact_text"]),
+            ).fetchone()
+            if existing:
+                continue
+            conn.execute(
+                "INSERT INTO facts (journalist_id, fact_text, source_url, added_at) VALUES (?, ?, ?, datetime('now'))",
+                (journalist["id"], row["fact_text"], row["source_url"]),
+            )
+            count += 1
+    conn.commit()
+    return count
+
+
 def get_journalist_by_slug(conn: sqlite3.Connection, slug: str) -> dict | None:
     row = conn.execute("SELECT * FROM journalists WHERE slug = ?", (slug,)).fetchone()
     return dict(row) if row else None
