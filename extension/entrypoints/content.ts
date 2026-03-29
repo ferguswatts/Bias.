@@ -288,10 +288,18 @@ function buildCardHTML(j: JournalistData, version: string): string {
       <!-- Connections -->
       ${connectionsHTML}
 
+      <!-- Background -->
+      ${j.bio ? `
+      <div style="padding:10px 16px;border-top:1px solid #f3f4f6">
+        <div style="font-size:11px;font-weight:500;color:#888;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px">Background</div>
+        <div style="font-size:12px;color:#555;line-height:1.6">${j.bio.length > 300 ? j.bio.slice(0, 300) + "…" : j.bio}</div>
+      </div>
+      ` : ""}
+
       <!-- Footer -->
       <div style="padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#999;border-top:1px solid #f3f4f6">
         <span>AI-scored · Updated ${version}</span>
-        <a href="https://github.com/ferguswatts/byline-card" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none">About</a>
+        <a href="${browser.runtime.getURL('/dashboard.html')}" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none">View all journalists</a>
       </div>
     </div>
   `;
