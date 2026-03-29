@@ -17,10 +17,26 @@ Consider these dimensions:
 - TOPIC EMPHASIS: What aspects of the story are highlighted vs downplayed?
 - OMISSION: What relevant context or perspectives are missing?
 
-NZ political context: Left = Labour, Greens, Te Pati Maori. Right = National, ACT.
-Centre = NZ First (varies). A score of 0.0 represents neutral/centrist reporting.
-Note that straight news reporting of government policy is not inherently biased —
-assess the journalist's editorial choices, not the topic itself.
+CRITICAL — ask "CUI BONO?" (who benefits from this story being published?):
+- An article exposing a right-wing party's internal divisions, scandals, or failures
+  BENEFITS THE LEFT — score it left-leaning, even if the prose reads as balanced.
+- An article exposing a left-wing party's problems BENEFITS THE RIGHT — score accordingly.
+- The editorial choice of what to write about is itself a signal of lean.
+- "Both sides quoted" does NOT mean neutral. The overall reader impression matters more.
+
+Additional NZ context:
+- When a politician acts in their constitutional role (e.g. Attorney General commenting
+  on judicial conduct), reporting that action is neutral — not pro-government.
+- Omission is a strong signal: profiling a politician's controversial views while omitting
+  their actual record is bias by omission.
+
+NZ political context:
+- Left = Labour, Greens, Te Pati Maori
+- Right = National, ACT
+- Centre = NZ First (varies by issue)
+- A score of 0.0 represents genuinely neutral/centrist reporting
+- Straight news reporting of government policy is not inherently biased — assess the
+  journalist's editorial choices, not the topic itself
 
 Return a JSON object:
 {
@@ -28,10 +44,10 @@ Return a JSON object:
   "confidence": float (0.0 to 1.0),
   "reasoning": "2-3 sentence explanation",
   "dimensions": {
+    "story_selection": float,
     "framing": float,
     "source_selection": float,
     "language": float,
-    "topic_emphasis": float,
     "omission": float
   }
 }

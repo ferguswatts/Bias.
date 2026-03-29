@@ -5,8 +5,9 @@
     "title": "John Campbell: Are we on the cusp of something new or something old?",
     "author": "John Campbell",
     "outlet": "1News",
-    "human_score": -0.85,
+    "human_score": -1.00,
     "human_bucket": "left",
+    "ai_calibrator_score": -0.85,
     "reasoning": "Strongly frames the coalition government as regressive, mean-spirited, and anti-Maori. ACT and NZ First are characterised as practising 'resentment populism' and 're-colonisation', with sustained rhetorical attacks on Shane Jones, Winston Peters, and the coalition's 100-day plan. No meaningful attempt to present the government's perspective charitably."
   },
   {
@@ -15,8 +16,9 @@
     "title": "John Campbell: I hoped to be surprised - actually I'm amazed",
     "author": "John Campbell",
     "outlet": "1News",
-    "human_score": -0.85,
+    "human_score": -1.00,
     "human_bucket": "left",
+    "ai_calibrator_score": -0.85,
     "reasoning": "Sustained critique of the coalition agreements as small, mean, regressive, and empty of ideas. Frames the Maori-related provisions as a 'heart of darkness' and 're-colonising', dismisses Seymour's priorities as performative, and mocks Luxon throughout. No substantive engagement with the right's policy rationale."
   },
   {
@@ -25,8 +27,9 @@
     "title": "David Seymour and the food fight he can't win",
     "author": "Andrea Vance",
     "outlet": "Stuff",
-    "human_score": -0.65,
+    "human_score": -0.75,
     "human_bucket": "left",
+    "ai_calibrator_score": -0.65,
     "reasoning": "A sustained attack on David Seymour's competence in government, characterising him as good at opposition but failing at governance. Uses loaded language ('Dickensian baddie', 'dorky TikTok', 'fuzzy maths behind right wing populism') and dismisses ACT's local government push. One-sided critique with no balancing perspective from ACT or the government."
   },
   {
@@ -35,8 +38,9 @@
     "title": "RNZ-Reid Research poll: Bleak numbers for Luxon",
     "author": "Jo Moir",
     "outlet": "RNZ",
-    "human_score": -0.25,
-    "human_bucket": "centre-left",
+    "human_score": 0.00,
+    "human_bucket": "centre",
+    "ai_calibrator_score": -0.25,
     "reasoning": "Labelled 'Analysis', this is poll reporting that emphasises negative numbers for National and Luxon. Language choices like 'bleak', 'death knell threshold', 'grim warnings', and 'dismal' go beyond neutral reporting. However, it does include context about external factors and notes the lack of obvious alternatives, providing some balance."
   },
   {
@@ -45,8 +49,9 @@
     "title": "Tova O'Brien: Why Chloe Swarbrick is the only option for the Greens",
     "author": "Tova O'Brien",
     "outlet": "Stuff",
-    "human_score": -0.30,
-    "human_bucket": "centre-left",
+    "human_score": -0.15,
+    "human_bucket": "centre",
+    "ai_calibrator_score": -0.30,
     "reasoning": "Analysis of Green Party leadership succession that is sympathetic to the party and Swarbrick in particular, describing her as 'fiercely intelligent' with 'stellar woke credentials'. Treats the Greens as a serious, ascending political force. The piece is more insider political analysis than advocacy, but the framing is clearly sympathetic to the left."
   },
   {
@@ -55,8 +60,9 @@
     "title": "Alcohol lobbyists given input on health policies, documents reveal",
     "author": "Guyon Espiner",
     "outlet": "RNZ",
-    "human_score": -0.40,
+    "human_score": -0.45,
     "human_bucket": "centre-left",
+    "ai_calibrator_score": -0.40,
     "reasoning": "Investigative reporting that frames alcohol industry influence on health policy as problematic. Sources are heavily weighted toward public health advocates critical of industry involvement. The government official's responses are included but positioned as inadequate. The framing implies the government is captured by industry interests, a left-leaning editorial angle on a health/regulation issue."
   },
   {
@@ -65,8 +71,9 @@
     "title": "New poll puts Labour well ahead of National",
     "author": "Andrea Vance",
     "outlet": "Stuff",
-    "human_score": -0.25,
+    "human_score": -0.55,
     "human_bucket": "centre-left",
+    "ai_calibrator_score": -0.25,
     "reasoning": "Poll reporting that leads with Labour's surge and frames it positively ('riding a wave of momentum'). Gives substantial space to Hipkins' quotes attacking the government. Luxon's response is minimal (one sentence). The article includes caveats about poll reliability and quotes an analyst warning Labour shouldn't be overconfident, but overall framing favours the left narrative."
   },
   {
@@ -75,8 +82,9 @@
     "title": "You would have loved Silas - parents plea",
     "author": "Guyon Espiner",
     "outlet": "RNZ",
-    "human_score": -0.15,
-    "human_bucket": "centre",
+    "human_score": -0.70,
+    "human_bucket": "left",
+    "ai_calibrator_score": -0.15,
     "reasoning": "Human interest story about a teenager's drink-driving death that implicitly advocates for stronger alcohol laws. The minister's response is included and presented fairly. While the piece pushes for regulatory reform (a centre-left position), it is grounded in specific facts and data, includes the government's perspective, and the parents acknowledge their son's responsibility. Close to neutral investigative journalism."
   },
   {
@@ -85,8 +93,9 @@
     "title": "Jessica Mutch McKay: Which spot is best on the deputy PM dance card?",
     "author": "Jessica Mutch McKay",
     "outlet": "1News",
-    "human_score": 0.05,
+    "human_score": 0.20,
     "human_bucket": "centre",
+    "ai_calibrator_score": 0.05,
     "reasoning": "Balanced procedural analysis of the deputy PM job-share arrangement. Presents strategic advantages for both Peters and Seymour without favouring either side. The tone is neutral and analytical with no loaded language or clear partisan framing."
   },
   {
@@ -95,8 +104,9 @@
     "title": "The anatomy of National's failed coup",
     "author": "Andrea Vance",
     "outlet": "Stuff",
-    "human_score": 0.10,
-    "human_bucket": "centre",
+    "human_score": -0.50,
+    "human_bucket": "centre-left",
+    "ai_calibrator_score": 0.10,
     "reasoning": "Inside-politics reporting on National leadership dynamics. While it exposes internal divisions (unflattering for the party), it treats the actors as serious political operators and gives credit to Luxon for outmanoeuvring Bishop. The piece is more political horse-race journalism than ideological commentary, and doesn't advocate for left or right positions."
   },
   {
@@ -105,8 +115,9 @@
     "title": "NZ will not move up fuel alert level tomorrow",
     "author": "Jo Moir",
     "outlet": "RNZ",
-    "human_score": 0.0,
+    "human_score": 0.00,
     "human_bucket": "centre",
+    "ai_calibrator_score": 0.00,
     "reasoning": "Straight news reporting on government fuel supply management. Includes statements from multiple ministers (Willis, Jones, Seymour), Labour's energy spokesperson, and MBIE data. No loaded language, balanced source selection, and neutral framing throughout."
   },
   {
@@ -115,8 +126,9 @@
     "title": "Figures shed light on number of New Zealanders working from home",
     "author": "Katie Bradford",
     "outlet": "1News",
-    "human_score": 0.0,
+    "human_score": 0.00,
     "human_bucket": "centre",
+    "ai_calibrator_score": 0.00,
     "reasoning": "Pure data reporting from Stats NZ figures on working from home. No political framing, no loaded language, no source selection bias. Completely neutral statistical reporting."
   },
   {
@@ -125,8 +137,9 @@
     "title": "Really disgusted: Judith Collins rips into judge's party behaviour",
     "author": "Andrea Vance",
     "outlet": "Stuff",
-    "human_score": 0.30,
-    "human_bucket": "centre-right",
+    "human_score": 0.00,
+    "human_bucket": "centre",
+    "ai_calibrator_score": 0.30,
     "reasoning": "Frames NZ First and the coalition government as victims of inappropriate behaviour by a judge and associates. Collins and Seymour are given extensive, sympathetic platform to condemn the incident. The accused parties' defences are included but positioned after strong condemnation. The framing supports the government's narrative about judicial overreach."
   },
   {
@@ -135,8 +148,9 @@
     "title": "Winston Peters orders Ferry Holdings to pull six-figure job ads",
     "author": "Andrea Vance",
     "outlet": "Stuff",
-    "human_score": 0.20,
-    "human_bucket": "centre",
+    "human_score": -0.25,
+    "human_bucket": "centre-left",
+    "ai_calibrator_score": 0.20,
     "reasoning": "Reports Peters acting decisively against excessive public sector salaries, framing him as fiscally responsible. Includes context about other government agencies' high salaries that somewhat undercuts the coalition's cost-cutting narrative, but overall the piece positions Peters and the government as responsive to spending concerns. Mildly centre-right framing."
   },
   {
@@ -145,8 +159,9 @@
     "title": "Kaipara's mayor to give up role to stand for National",
     "author": "Katie Bradford",
     "outlet": "1News",
-    "human_score": 0.30,
-    "human_bucket": "centre-right",
+    "human_score": -0.25,
+    "human_bucket": "centre-left",
+    "ai_calibrator_score": 0.30,
     "reasoning": "Frames a local mayor's decision to stand for National sympathetically, adopting his language about government reforms as a 'reform storm' that will 'alter our democracy'. No opposing perspective on Three Waters or other reforms is included. The piece essentially amplifies National's anti-reform narrative uncritically."
   }
 ]
