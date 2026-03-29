@@ -44,6 +44,9 @@ async def scrape_and_score_journalist(conn, journalist: dict, adapters: dict, ca
         "stuff": "stuff",
         "rnz": "rnz",
         "1news": "1news",
+        "newsroom": "newsroom",
+        "thespinoff": "thespinoff",
+        "newstalkzb": "newstalkzb",
     }
 
     adapter_key = outlet_map.get(outlet_key)
@@ -165,12 +168,18 @@ async def main():
     from .sites.stuff import StuffAdapter
     from .sites.rnz import RNZAdapter
     from .sites.onenews import OneNewsAdapter
+    from .sites.newsroom import NewsroomAdapter
+    from .sites.spinoff import SpinoffAdapter
+    from .sites.newstalkzb import NewstalkZBAdapter
 
     adapters = {
         "nzherald": NZHeraldAdapter(),
         "stuff": StuffAdapter(),
         "rnz": RNZAdapter(),
         "1news": OneNewsAdapter(),
+        "newsroom": NewsroomAdapter(),
+        "thespinoff": SpinoffAdapter(),
+        "newstalkzb": NewstalkZBAdapter(),
     }
 
     # Get journalists to process
