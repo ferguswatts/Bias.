@@ -53,7 +53,8 @@ def init_db(conn: sqlite3.Connection) -> None:
             target_name TEXT NOT NULL,
             target_role TEXT,
             source_url TEXT NOT NULL,
-            verified_at TEXT
+            verified_at TEXT,
+            UNIQUE(journalist_id, type, target_name, source_url)
         );
 
         CREATE TABLE IF NOT EXISTS facts (
@@ -104,10 +105,11 @@ def load_connections_from_csv(conn: sqlite3.Connection, csv_path: Path) -> int:
             if not journalist:
                 continue
             conn.execute(
-                "INSERT INTO connections (journalist_id, type, target_name, target_role, source_url, verified_at) VALUES (?, ?, ?, ?, ?, datetime('now'))",
+                "INSERT OR IGNORE INTO connections (journalist_id, type, target_name, target_role, source_url, verified_at) VALUES (?, ?, ?, ?, ?, datetime('now'))",
                 (journalist["id"], row["type"], row["target_name"], row.get("target_role", ""), row["source_url"]),
             )
-            count += 1
+            if conn.total_changes:
+                count += 1
     conn.commit()
     return count
 

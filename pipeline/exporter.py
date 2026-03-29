@@ -67,6 +67,10 @@ def export_to_json(conn: sqlite3.Connection, output_path: Path) -> int:
         with open(sites_path) as f:
             data["sites"] = json.load(f)
 
+    # Don't overwrite with empty data — protect against failed runs wiping the extension data
+    if len(data["journalists"]) == 0 and output_path.exists():
+        return 0
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
