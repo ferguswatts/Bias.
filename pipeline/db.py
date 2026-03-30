@@ -150,6 +150,8 @@ def load_facts_from_csv(conn: sqlite3.Connection, csv_path: Path) -> int:
 def migrate_db(conn: sqlite3.Connection) -> None:
     """Add new columns to existing databases. Safe to run multiple times."""
     cursor = conn.cursor()
+
+    # Articles table migrations
     existing_cols = {row[1] for row in cursor.execute("PRAGMA table_info(articles)").fetchall()}
 
     if "text_body" not in existing_cols:
@@ -159,6 +161,13 @@ def migrate_db(conn: sqlite3.Connection) -> None:
     if "score_prompt_version" not in existing_cols:
         cursor.execute("ALTER TABLE articles ADD COLUMN score_prompt_version TEXT")
         log.info("Migration: added score_prompt_version column to articles")
+
+    # discovered_urls table migrations
+    disc_cols = {row[1] for row in cursor.execute("PRAGMA table_info(discovered_urls)").fetchall()}
+
+    if "author_name" not in disc_cols:
+        cursor.execute("ALTER TABLE discovered_urls ADD COLUMN author_name TEXT")
+        log.info("Migration: added author_name column to discovered_urls")
 
     conn.commit()
 
