@@ -181,15 +181,34 @@ async def fetch_article_text(session, url: str, outlet: str) -> tuple[str, str, 
                     text = None  # Treat as paywalled
 
             if text and len(text) >= 200:
-                # Extract metadata
-                meta = trafilatura.extract(html, output_format="xmltei", include_comments=False)
+                # Extract metadata using trafilatura's metadata extractor
+                meta = trafilatura.extract_metadata(html)
                 if meta:
-                    title_m = re.search(r'<title[^>]*>([^<]+)</title>', meta)
-                    if title_m:
-                        title = title_m.group(1).strip()
-                    date_m = re.search(r'when="(\d{4}-\d{2}-\d{2})"', meta)
-                    if date_m:
-                        date = date_m.group(1)
+                    if meta.title and meta.title != html[:50]:
+                        title = meta.title
+                    if meta.date:
+                        # Validate it's not today's date (generic page date)
+                        from datetime import date as dt_date
+                        if meta.date != dt_date.today().isoformat():
+                            date = meta.date
+
+                # Fallback: try JSON-LD for publish date
+                if not date:
+                    ld_m = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})', html)
+                    if ld_m:
+                        date = ld_m.group(1)
+
+                # Fallback: try <meta> tags
+                if not date:
+                    meta_m = re.search(r'<meta[^>]*(?:property|name)="(?:article:published_time|datePublished|publish[_-]?date)"[^>]*content="(\d{4}-\d{2}-\d{2})', html)
+                    if meta_m:
+                        date = meta_m.group(1)
+
+                # Fallback: try <time> element
+                if not date:
+                    time_m = re.search(r'<time[^>]*datetime="(\d{4}-\d{2}-\d{2})', html)
+                    if time_m:
+                        date = time_m.group(1)
 
                 return (title, date, text, status_code)
         except Exception as e:
@@ -298,6 +317,7 @@ async def main():
     parser.add_argument("--dry-run", action="store_true", help="Count articles only, no fetching/scoring")
     parser.add_argument("--batch-size", type=int, default=50, help="Batch size for processing")
     parser.add_argument("--retry-failed", action="store_true", help="Retry previously failed URLs")
+    parser.add_argument("--priority", type=str, default="", help="Comma-separated journalist names to process first, in order")
     args = parser.parse_args()
 
     conn = get_connection()
@@ -333,7 +353,20 @@ async def main():
         if count > 0:
             work.append((dict(j), count))
 
-    work.sort(key=lambda x: x[1], reverse=True)
+    # Sort by priority list first, then by unscored count descending
+    if args.priority:
+        priority_names = [n.strip() for n in args.priority.split(",")]
+        priority_map = {name: i for i, name in enumerate(priority_names)}
+
+        def sort_key(item):
+            j, count = item
+            if j["name"] in priority_map:
+                return (0, priority_map[j["name"]])
+            return (1, -count)
+
+        work.sort(key=sort_key)
+    else:
+        work.sort(key=lambda x: x[1], reverse=True)
 
     total_to_score = sum(c for _, c in work)
     log.info(f"Found {total_to_score:,} unscored articles across {len(work)} journalists")
