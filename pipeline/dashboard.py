@@ -624,6 +624,21 @@ def generate_html(conn) -> str:
 </head>
 <body>
 
+<header>
+  <div style="display:flex;align-items:center;gap:12px">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:36px;height:36px">
+      <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+      <text x="80" y="390" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="420" font-weight="700" fill="white">B</text>
+      <line x1="340" y1="60" x2="280" y2="450" stroke="#e63946" stroke-width="36" stroke-linecap="round"/>
+      <line x1="60" y1="440" x2="452" y2="440" stroke="#e63946" stroke-width="10" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h1>Bias</h1>
+      <div class="subtitle">NZ Journalist Transparency</div>
+    </div>
+  </div>
+  <a href="#methodology" style="color:#999;text-decoration:none;font-size:13px">How We Score →</a>
+</header>
 
 <div class="container">
   <div class="filter-bar">
@@ -844,7 +859,14 @@ Returns: score (-1.0 to 1.0), confidence, reasoning, and per-dimension scores.</
   </div>
 </div>
 
-<footer>Bias · Open source at <a href="https://github.com/ferguswatts/Bias." style="color:#999">GitHub</a></footer>
+<footer>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:20px;height:20px;vertical-align:middle;margin-right:6px">
+    <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+    <text x="80" y="390" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="420" font-weight="700" fill="white">B</text>
+    <line x1="340" y1="60" x2="280" y2="450" stroke="#e63946" stroke-width="36" stroke-linecap="round"/>
+    <line x1="60" y1="440" x2="452" y2="440" stroke="#e63946" stroke-width="10" stroke-linecap="round"/>
+  </svg>Bias · Open source at <a href="https://github.com/ferguswatts/Bias." style="color:#999">GitHub</a>
+</footer>
 
 <script>
 /* ── Accordion toggle — smooth height animation ── */
