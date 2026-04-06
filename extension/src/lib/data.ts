@@ -7,7 +7,7 @@
 import type { DataFile } from "./match";
 
 const GITHUB_RAW_URL =
-  "https://raw.githubusercontent.com/ferguswatts/byline-card/main/extension/public/data.json";
+  "https://raw.githubusercontent.com/ferguswatts/Bias./main/extension/public/data.json";
 
 /** Fetch journalist data. Tries GitHub first, falls back to bundled. */
 export async function loadData(): Promise<DataFile> {

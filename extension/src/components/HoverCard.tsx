@@ -140,7 +140,7 @@ export const HoverCard: FC<{
       >
         <span>AI-scored · Updated {version}</span>
         <a
-          href="https://github.com/ferguswatts/byline-card/wiki/Methodology"
+          href="https://github.com/ferguswatts/Bias./wiki/Methodology"
           target="_blank"
           rel="noopener noreferrer"
           style={{

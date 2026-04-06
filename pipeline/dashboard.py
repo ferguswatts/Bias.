@@ -756,7 +756,7 @@ def generate_html(conn) -> str:
 
     <div class="scoring-prompt-section">
       <h3>The Exact Prompt</h3>
-      <p>In the spirit of full transparency, this is the exact prompt sent to the AI for every article. Nothing is hidden. <a href="https://github.com/ferguswatts/byline-card/blob/main/pipeline/scorer.py" target="_blank" rel="noopener">View source on GitHub →</a></p>
+      <p>In the spirit of full transparency, this is the exact prompt sent to the AI for every article. Nothing is hidden. <a href="https://github.com/ferguswatts/Bias./blob/main/pipeline/scorer.py" target="_blank" rel="noopener">View source on GitHub →</a></p>
       <details class="prompt-details">
         <summary>Click to expand the full scoring prompt</summary>
         <pre class="prompt-text">You are a political bias analyst for New Zealand media. Score the following
@@ -797,7 +797,7 @@ Returns: score (-1.0 to 1.0), confidence, reasoning, and per-dimension scores.</
   </div>
 </div>
 
-<footer>Bias · Open source at <a href="https://github.com/ferguswatts/byline-card" style="color:#999">GitHub</a></footer>
+<footer>Bias · Open source at <a href="https://github.com/ferguswatts/Bias." style="color:#999">GitHub</a></footer>
 
 <script>
 /* ── Accordion toggle — smooth height animation ── */

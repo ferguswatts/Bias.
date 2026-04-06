@@ -320,8 +320,8 @@ function buildCardHTML(slug: string, j: JournalistData, version: string): string
       <div style="padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#999;border-top:1px solid #f3f4f6">
         <span>AI-scored · Updated ${version}</span>
         <div style="display:flex;gap:12px">
-          <a href="https://ferguswatts.github.io/byline-card/#${slug}" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none">View articles</a>
-          <a href="https://ferguswatts.github.io/byline-card/" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none">All journalists</a>
+          <a href="https://ferguswatts.github.io/Bias./#${slug}" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none">View articles</a>
+          <a href="https://ferguswatts.github.io/Bias./" target="_blank" rel="noopener" style="color:#2563eb;text-decoration:none">All journalists</a>
         </div>
       </div>
     </div>
