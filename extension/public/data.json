@@ -1,6 +1,35 @@
 {
   "version": "2026-04-06",
   "journalists": {
+    "ana-samways-nzherald": {
+      "name": "Ana Samways",
+      "aliases": [],
+      "outlet": "NZ Herald",
+      "formerly": "",
+      "beat": "Humour and lifestyle",
+      "photo_url": "https://s3.amazonaws.com/arc-authors/nzme/63c08bb6-77fe-46c1-831a-1f605b413cdd.png",
+      "article_count": 40,
+      "confidence": "medium",
+      "bias_score": -0.01,
+      "distribution": {
+        "left": 0,
+        "centre_left": 2,
+        "centre": 98,
+        "centre_right": 0,
+        "right": 0
+      },
+      "connections": [
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Created Sideswipe column (2002-2023) then moved to The Listener",
+          "source": "https://www.nzherald.co.nz/author/ana-samways/"
+        }
+      ],
+      "facts": [],
+      "bio": "Ana Samways created and wrote the NZ Herald's daily 'Sideswipe' humour column for over 20 years (2002-2023), one of NZ's longest-running newspaper columns. After the column ended she moved to The Listener's digital edition and launched an independent Substack. She has authored 'Fake', optioned for Paramount+ Australia.",
+      "methodology": "Based on 40 articles scored by AI"
+    },
     "andrea-vance-stuff": {
       "name": "Andrea Vance",
       "aliases": [],
@@ -117,15 +146,15 @@
       "formerly": "",
       "beat": "Political editor",
       "photo_url": "https://s3.amazonaws.com/arc-authors/nzme/af148945-53ce-495b-af6d-1ba521ce7e99.png",
-      "article_count": 36,
-      "confidence": "medium",
-      "bias_score": -0.15,
+      "article_count": 106,
+      "confidence": "high",
+      "bias_score": -0.17,
       "distribution": {
-        "left": 0,
-        "centre_left": 36,
-        "centre": 58,
-        "centre_right": 6,
-        "right": 0
+        "left": 1,
+        "centre_left": 44,
+        "centre": 45,
+        "centre_right": 8,
+        "right": 2
       },
       "connections": [
         {
@@ -148,7 +177,7 @@
         }
       ],
       "bio": "Claire Trevett served as the NZ Herald's political editor for several years, becoming one of the most recognised press gallery journalists in New Zealand. Based in Wellington, she was known for her sharp political analysis, witty writing style, and coverage of multiple election cycles and changes of government. Trevett left the Herald in May 2025 after almost two decades as Political Editor to become Chief Media and Communications Adviser for New Zealand Police.",
-      "methodology": "Based on 36 articles scored by AI"
+      "methodology": "Based on 106 articles scored by AI"
     },
     "derek-cheng-nzherald": {
       "name": "Derek Cheng",
@@ -258,6 +287,35 @@
       ],
       "bio": "Henry Cooke is a political journalist at Stuff/The Post. He studied international relations, political science, and media studies at Victoria University of Wellington. He joined Stuff through a summer internship, moving to the press gallery in 2017. He rose to chief political reporter and deputy political editor. He left journalism to work in public relations in London before returning as deputy political reporter at The Post in September 2025. He runs the 'Museum Street' politics newsletter on Substack.",
       "methodology": "Based on 12 articles scored by AI"
+    },
+    "isaac-davison-nzherald": {
+      "name": "Isaac Davison",
+      "aliases": [],
+      "outlet": "NZ Herald",
+      "formerly": "",
+      "beat": "Health and Auckland",
+      "photo_url": "https://author-service-images-prod-us-east-1.publishing.aws.arc.pub/nzme/6f88914e-699c-41f0-969a-cd8d91f5024c.png",
+      "article_count": 90,
+      "confidence": "high",
+      "bias_score": -0.11,
+      "distribution": {
+        "left": 0,
+        "centre_left": 24,
+        "centre": 73,
+        "centre_right": 2,
+        "right": 0
+      },
+      "connections": [
+        {
+          "type": "employer",
+          "target": "NZME",
+          "role": "Senior reporter — formerly 6 years in Parliamentary Press Gallery",
+          "source": "https://www.nzherald.co.nz/author/isaac-davison/"
+        }
+      ],
+      "facts": [],
+      "bio": "Isaac Davison is a senior reporter at the NZ Herald covering health and Auckland issues. He joined the Herald in 2008 and spent six years in the Parliamentary Press Gallery covering politics. He was runner-up Feature Writer of the Year (Social Issues) 2020 for his reporting on historic sexual abuse at Dilworth School.",
+      "methodology": "Based on 90 articles scored by AI"
     },
     "jamie-morton-nzherald": {
       "name": "Jamie Morton",
@@ -436,7 +494,7 @@
     "john-campbell": {
       "name": "John Campbell",
       "aliases": [],
-      "outlet": "RNZ / 1News",
+      "outlet": "RNZ",
       "formerly": "",
       "beat": "Morning Report",
       "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/John_Campbell_in_2019_%28cropped%29.jpg/330px-John_Campbell_in_2019_%28cropped%29.jpg",
@@ -556,15 +614,15 @@
       "formerly": "",
       "beat": "Current affairs",
       "photo_url": "https://s3.amazonaws.com/arc-authors/nzme/b282519a-87f4-4f12-89a5-5314ba1a98cb.png",
-      "article_count": 170,
+      "article_count": 270,
       "confidence": "high",
-      "bias_score": 0.435,
+      "bias_score": 0.395,
       "distribution": {
         "left": 5,
-        "centre_left": 20,
-        "centre": 7,
-        "centre_right": 21,
-        "right": 48
+        "centre_left": 22,
+        "centre": 6,
+        "centre_right": 23,
+        "right": 44
       },
       "connections": [
         {
@@ -576,7 +634,7 @@
       ],
       "facts": [],
       "bio": "Mike Hosking (born 1965, Dunedin) is New Zealand's most prominent radio broadcaster. He left school at 16, starting as an advertising copywriter before getting his break on Wellington's Radio Windy. He hosted Radio New Zealand's Tonight Show and Morning Report, then joined Newstalk ZB in 2008 as weekday Breakfast host — a role he still holds. On television, he co-presented TVNZ's Breakfast (1997-2005) and Seven Sharp (2014-2017). He writes a regular opinion column for the NZ Herald. Hosking is an open supporter of the centre-right National Party and is frequently critical of Labour-led governments. His career has drawn multiple successful Broadcasting Standards Authority complaints. He is married to fellow Newstalk ZB broadcaster Kate Hawkesby. A landmark 2003 privacy case involving Hosking established \"the Hosking principles\" in NZ common law.",
-      "methodology": "Based on 170 articles scored by AI"
+      "methodology": "Based on 270 articles scored by AI"
     },
     "thomas-coughlan-nzherald": {
       "name": "Thomas Coughlan",
