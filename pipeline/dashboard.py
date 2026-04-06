@@ -709,7 +709,7 @@ def generate_html(conn) -> str:
         <h3>AI Scoring</h3>
         <p>Each article is scored by <strong>Claude Sonnet 4.5</strong> (Anthropic) on a scale from <strong>-1.0</strong> (hard left) to <strong>+1.0</strong> (hard right). The AI evaluates five dimensions of bias for each article and applies the "Cui Bono" principle — asking who benefits from the story being published.</p>
         <div class="methodology-detail">
-          <strong>Model:</strong> claude-sonnet-4-5 &nbsp;|&nbsp; <strong>Prompt version:</strong> v2-cuibono
+          <strong>Model:</strong> claude-sonnet-4-5 &nbsp;|&nbsp; <strong>Prompt version:</strong> v3-nuance
         </div>
       </div>
 
@@ -822,9 +822,10 @@ CRITICAL — ask "CUI BONO?" (who benefits from this story being published?):
 - "Both sides quoted" does NOT mean neutral
 
 NZ political context:
-- Left = Labour, Greens, Te Pati Maori
-- Right = National, ACT
-- Centre = NZ First (varies by issue)
+- Centre-left = Labour, Greens
+- Centre-right = National, ACT
+- Centre/populist = NZ First (has governed with both Labour and National)
+- Te Pati Maori = indigenous rights focus; often aligns left on economic/social policy
 
 Returns: score (-1.0 to 1.0), confidence, reasoning, and per-dimension scores.</pre>
       </details>

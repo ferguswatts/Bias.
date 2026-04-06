@@ -8,7 +8,7 @@ from dataclasses import dataclass
 log = logging.getLogger(__name__)
 
 # Bump this when the scoring prompt changes — triggers re-scoring of articles
-PROMPT_VERSION = "v2-cuibono"
+PROMPT_VERSION = "v3-nuance"
 
 SCORING_PROMPT = """You are a political bias analyst for New Zealand media. Score the following
 news article on a scale from -1.0 (hard left) to +1.0 (hard right).
@@ -34,9 +34,10 @@ Additional NZ context:
   their actual record is bias by omission.
 
 NZ political context:
-- Left = Labour, Greens, Te Pati Maori
-- Right = National, ACT
-- Centre = NZ First (varies by issue)
+- Centre-left = Labour, Greens
+- Centre-right = National, ACT
+- Centre/populist = NZ First (has governed with both Labour and National)
+- Te Pati Maori = indigenous rights focus; often aligns left on economic/social policy
 - A score of 0.0 represents genuinely neutral/centrist reporting
 - Straight news reporting of government policy is not inherently biased — assess the
   journalist's editorial choices, not the topic itself
