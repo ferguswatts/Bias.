@@ -105,7 +105,7 @@ async def score_article_claude(article_text: str) -> ScoreResult | None:
     for attempt in range(3):
         try:
             response = await client.messages.create(
-                model="claude-sonnet-4-5-20241022",
+                model="claude-sonnet-4-5",
                 max_tokens=1024,
                 messages=[{"role": "user", "content": prompt}],
             )
