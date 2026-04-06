@@ -267,8 +267,8 @@
   <div class="filter-bar">
     <span class="filter-label">Show:</span>
     <button class="filter-btn active" onclick="filterCards('all', this)">All (52)</button>
-    <button class="filter-btn" onclick="filterCards('scored', this)">Scored (17)</button>
-    <button class="filter-btn" onclick="filterCards('empty', this)">No data (35)</button>
+    <button class="filter-btn" onclick="filterCards('scored', this)">Scored (18)</button>
+    <button class="filter-btn" onclick="filterCards('empty', this)">No data (34)</button>
     <span class="filter-label" style="margin-left:auto">Sort:</span>
     <button class="filter-btn sort-btn" onclick="sortCards('alpha', this)">A–Z</button>
     <button class="filter-btn sort-btn" onclick="sortCards('left', this)">Most Left</button>
@@ -280,7 +280,7 @@
   <div class="filter-bar">
     <span class="filter-label">Outlet:</span>
     <button class="filter-btn outlet-btn active" onclick="filterOutlet('all', this)">All</button>
-    <button class="filter-btn outlet-btn" onclick="filterOutlet('NZ Herald', this)">NZ Herald</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Newshub', this)">Newshub</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Newsroom', this)">Newsroom</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Newstalk ZB', this)">Newstalk ZB</button><button class="filter-btn outlet-btn" onclick="filterOutlet('RNZ', this)">RNZ</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Scoop', this)">Scoop</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Stuff', this)">Stuff</button><button class="filter-btn outlet-btn" onclick="filterOutlet('TVNZ', this)">TVNZ</button><button class="filter-btn outlet-btn" onclick="filterOutlet('The Spinoff', this)">The Spinoff</button>
+    <button class="filter-btn outlet-btn" onclick="filterOutlet('1News', this)">1News</button><button class="filter-btn outlet-btn" onclick="filterOutlet('NZ Herald', this)">NZ Herald</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Newshub', this)">Newshub</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Newsroom', this)">Newsroom</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Newstalk ZB', this)">Newstalk ZB</button><button class="filter-btn outlet-btn" onclick="filterOutlet('RNZ', this)">RNZ</button><button class="filter-btn outlet-btn" onclick="filterOutlet('RNZ / 1News', this)">RNZ / 1News</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Scoop', this)">Scoop</button><button class="filter-btn outlet-btn" onclick="filterOutlet('Stuff', this)">Stuff</button><button class="filter-btn outlet-btn" onclick="filterOutlet('TVNZ', this)">TVNZ</button><button class="filter-btn outlet-btn" onclick="filterOutlet('The Spinoff', this)">The Spinoff</button>
     <input type="text" class="search-input" placeholder="Search by name…" oninput="searchCards(this.value)">
   </div>
 
@@ -301,20 +301,222 @@
                 </div>
             </div>
 
-            <div class="journalist-card empty" data-outlet="NZ Herald" data-name="anna leask" data-score="999">
-                <div class="j-header" onclick="toggleDetails('anna-leask-nzherald')">
-                    <img class="j-avatar" src="https://author-service-images-prod-us-east-1.publishing.aws.arc.pub/nzme/dc440950-48a8-48e4-b67b-9abae2af8be7.png" alt="Anna Leask">
-                    <div class="j-left">
-                        <div class="j-name">Anna Leask</div>
-                        <div class="j-meta">NZ Herald · Crime and justice</div>
-                        
-                    </div>
+        <div class="journalist-card" data-outlet="NZ Herald" data-name="anna leask" data-score="0.0000">
+            <div class="j-header" onclick="toggleDetails('anna-leask-nzherald')">
+                <img class="j-avatar" src="https://author-service-images-prod-us-east-1.publishing.aws.arc.pub/nzme/dc440950-48a8-48e4-b67b-9abae2af8be7.png" alt="Anna Leask">
+                <div class="j-left">
+                    <div class="j-name">Anna Leask</div>
+                    <div class="j-meta">NZ Herald · Crime and justice</div>
+                    
                 </div>
-                <div class="accordion-body" id="details-anna-leask-nzherald">
-                    <div class="card-connections"><div class="card-section-label">Connections</div><div class="social-row"><a href="https://x.com/AnnaLeask" target="_blank" rel="noopener" class="social-link social-x">X</a><a href="https://www.linkedin.com/in/anna-leask-17100b39" target="_blank" rel="noopener" class="social-link social-li">LinkedIn</a><a href="https://www.facebook.com/annaleaskjournalist/" target="_blank" rel="noopener" class="social-link social-fb">Facebook</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">NZME</span> — Senior crime and justice journalist since 2008 <a href="https://www.nzherald.co.nz/author/anna-leask/" target="_blank" rel="noopener" class="conn-source">source</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">Penguin Books NZ</span> — Published true crime author <a href="https://www.penguin.co.nz/" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
-                    <div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">Anna Leask is a senior crime and justice journalist at the NZ Herald, where she has worked since 2008. She hosts the award-winning true crime podcast 'A Moment In Crime' and is a published author with Penguin Books NZ. She has covered NZ's highest-profile criminal cases over 20 years including the March 15 terror attack, Grace Millane murder, and Pike River mine disaster.</p></div>
+                <div class="j-right">
+                    <div class="spectrum-wrap" title="Centre (+0.00)">
+                        <span class="spectrum-label-l">Left</span>
+                        <div class="spectrum-track">
+                            <div class="spectrum-bar"></div>
+                            <div class="spectrum-tick" style="left:25%"></div>
+                            <div class="spectrum-tick spectrum-tick-center" style="left:50%"></div>
+                            <div class="spectrum-tick" style="left:75%"></div>
+                            <div class="spectrum-tick-label" style="left:0%">−</div>
+                            <div class="spectrum-tick-label" style="left:50%">0</div>
+                            <div class="spectrum-tick-label" style="left:100%">+</div>
+                            <div class="spectrum-marker" style="left:50.0%"></div>
+                        </div>
+                        <span class="spectrum-label-r">Right</span>
+                    </div>
+                    <span class="lean-text" style="color:#6b7280">Centre</span>
                 </div>
             </div>
+            <div class="accordion-body" id="details-anna-leask-nzherald">
+                <div class="dist-section">
+                    
+                <div class="dist-row">
+                    <span class="dist-label">Left</span>
+                    <div class="dist-bar-wrap">
+                        <div class="dist-bar" style="width:0%;background:#ef4444"></div>
+                    </div>
+                    <span class="dist-count">0 <span class="dist-pct">(0%)</span></span>
+                </div>
+                <div class="dist-row">
+                    <span class="dist-label">Centre-Left</span>
+                    <div class="dist-bar-wrap">
+                        <div class="dist-bar" style="width:0%;background:#f97316"></div>
+                    </div>
+                    <span class="dist-count">0 <span class="dist-pct">(0%)</span></span>
+                </div>
+                <div class="dist-row">
+                    <span class="dist-label">Centre</span>
+                    <div class="dist-bar-wrap">
+                        <div class="dist-bar" style="width:100%;background:#6b7280"></div>
+                    </div>
+                    <span class="dist-count">20 <span class="dist-pct">(100%)</span></span>
+                </div>
+                <div class="dist-row">
+                    <span class="dist-label">Centre-Right</span>
+                    <div class="dist-bar-wrap">
+                        <div class="dist-bar" style="width:0%;background:#3b82f6"></div>
+                    </div>
+                    <span class="dist-count">0 <span class="dist-pct">(0%)</span></span>
+                </div>
+                <div class="dist-row">
+                    <span class="dist-label">Right</span>
+                    <div class="dist-bar-wrap">
+                        <div class="dist-bar" style="width:0%;background:#1d4ed8"></div>
+                    </div>
+                    <span class="dist-count">0 <span class="dist-pct">(0%)</span></span>
+                </div>
+                </div>
+                <div class="card-connections"><div class="card-section-label">Connections</div><div class="social-row"><a href="https://x.com/AnnaLeask" target="_blank" rel="noopener" class="social-link social-x">X</a><a href="https://www.linkedin.com/in/anna-leask-17100b39" target="_blank" rel="noopener" class="social-link social-li">LinkedIn</a><a href="https://www.facebook.com/annaleaskjournalist/" target="_blank" rel="noopener" class="social-link social-fb">Facebook</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">NZME</span> — Senior crime and justice journalist since 2008 <a href="https://www.nzherald.co.nz/author/anna-leask/" target="_blank" rel="noopener" class="conn-source">source</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">Penguin Books NZ</span> — Published true crime author <a href="https://www.penguin.co.nz/" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
+                <div class="card-connections"><div class="card-section-label">Key facts</div><div class="conn-row">Hosts 'A Moment In Crime' true crime podcast (iHeart/NZME) and published two books with Penguin NZ including 'Christie' and 'Behind Bars' <a href="https://www.nzherald.co.nz/author/anna-leask/" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
+                <div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">Anna Leask is a senior crime and justice journalist at the NZ Herald, where she has worked since 2008. She hosts the award-winning true crime podcast 'A Moment In Crime' and is a published author with Penguin Books NZ. She has covered NZ's highest-profile criminal cases over 20 years including the March 15 terror attack, Grace Millane murder, and Pike River mine disaster.</p></div>
+                <div class="articles-section">
+                    <div class="articles-toggle" onclick="toggleArticles('anna-leask-nzherald')">
+                        <span>Articles (20)</span>
+                        <span class="toggle-icon toggle-articles">▼</span>
+                    </div>
+                    <div class="accordion-body" id="articles-content-anna-leask-nzherald">
+                        <table class="art-table">
+                            <thead>
+                                <tr>
+                                    <th>Article</th>
+                                    <th>Date</th>
+                                    <th>Bucket</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                <tr class="month-header" onclick="document.querySelectorAll('.month-anna-leask-nzherald-2026-04').forEach(r=>r.style.display=r.style.display==='none'?'':'none');this.querySelector('.month-arrow').classList.toggle('open')">
+                    <td colspan="4" style="background:#f9fafb;font-weight:600;font-size:12px;color:#374151;padding:8px 12px;cursor:pointer;user-select:none">
+                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(20 articles)</span>
+                    </td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/hokitika-a-holiday-with-real-bite/GO26NQYDRRX46S5PTKLTTKMOZA/" target="_blank" rel="noopener">A holiday with real bite</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/northern-territory-fried-before-a-fall/WYVZCY7C7XVO4OADJKNBZD7MIE/" target="_blank" rel="noopener">Northern Territory: Fried before a fall - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/northern-territory-into-the-wild/OL34DHZX2CZGKMSWMD5UJ4LWEI/" target="_blank" rel="noopener">Northern Territory: Into the wild ... - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/peru-ancient-city-is-cause-for-a-llama/3TE47KMHP7KNLWHUN5PJAUQS44/" target="_blank" rel="noopener">Peru: Ancient city is cause for a llama - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/peru-holy-ghost-of-the-white-city/FRCNXNSNWLA32LER6FUBO6FXRM/" target="_blank" rel="noopener">Peru: Holy ghost of the White City - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/peru-life-on-a-lake/YV4LFBF5S2TLFAATROQEOTHSRA/" target="_blank" rel="noopener">Peru: Life on a lake - Travel News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/room-check-staying-at-drifter-christchurch-a-hybrid-hotel-and-hostel/HP5YWCUJAJHXHES2I6FNCZN23A/" target="_blank" rel="noopener">Too old? Too snobby? Forget what you thought you knew about staying in a hostel</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/second-kiwi-pensioner-charged-with-international-smuggling-after-heroin-found-in-70-year-olds-suitcase-at-aussie-airport/5NUM5WPUCBE3RD7MQMPZN2DR3E/" target="_blank" rel="noopener">Second Kiwi pensioner facing life in prison in Aussie after heroin found in suitcase</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/spain-the-barter-of-seville/KLED7BJNYSPAU656BIYEGIYU4U/" target="_blank" rel="noopener">Spain: The barter of Seville - Travel News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/travel-book-review-igallipolii/CZNFPDRNKXZ33DIQQVZLFUKKOQ/" target="_blank" rel="noopener">Travel book review: &lt;i&gt;Gallipoli&lt;/i&gt; - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/travel/trial-begins-for-nz-pensioner-accused-of-importing-2-million-of-heroin-into-melbourne/WZSHBQEMSJGVFM2CSJK2VFBQRQ/" target="_blank" rel="noopener">Oz trial begins for NZ pensioner accused of importing ‘commercial quantity’ of heroin</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/body-recovered-after-ship-passenger-falls-overboard/A3QF3C7YCBHFZRK5K7G3JZEQHU/" target="_blank" rel="noopener">Man falls to death from cruise ship</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/far-from-help-a-baby-is-born/EXVPF5C5D3O4WQRQMOYUMSZI6E/" target="_blank" rel="noopener">Far from help, a baby is born - World News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/fighting-aussie-bushfires-18-days-of-tough-filthy-work/TM7RZEBXXCOYG56XCLMYR6EYDM/" target="_blank" rel="noopener">Eighteen days of tough, filthy work</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/flight-mh370-planes-captain-got-mystery-call/3YW7726BQK4NNROXUXOT6EDRDM/" target="_blank" rel="noopener">Plane's captain 'got mystery call'</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/internet-girlfriend-of-drug-accused-antony-de-malmanche-arrested-in-jakarta/EUGWPYBTYBA2XTW5RYKXG35POA/" target="_blank" rel="noopener">Jailed Kiwi's internet girlfriend arrested</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/nsw-bushfires-firefighter-falls-into-blaze/2U4YDYLMVUHVQFEXHI3ZD6HHLQ/" target="_blank" rel="noopener">Firefighter falls into blaze</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/nursing-home-fire-preventable-says-kiwi-firefighter/TXHGQKLJRYAMVRVBVVU4ZPGTJQ/" target="_blank" rel="noopener">Nursing home fire preventable says Kiwi firefighter - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/nz-police-wont-comment-on-new-rolf-harris-complaints/ZTJG574PFT6BIRA3GCUTKEFEDQ/" target="_blank" rel="noopener">NZ police won't comment on new Rolf Harris complaints - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-anna-leask-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/world/rolf-harris-new-kiwi-victims-come-forward/3GFOACGFC4N5PBNEENCGYYOHLE/" target="_blank" rel="noopener">Harris: New Kiwi victims</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <div class="journalist-card empty" data-outlet="Newstalk ZB" data-name="barry soper" data-score="999">
                 <div class="j-header" onclick="toggleDetails('barry-soper-newstalkzb')">
@@ -575,7 +777,7 @@
             </div>
         </div>
 
-        <div class="journalist-card" data-outlet="NZ Herald" data-name="jamie morton" data-score="-0.0593">
+        <div class="journalist-card" data-outlet="NZ Herald" data-name="jamie morton" data-score="-0.0623">
             <div class="j-header" onclick="toggleDetails('jamie-morton-nzherald')">
                 <img class="j-avatar" src="https://s3.amazonaws.com/arc-authors/nzme/1a606027-89b8-458f-b47c-6c8334cd13fb.png" alt="Jamie Morton">
                 <div class="j-left">
@@ -594,7 +796,7 @@
                             <div class="spectrum-tick-label" style="left:0%">−</div>
                             <div class="spectrum-tick-label" style="left:50%">0</div>
                             <div class="spectrum-tick-label" style="left:100%">+</div>
-                            <div class="spectrum-marker" style="left:47.0%"></div>
+                            <div class="spectrum-marker" style="left:46.9%"></div>
                         </div>
                         <span class="spectrum-label-r">Right</span>
                     </div>
@@ -609,21 +811,21 @@
                     <div class="dist-bar-wrap">
                         <div class="dist-bar" style="width:0%;background:#ef4444"></div>
                     </div>
-                    <span class="dist-count">0 <span class="dist-pct">(0%)</span></span>
+                    <span class="dist-count">1 <span class="dist-pct">(0%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre-Left</span>
                     <div class="dist-bar-wrap">
-                        <div class="dist-bar" style="width:16%;background:#f97316"></div>
+                        <div class="dist-bar" style="width:17%;background:#f97316"></div>
                     </div>
-                    <span class="dist-count">100 <span class="dist-pct">(16%)</span></span>
+                    <span class="dist-count">119 <span class="dist-pct">(17%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre</span>
                     <div class="dist-bar-wrap">
                         <div class="dist-bar" style="width:83%;background:#6b7280"></div>
                     </div>
-                    <span class="dist-count">508 <span class="dist-pct">(83%)</span></span>
+                    <span class="dist-count">588 <span class="dist-pct">(83%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre-Right</span>
@@ -645,7 +847,7 @@
                 <div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">Jamie Morton is a science and environment journalist with 20+ years' experience. He spent 14 years at the NZ Herald (2011-2025) before joining The Conversation New Zealand as Deputy Editor. He has reported from Antarctica and global climate summits. He has been named Science Reporter of the Year four times (2013, 2016, 2022, 2023).</p></div>
                 <div class="articles-section">
                     <div class="articles-toggle" onclick="toggleArticles('jamie-morton-nzherald')">
-                        <span>Articles (610)</span>
+                        <span>Articles (710)</span>
                         <span class="toggle-icon toggle-articles">▼</span>
                     </div>
                     <div class="accordion-body" id="articles-content-jamie-morton-nzherald">
@@ -662,8 +864,608 @@
                                 
                 <tr class="month-header" onclick="document.querySelectorAll('.month-jamie-morton-nzherald-2026-04').forEach(r=>r.style.display=r.style.display==='none'?'':'none');this.querySelector('.month-arrow').classList.toggle('open')">
                     <td colspan="4" style="background:#f9fafb;font-weight:600;font-size:12px;color:#374151;padding:8px 12px;cursor:pointer;user-select:none">
-                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(610 articles)</span>
+                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(710 articles)</span>
                     </td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/sir-peter-gluckmans-influential-new-role-in-global-science/M6D7TVBUDTY66JN2XTUHRMWSDY/" target="_blank" rel="noopener">Sir Peter Gluckman moves into influential new role in global science</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/six-months-on-white-island-could-erupt-again-with-little-warning/7UTRMMZTLTF2YE266DCY5B2LQM/" target="_blank" rel="noopener">Six months on, White Island could erupt again with little warning</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/six-whitianga-deaths-highlight-influenzas-devastating-risk-to-rest-homes/CYITUMGF2BBE7H42LRZZ5QM66A/" target="_blank" rel="noopener">'Devastating' influenza outbreak hits Whitianga - six dead</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/skycity-fire-aftermath-three-lingering-questions-answered/Z6CQ2VCYRDIBEL5LBSKCE7LXHY/" target="_blank" rel="noopener">SkyCity fire aftermath: Three lingering questions answered</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/skycity-fire-health-risks-from-toxic-smoke-explained/HD6XWUEOSDDMMROA4BAR6QKSVI/" target="_blank" rel="noopener">SkyCity fire: Health risks from toxic smoke explained</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/slain-scientist-why-would-anyone-have-killed-stephen-thorpe/RJCWQM4PBBHPJPN4JQUZV6JRFE/" target="_blank" rel="noopener">Slain scientist: Why would anyone have killed Stephen Thorpe?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/sleep-study-to-help-kiwi-kids-with-asd/JFQ4Z754GAJA3KBJCGLC5TK2V4/" target="_blank" rel="noopener">Sleep study to help Kiwi kids with ASD</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/sleeping-giant-what-will-the-next-taranaki-eruption-look-like/A3VI5PKPWMQXC5M5KM4MYF5VAI/" target="_blank" rel="noopener">Sleeping giant: What will the next Taranaki eruption look like?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/sleeping-giants-rumble-noisily-awake/FYB6OPZWZWEMQEUTU2ZV4Q2CFM/" target="_blank" rel="noopener">Sleeping giants rumble noisily awake - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/slip-risk-for-road-users/5G3OGTTFJ4E3LH2YIJIMGNY46A/" target="_blank" rel="noopener">Slip risk for road users - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/slow-to-buy-but-city-will-step-up-to-support-its-games-says-mayor/Z2OQ4N2FTKPMOILONEWRGYSQCA/" target="_blank" rel="noopener">Slow to buy, but city will step up to support its games, says mayor - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/small-wins-in-battle-to-save-the-kiwi/GGUH54GLOKWNCSD3BH7GO42PEE/" target="_blank" rel="noopener">Small wins in battle to save the Kiwi</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smart-science-chilly-landscape-harbours-a-million-clues-to-our-destiny/WN36SSZIRMRYBNWWWEBICCN7FA/" target="_blank" rel="noopener">Chilly landscape harbours a million clues</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smart-science-ice-free-past-points-to-daunting-future/KRQNWJ4GVUPWG4JHGVDS7G34VI/" target="_blank" rel="noopener">Past points to daunting future</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smart-science-understanding-what-lies-beneath/EVWRVKWW6Y6VSLB7UJAU3QUDA4/" target="_blank" rel="noopener">Understanding what lies beneath</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smart-sensing-tech-to-help-scientists-peer-inside-volcanoes/DO4TI6OO4UTPBSUK3QXBDB6HIE/" target="_blank" rel="noopener">Smart sensing tech to help scientists peer inside volcanoes</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smartphone-data-to-help-fight-the-flu/NDLTCISEIYXQ7MBOH6LZA2BHQQ/" target="_blank" rel="noopener">Smartphones and the flu fight</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smelly-seals-early-morning-visit/2NIPD7R2HQ4PMEQFFO67ANRKXQ/" target="_blank" rel="noopener">Smelly seal's early morning visit - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/smoking-among-young-teens-nearly-stubbed-out-survey/6RHF2FSN54CEEIQEM72Z3ZPTJE/" target="_blank" rel="noopener">Smoking among young teens nearly stubbed out - survey</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.15</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/snow-business-will-an-el-nino-winter-bless-nzs-ski-slopes/LLEINWFXGJBZPDHKJOC6CAIJ6A/" target="_blank" rel="noopener">Snow business: Will an El Niño winter bless NZ’s ski slopes?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/so-much-snow-but-too-windy-to-enjoy-it/Z67E7RYIDEV72WFQ27X5MI5MMI/" target="_blank" rel="noopener">So much snow but too windy to enjoy it - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/solar-eclipse-forecast-to-be-the-best-for-decades/YHFJJTSLP2YM36GJYT27G5MBEQ/" target="_blank" rel="noopener">Solar eclipse best in decades</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/solving-nzs-freshwater-headache-we-have-waited-far-too-long/KY27SZIFEU57B2LXOJWT66XKEU/" target="_blank" rel="noopener">Solving NZ's freshwater headache: 'We have waited far too long'</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#ef444420;color:#ef4444;border:1px solid #ef444440">left</span></td>
+                    <td class="art-score" style="color:#ef4444">-0.65</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/solving-the-mystery-of-nzs-volcanic-co2-emissions/VHSDC5NZCL7Z3AC5MKHI47R64Q/" target="_blank" rel="noopener">Solving the mystery of NZ's volcanic CO2 emissions</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/source-of-shakes-a-puzzle/H5BYLS54TBNXBCPJUT4Z5G7NI4/" target="_blank" rel="noopener">Source of shakes a puzzle</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/south-africa-suspends-astrazeneca-covid-19-vaccine-over-variant-concerns/IXTXC6GB7OKDZQATUVVEYMEDKI/" target="_blank" rel="noopener">South Africa suspends AstraZeneca Covid-19 vaccine over variant concerns</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/south-america-link-to-moa/6SHOAUX55JRJ2C4TX5XPAVLU64/" target="_blank" rel="noopener">South America link to moa - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/south-pole-warming-at-three-times-global-rate-nz-study/VMECHQT7V2QMJKJAL3NTSRRSDQ/" target="_blank" rel="noopener">South Pole warming at three times global rate - NZ study</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/southern-alps-snow-ice-vanishing/J7PSRAQDLIUI2ERUUDNQQUIOPM/" target="_blank" rel="noopener">Southern Alps snow, ice vanishing - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.20</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/southern-giants-how-monster-waves-are-warning-us-about-climate-change/4FG6NLWRL2U2MGX665CLUXPKYQ/" target="_blank" rel="noopener">Mega-wave warning: The seven-storey Southern Ocean giants</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/southern-nessie-mystery-solved/EKS3Z4MFK54JA5G7VOT2WDFYDE/" target="_blank" rel="noopener">NZ Nessie mystery solved</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/space-spectacle-once-in-a-lifetime-comet-to-be-visible-in-nz-skies/LHIZQOHTFVGJZERZXLYZ75G6XQ/" target="_blank" rel="noopener">Space spectacle: ‘Once in a lifetime’ comet to be visible in NZ skies - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/space-tech-smart-sensors-and-ai-drive-new-hope-for-cerebral-palsy/UOINB5GR6VEOVJ5IJBSYPLQARA/" target="_blank" rel="noopener">Anti-gravity tech helping children with cerebral palsy walk freely again</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spacex-rockets-kiwi-link/2IJSTZERYQ67HOA3OJPMEBCCRM/" target="_blank" rel="noopener">SpaceX rocket's Kiwi link - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spca-struggling-to-rehome-110-pet-cats/O2GRL2EKRCOM7UHW56I7SO7HPY/" target="_blank" rel="noopener">SPCA struggling to rehome 110 pet cats - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/special-report-how-did-new-zealands-hero-port-worker-get-covid-19-coronavirus/V65E4SEAZMSW5MNYOFBHQUBZDI/" target="_blank" rel="noopener">Special report: How did NZ's 'hero' port worker get Covid-19?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.20</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/special-report-the-tragedy-of-our-environment-in-four-dismal-figures/X2O36UUTYFKMQBHDOTOJ4GHAAI/" target="_blank" rel="noopener">Special Report: The tragedy of our environment in four dismal figures</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/special-report-the-tragic-trend-making-ghosts-of-our-glaciers/5WON6ZEZZXSQNM3MFP2VIREGGI/" target="_blank" rel="noopener">Special report: The tragic trend making ghosts of our glaciers</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/species-at-risk-with-support-for-community-conservation-groups-drying-up-as-pest-animals-threaten-nz-native-birds-and-other-species/PA66GSW6IZAQZGZLETLFCIBV3E/" target="_blank" rel="noopener">Community groups call for cash as they fight to help safeguard native species</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spectacular-view-of-lunar-eclipse/3LS37S2NBVA47ECDYP7M3MA3FM/" target="_blank" rel="noopener">Spectacular view of lunar eclipse - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spend-spend-spend-how-nz-habits-have-changed/MK7BNML7RIJX5FX2AJN642QAEA/" target="_blank" rel="noopener">Hey big (Kiwi) spender</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.20</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spooky-science-will-supercharge-tomorrows-computers/URU4QZRCNHXP7B3KXHC75Q6XDM/" target="_blank" rel="noopener">'Spooky' science will supercharge tomorrow's computers</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spooky-tides-spark-call-to-tsunami-experts/YE6IYQUDPJRL44X55RAEMNM3TQ/" target="_blank" rel="noopener">Spooky tides spark call to tsunami experts</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/spread-of-bird-flu-among-species-countries-definitely-cause-for-concern-nz-virologist/AF46QBWDTRE2FFBNMTDZSTV6AA/" target="_blank" rel="noopener">NZ virologist says spread of bird flu across globe is ‘definitely cause for concern’</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/st-john-loses-ambo-contract/Y27AKSYNZONLGYDX6YF7PDGLE4/" target="_blank" rel="noopener">St John loses ambo contract - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stagnant-master-plan-to-save-gulf-could-have-been-done-better/F4VATJIHDIVDDXBAK2COSC5Y2A/" target="_blank" rel="noopener">Stagnant master plan to save gulf 'could have been done better'</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/star-gazers-focus-on-sun-grazer/K2N34VJ45LV2IAOGBMHZKZF7UA/" target="_blank" rel="noopener">Star-gazers focus on sun-grazer - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stars-of-our-own-heavenly-show/DHUFCDMPSEFGB2I33NO2AUXA5I/" target="_blank" rel="noopener">Stars of our own heavenly show</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/start-obesity-fight-by-age-4-study/LYJRD7ORATZ5FGJ54M5I6LRXQM/" target="_blank" rel="noopener">Fight the fat by age 4: study</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/state-highway-slammed-as-a-judder-bar/EUPWCQNHNUVCHMLF2VSYO5XPZI/" target="_blank" rel="noopener">State highway slammed as a 'judder bar' - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/state-snooping-study-wins-marsden-fund-grant/5UY6OSUTVNY45B7CNHWYUCWVCU/" target="_blank" rel="noopener">State snooping study wins grant</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stellar-discovery-could-prompt-a-rethink-on-the-universe/OQQXLBYQLFA6F5CCFZMRKGY53M/" target="_blank" rel="noopener">Stellar discovery could prompt a rethink on the universe</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/step-in-the-right-direction-nz-experts-weigh-in-on-un-climate-summits-result/EGVSA3ADOREUDBLNCNXL6WRSTA/" target="_blank" rel="noopener">‘Step in the right direction’: NZ experts weigh in on UN climate summit’s result - NZ Hera</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/sticky-outlook-muggy-days-and-nights-ahead-as-humid-weather-system-nears-nz/WVQYU3GS3BAK3GUDFN422BHQFM/" target="_blank" rel="noopener">Muggy days and nights ahead as humid weather system nears NZ</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/sting-in-summers-tail-why-are-there-so-many-wasps-about-at-the-moment/HUJFLADE2BARFEBB5R76KH72BI/" target="_blank" rel="noopener">Sting in summer’s tail: Why are there so many wasps about at the moment?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stole-me-website-launched-to-stop-thieves/2CH74U7ZAKNQ23VK545WYX3RAI/" target="_blank" rel="noopener">Stole Me: Website launched to stop thieves - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stones-in-boots-save-shot-hunter/XQ2F6H5ZL27UPE5OUNNMTHQHJU/" target="_blank" rel="noopener">Stones in boots save shot hunter - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/store-seeds-to-save-our-trees-dont-bank-on-it/JT4AWEORYKFPDMZWKFVOYEVKN4/" target="_blank" rel="noopener">Store seeds to save our trees? Don't bank on it</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/storm-warning-more-on-the-way/GHS2GIRNZBPWGYZ7VO72WOCBPQ/" target="_blank" rel="noopener">Storm warning: More on the way - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.40</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stormy-weather-over-much-of-nz/MKDXRMKLYQ6KYM7RRTW5KQ4J6M/" target="_blank" rel="noopener">Stormy weather over much of NZ - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/strange-seaweed-causes-stink-on-coromandel-beach/NY5QMBM5K6JC2LSC6COCKQEAGU/" target="_blank" rel="noopener">Strange seaweed causes stink on Coromandel beach - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/strep-a-study-nz-exposed-to-worldwide-population-of-nasty-bacteria/HLVURMNTYZCMNIVH6TMQAHXXYU/" target="_blank" rel="noopener">Strep A study: NZ exposed to ‘worldwide population’ of nasty bacteria</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stress-smoking-deprivation-in-pregnancy-linked-to-depression-in-pre-teens-first-time-nz-findings/TIV4JAHODNFOHB6VGAPQHYDJ4I/" target="_blank" rel="noopener">Stress, smoking, deprivation in pregnancy linked to depression in pre-teens - first-time N</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.20</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/strong-la-ninas-and-el-ninos-becoming-more-frequent-under-climate-change/NTYAG7F2IVHY3FZAGXJPUGD6IA/" target="_blank" rel="noopener">Strong La Niñas and El Niños becoming more frequent as climate changes</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/strong-marine-heatwave-conditions-around-north-island-fueling-warmth-humidity/OAN6KVIIONGB3J4UQ57WDMPZ6Q/" target="_blank" rel="noopener">‘Strong’ marine heatwave conditions around North Island fueling warmth, humidity</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stronger-than-bola-new-analysis-shows-how-gabrielle-compares/MJ3URXXI3JHQBLSII4SSU4ALFI/" target="_blank" rel="noopener">Stronger than Bola? New analysis shows how Cyclone Gabrielle compares</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/strongest-call-yet-for-overhaul-of-outdated-genetic-engineering-laws/PIHEHAQJ6P3T5T52AN3JMQMQE4/" target="_blank" rel="noopener">Strongest call yet for overhaul of 'out-dated' GE laws</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/stuck-to-the-web-study-examines-digital-dangers/AS5FUNNXCJJQ4A74WJ3BR6A6XY/" target="_blank" rel="noopener">Stuck to the web: Study examines digital dangers</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/students-climate-strike-we-put-teens-questions-to-climate-change-minister-james-shaw/HOK6RBTKCHTPVPJZQX7CFGX574/" target="_blank" rel="noopener">Student strike: We put teens' questions to Climate Change Minister James Shaw</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.40</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-a-third-of-auckland-kids-lack-vitamin-d/H36KY6FRD6SFXU5VEXPIUX7CUA/" target="_blank" rel="noopener">Study: A third of Auckland kids lack vitamin D</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-aims-to-cut-shock-pain/6VCQF73KTXQQARSVKCCOZWYSEQ/" target="_blank" rel="noopener">Study aims to cut shock pain - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-bowel-cancer-risk-with-even-moderate-amount-of-red-meat/J54OGQP4ROVXMF733BLZGCTC6I/" target="_blank" rel="noopener">Study: Bowel cancer risk with even 'moderate' amount of red meat</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-casts-light-on-quake-impact/XG3TNOZ2ZWJ7UQ7QDVG2U2CG7A/" target="_blank" rel="noopener">Study casts light on quake impact - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-charts-the-quickening-loss-of-nzs-postcard-glaciers/LUV54RUIZPRCEND6FMUNZJPOOI/" target="_blank" rel="noopener">Study charts the quickening loss of NZ's postcard glaciers</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.15</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-explores-stress-in-hurunui-which-has-been-rocked-by-quakes-drought/NMOSLS5KFWEGWJVGYYTWMQS5KA/" target="_blank" rel="noopener">Study explores stress in district rocked by quakes, drought</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.20</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-explores-tensions-over-sex-workers/LZ2YAB5R6AH44H7XDNBQPTWN74/" target="_blank" rel="noopener">Study explores tensions over sex workers</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-finds-urgent-need-to-understand-new-zealands-blue-backyard/6AL37WDSYWLKCKNQVKAY6Z3RRU/" target="_blank" rel="noopener">Study finds urgent need to understand NZ's blue backyard</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.15</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-flags-urgent-need-for-smarter-needs-based-climate-recovery-packages/QYA27AO2LBA33NDZXXOTQAVFKY/" target="_blank" rel="noopener">Analysis: Climate disasters hurt some NZ businesses more than others</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-highlights-nzs-750-year-biodiversity-tragedy/ULNBLVX5S53ZX4DI2Q27JIYTXM/" target="_blank" rel="noopener">Study highlights NZ's 750-year biodiversity tragedy</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-out-on-politics-of-new-zealand-conspiracy-theorists/QWT3OCA6A2FLRFOFSWZDPT6QYA/" target="_blank" rel="noopener">Study reveals the politics of Kiwi conspiracy theorists</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.35</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-questions-impact-of-whale-watching/3T2D57YOIOCGW43PMEYQNOLPJU/" target="_blank" rel="noopener">Whale watching impact questioned</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-reveals-how-climate-change-could-worsen-nzs-big-landslide-risk/W5T6CUNQEJAENHKQ4OJJP2L5LM/" target="_blank" rel="noopener">Study reveals how climate change could worsen NZ’s big landslide risk</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-reveals-how-new-zealands-biggest-quake-maker-stokes-world-famous-volcanic-zone/GDYY46HOXZGERKWACFE5CDPO7A/" target="_blank" rel="noopener">Study reveals how NZ's biggest quake-maker stokes world-famous volcanic zone</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-reveals-tsunami-risk/NZMWPXNBAPREE45VDYNSLSQ6XE/" target="_blank" rel="noopener">Study reveals tsunami risk - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-shows-past-rumbles-on-nzs-big-quake-danger-zone/XPUXNIJ3CFGD2ESJ6P2VC4A7RU/" target="_blank" rel="noopener">Study shows past rumbles on NZ's big quake danger zone</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-suggests-gaps-still-exist-in-doc-genetics-use/OVIQU4L6VUYT64JXIH7B2UR4Q4/" target="_blank" rel="noopener">Study suggests 'gaps' in DOC genetics use</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-to-test-if-whales-hear-food/AXBPFXFUG4HWN3OO5JT6MK6HNQ/" target="_blank" rel="noopener">Do whales hear their dinner?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-to-track-why-kiwis-fall-down-conspiracy-misinformation-rabbit-hole/YFCKU44AUF7NO64T6QKRVYXCCY/" target="_blank" rel="noopener">World-first study: Why do Kiwis fall down the rabbit hole?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/study-unravels-mystery-of-antarctic-sea-ice/EGTJQM2ZSXM46T6TYVHJOEWAWY/" target="_blank" rel="noopener">Why Antarctic ice is increasing</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/subduction-secrets-what-triggers-megathrust-earthquakes/J7TBWP5UHHV2OF44PFCMOZD73U/" target="_blank" rel="noopener">Subduction secrets: What triggers 'megathrust' earthquakes?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/subduction-zone-mystery-do-mountains-beneath-the-sea-fuel-silent-earthquakes/EB6VLQ6AVUHTYJEVYW246NY4OE/" target="_blank" rel="noopener">Subduction zone mystery: do underwater mountains fuel silent earthquakes?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/subduction-zone-secrets-is-this-how-nz-forecasts-megaquakes/JI535CWVIVCVPUA6OTZB6JZT3E/" target="_blank" rel="noopener">Subduction zone secrets: Is this how NZ forecasts 'megaquakes'?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/submarine-cable-between-australia-and-nz-now-doubling-as-a-tsunami-sensor/UGXKB6R43NC25EUK3K4JQK24DA/" target="_blank" rel="noopener">Submarine cable between Australia and NZ now doubling as a tsunami sensor</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-disrupted-why-forecasters-are-picking-a-cool-lean-for-first-half-of-january/WYBZYVMMZ5H2XPLZTRYRKPVXGM/" target="_blank" rel="noopener">Summer disrupted: Why forecasters are picking a ‘cool lean’ for first half of January</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-explained-balmy-weather-and-a-weird-el-nino-on-the-way/C5DU6HPT2WKOP2ML7BGKYLVMEA/" target="_blank" rel="noopener">Summer explained: Balmy weather and a weird El Nino</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-heat-set-to-roll-on-amid-another-northern-dry/755EFZNLXA4IQS5JYTMJ3LLIXQ/" target="_blank" rel="noopener">Summer heat set to roll on amid another northern dry</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-heatwave-brings-hot-weather-five-big-questions-answered/RZAXSYUAR2PTT2MTJG442UPYS4/" target="_blank" rel="noopener">NZ heatwave: Five big questions answered</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-outlook-unusually-hot-weather-in-store-as-north-dries-out-again/UAJPZK2TJPIT5364KIYYYIJD4M/" target="_blank" rel="noopener">Summer outlook: Unusually hot weather in store, as north dries out again</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-scorcher-where-temperatures-could-hit-mid-30s-this-week/AU67AWP25NGP3ENZXYH5Z2R2MM/" target="_blank" rel="noopener">Summer scorcher: Where temperatures could hit mid-30s this week</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-weather-can-this-heatwave-officially-be-called-a-heatwave-yet/RJ3YHJFG3457QSZLAJCQHE3SIM/" target="_blank" rel="noopener">'Peak' heatwave today, with temps up to 37C</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
                 </tr>
                 <tr class="month-jamie-morton-nzherald-2026-04">
                     <td class="art-title"><a href="https://www.nzherald.co.nz/nz/summer-weather-parts-of-northland-edge-closer-to-drought-as-wellington-freezes/SHWQWMJJDNGRHNISIKSAPZKRUI/" target="_blank" rel="noopener">Weather: Parts of Northland approach drought as Wellington freezes</a></td>
@@ -4678,13 +5480,13 @@
             </div>
         </div>
 
-        <div class="journalist-card" data-outlet="TVNZ" data-name="jessica mutch mckay" data-score="0.0357">
+        <div class="journalist-card" data-outlet="1News" data-name="jessica mutch mckay" data-score="0.0357">
             <div class="j-header" onclick="toggleDetails('jessica-mutch-mckay-1news')">
                 <img class="j-avatar" src="https://www.nzonscreen.com/content/images/0028/9668/Jessica_Mutch_Thumbnail.KEY.jpg" alt="Jessica Mutch McKay">
                 <div class="j-left">
                     <div class="j-name">Jessica Mutch McKay</div>
-                    <div class="j-meta">TVNZ · Political editor</div>
-                    <div class="j-formerly">Formerly: TVNZ</div>
+                    <div class="j-meta">1News · Political editor</div>
+                    
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="Centre (+0.04)">
@@ -4853,7 +5655,7 @@
                     <div class="j-left">
                         <div class="j-name">Kate Hawkesby</div>
                         <div class="j-meta">Newstalk ZB · Current affairs</div>
-                        <div class="j-formerly">Formerly: TVNZ, NZ Herald</div>
+                        
                     </div>
                 </div>
                 <div class="accordion-body" id="details-kate-hawkesby-newstalkzb">
@@ -5219,13 +6021,13 @@
                 </div>
             </div>
 
-        <div class="journalist-card" data-outlet="TVNZ" data-name="tova o'brien" data-score="-0.3000">
+        <div class="journalist-card" data-outlet="1News" data-name="tova o'brien" data-score="-0.3000">
             <div class="j-header" onclick="toggleDetails('tova-obrien-1news')">
                 <img class="j-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Tova_O%27Brien_021_%28cropped%29.jpg/250px-Tova_O%27Brien_021_%28cropped%29.jpg" alt="Tova O'Brien">
                 <div class="j-left">
                     <div class="j-name">Tova O'Brien</div>
-                    <div class="j-meta">TVNZ · Political commentary</div>
-                    <div class="j-formerly">Formerly: Newshub, TV3, Stuff</div>
+                    <div class="j-meta">1News · Political commentary</div>
+                    
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="Leans Centre-Left (-0.30)">
@@ -5392,8 +6194,8 @@
                     <span class="dist-count">0 <span class="dist-pct">(0%)</span></span>
                 </div>
                 </div>
-                <div class="card-connections"><div class="card-section-label">Connections</div><div class="social-row"><a href="https://x.com/avancenz" target="_blank" rel="noopener" class="social-link social-x">X</a><a href="https://linkedin.com/in/andrea-vance-474b6bb9" target="_blank" rel="noopener" class="social-link social-li">LinkedIn</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">Stuff Limited</span> — Formerly Fairfax NZ <a href="https://www.stuff.co.nz/authors/andrea-vance" target="_blank" rel="noopener" class="conn-source">source</a></div><div class="conn-row"><span class="conn-type">political</span> <span class="conn-target">Peter Dunne</span> — United Future leader and Revenue Minister — Textgate 2013 (86 emails in 13 days; Dunne resigned; Vance's phone records and parliamentary swipe card data were improperly accessed) <a href="https://en.wikipedia.org/wiki/Peter_Dunne" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
-                <div class="card-connections"><div class="card-section-label">Key facts</div><div class="conn-row">'Textgate' (2013): exchanged 86 emails over 13 days with Revenue Minister Peter Dunne about GCSB leak inquiry; Dunne resigned; a subsequent inquiry improperly accessed Vance's phone records AND parliamentary swipe card movement data — a major NZ privacy scandal <a href="https://en.wikipedia.org/wiki/Peter_Dunne" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
+                <div class="card-connections"><div class="card-section-label">Connections</div><div class="social-row"><a href="https://x.com/avancenz" target="_blank" rel="noopener" class="social-link social-x">X</a><a href="https://linkedin.com/in/andrea-vance-474b6bb9" target="_blank" rel="noopener" class="social-link social-li">LinkedIn</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">Stuff Limited</span> — Formerly Fairfax NZ <a href="https://www.stuff.co.nz/authors/andrea-vance" target="_blank" rel="noopener" class="conn-source">source</a></div><div class="conn-row"><span class="conn-type">political</span> <span class="conn-target">Peter Dunne</span> — United Future leader and Revenue Minister — Textgate 2013 (86 emails in 13 days; Dunne resigned; Vance's phone records and parliamentary swipe card data were improperly accessed) <a href="https://www.nbr.co.nz/peters-says-hes-seen-personally-embarrassing-emails-between-peter-dunne-and-andrea-vance/" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
+                <div class="card-connections"><div class="card-section-label">Key facts</div><div class="conn-row">'Textgate' (2013): exchanged 86 emails over 13 days with Revenue Minister Peter Dunne about GCSB leak inquiry; Dunne resigned; a subsequent inquiry improperly accessed Vance's phone records AND parliamentary swipe card movement data — a major NZ privacy scandal <a href="https://www.nbr.co.nz/peters-says-hes-seen-personally-embarrassing-emails-between-peter-dunne-and-andrea-vance/" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
                 <div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">Andrea Vance is a Northern Irish political journalist currently serving as a senior journalist at Stuff in Wellington. She grew up near Belfast, where her father edited three local newspapers. She worked for seven years as an investigative reporter at the British tabloid News of the World. When the phone hacking scandal broke, Vance was in the Glasgow newsroom and has denied any personal involvement, stating "no one had any idea it was going on." She subsequently worked as night news editor at The Scotsman before emigrating to New Zealand with her Kiwi husband. She became a prominent press gallery journalist, working for Fairfax/Stuff and later 1News. In 2013, she was at the centre of the Peter Dunne email scandal, in which minister Dunne resigned after refusing to release 86 email exchanges with Vance regarding a leaked GCSB report. Her phone records and parliamentary swipe-card data were improperly provided to the inquiry without her knowledge, prompting a major privacy breach complaint. She was named Political Journalist of the Year in 2025.</p></div>
                 <div class="articles-section">
                     <div class="articles-toggle" onclick="toggleArticles('andrea-vance-stuff')">
@@ -5997,7 +6799,7 @@
                 <div class="j-left">
                     <div class="j-name">Guyon Espiner</div>
                     <div class="j-meta">RNZ · Investigative</div>
-                    <div class="j-formerly">Formerly: TVNZ, TV3, Sunday Star-Times</div>
+                    
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="Leans Centre-Left (-0.31)">
@@ -6334,7 +7136,7 @@
                 <div class="j-left">
                     <div class="j-name">Jo Moir</div>
                     <div class="j-meta">RNZ · Political journalism</div>
-                    <div class="j-formerly">Formerly: Newsroom, Stuff, Dominion Post</div>
+                    
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="Centre (leans left) (-0.10)">
@@ -6590,12 +7392,12 @@
             </div>
         </div>
 
-        <div class="journalist-card" data-outlet="TVNZ" data-name="katie bradford" data-score="-0.0312">
+        <div class="journalist-card" data-outlet="1News" data-name="katie bradford" data-score="-0.0312">
             <div class="j-header" onclick="toggleDetails('katie-bradford-1news')">
                 <img class="j-avatar" src="https://author-service-images-prod-us-east-1.publishing.aws.arc.pub/tvnz/9942a886-eba2-4da2-b455-8c1ae017fdde.jpg" alt="Katie Bradford">
                 <div class="j-left">
                     <div class="j-name">Katie Bradford</div>
-                    <div class="j-meta">TVNZ · Parliamentary politics</div>
+                    <div class="j-meta">1News · Parliamentary politics</div>
                     
                 </div>
                 <div class="j-right">
@@ -6873,16 +7675,16 @@
                 </div>
             </div>
 
-        <div class="journalist-card" data-outlet="Newstalk ZB" data-name="mike hosking" data-score="0.2906">
+        <div class="journalist-card" data-outlet="Newstalk ZB" data-name="mike hosking" data-score="0.2708">
             <div class="j-header" onclick="toggleDetails('mike-hosking-newstalkzb')">
                 <img class="j-avatar" src="https://s3.amazonaws.com/arc-authors/nzme/b282519a-87f4-4f12-89a5-5314ba1a98cb.png" alt="Mike Hosking">
                 <div class="j-left">
                     <div class="j-name">Mike Hosking</div>
                     <div class="j-meta">Newstalk ZB · Current affairs</div>
-                    <div class="j-formerly">Formerly: TVNZ, Radio NZ</div>
+                    
                 </div>
                 <div class="j-right">
-                    <div class="spectrum-wrap" title="Leans Centre-Right (+0.29)">
+                    <div class="spectrum-wrap" title="Leans Centre-Right (+0.27)">
                         <span class="spectrum-label-l">Left</span>
                         <div class="spectrum-track">
                             <div class="spectrum-bar"></div>
@@ -6892,11 +7694,11 @@
                             <div class="spectrum-tick-label" style="left:0%">−</div>
                             <div class="spectrum-tick-label" style="left:50%">0</div>
                             <div class="spectrum-tick-label" style="left:100%">+</div>
-                            <div class="spectrum-marker" style="left:64.5%"></div>
+                            <div class="spectrum-marker" style="left:63.5%"></div>
                         </div>
                         <span class="spectrum-label-r">Right</span>
                     </div>
-                    <span class="lean-text" style="color:#3b82f6">29% right leaning</span>
+                    <span class="lean-text" style="color:#3b82f6">27% right leaning</span>
                 </div>
             </div>
             <div class="accordion-body" id="details-mike-hosking-newstalkzb">
@@ -6905,37 +7707,37 @@
                 <div class="dist-row">
                     <span class="dist-label">Left</span>
                     <div class="dist-bar-wrap">
-                        <div class="dist-bar" style="width:3%;background:#ef4444"></div>
+                        <div class="dist-bar" style="width:7%;background:#ef4444"></div>
                     </div>
-                    <span class="dist-count">4 <span class="dist-pct">(3%)</span></span>
+                    <span class="dist-count">4 <span class="dist-pct">(7%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre-Left</span>
                     <div class="dist-bar-wrap">
-                        <div class="dist-bar" style="width:22%;background:#f97316"></div>
+                        <div class="dist-bar" style="width:18%;background:#f97316"></div>
                     </div>
-                    <span class="dist-count">27 <span class="dist-pct">(22%)</span></span>
+                    <span class="dist-count">11 <span class="dist-pct">(18%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre</span>
                     <div class="dist-bar-wrap">
-                        <div class="dist-bar" style="width:8%;background:#6b7280"></div>
+                        <div class="dist-bar" style="width:12%;background:#6b7280"></div>
                     </div>
-                    <span class="dist-count">9 <span class="dist-pct">(8%)</span></span>
+                    <span class="dist-count">7 <span class="dist-pct">(12%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre-Right</span>
                     <div class="dist-bar-wrap">
-                        <div class="dist-bar" style="width:22%;background:#3b82f6"></div>
+                        <div class="dist-bar" style="width:18%;background:#3b82f6"></div>
                     </div>
-                    <span class="dist-count">26 <span class="dist-pct">(22%)</span></span>
+                    <span class="dist-count">11 <span class="dist-pct">(18%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Right</span>
                     <div class="dist-bar-wrap">
                         <div class="dist-bar" style="width:45%;background:#1d4ed8"></div>
                     </div>
-                    <span class="dist-count">54 <span class="dist-pct">(45%)</span></span>
+                    <span class="dist-count">27 <span class="dist-pct">(45%)</span></span>
                 </div>
                 </div>
                 <div class="card-connections"><div class="card-section-label">Connections</div><div class="social-row"><a href="https://x.com/hoskingonzb" target="_blank" rel="noopener" class="social-link social-x">X</a></div><div class="conn-row"><span class="conn-type">employer</span> <span class="conn-target">NZME</span> — Host of Mike Hosking Breakfast on Newstalk ZB <a href="https://www.nzherald.co.nz/author/mike-hosking/" target="_blank" rel="noopener" class="conn-source">source</a></div></div>
@@ -6943,7 +7745,7 @@
                 <div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">Mike Hosking (born 1965, Dunedin) is New Zealand's most prominent radio broadcaster. He left school at 16, starting as an advertising copywriter before getting his break on Wellington's Radio Windy. He hosted Radio New Zealand's Tonight Show and Morning Report, then joined Newstalk ZB in 2008 as weekday Breakfast host — a role he still holds. On television, he co-presented TVNZ's Breakfast (1997-2005) and Seven Sharp (2014-2017). He writes a regular opinion column for the NZ Herald. Hosking is an open supporter of the centre-right National Party and is frequently critical of Labour-led governments. His career has drawn multiple successful Broadcasting Standards Authority complaints. He is married to fellow Newstalk ZB broadcaster Kate Hawkesby. A landmark 2003 privacy case involving Hosking established "the Hosking principles" in NZ common law.</p></div>
                 <div class="articles-section">
                     <div class="articles-toggle" onclick="toggleArticles('mike-hosking-newstalkzb')">
-                        <span>Articles (120)</span>
+                        <span>Articles (60)</span>
                         <span class="toggle-icon toggle-articles">▼</span>
                     </div>
                     <div class="accordion-body" id="articles-content-mike-hosking-newstalkzb">
@@ -6960,368 +7762,8 @@
                                 
                 <tr class="month-header" onclick="document.querySelectorAll('.month-mike-hosking-newstalkzb-2026-04').forEach(r=>r.style.display=r.style.display==='none'?'':'none');this.querySelector('.month-arrow').classList.toggle('open')">
                     <td colspan="4" style="background:#f9fafb;font-weight:600;font-size:12px;color:#374151;padding:8px 12px;cursor:pointer;user-select:none">
-                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(120 articles)</span>
+                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(60 articles)</span>
                     </td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-governments-big-issue-can-it-tell-the-truth-or-hold-a-line/XYT2VSVFKPTB47DO6F5HFMWW5I/" target="_blank" rel="noopener">Hosking: The Govt's big issue - can it tell the truth or hold a line?</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-governments-economic-choices-are-coming-back-to-haunt-us/VCLCZO36T5EU7ALZA7Q5R7C4TA/" target="_blank" rel="noopener">Mike Hosking: Govt’s economic choices coming back to haunt us</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-governments-weakest-link-iain-lees-galloway-should-be-sacked/YADGVOZQNOORK6RJP4KMHUUXK4/" target="_blank" rel="noopener">Hosking: The Govt's weakest link - this hopeless minister must be sacked</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-great-con-that-is-affordable-kiwibuild-houses/KBKIULSF667JSG3LQUIGODWIDM/" target="_blank" rel="noopener">Hosking: 'Affordable' KiwiBuild houses just a political con job</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.30</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-greens-are-trying-to-kill-the-west-coast/MWPRRUWQHWAQA7JQQH34ZZSJYU/" target="_blank" rel="noopener">Hosking: The Greens are trying to kill the West Coast</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.75</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-pm-the-baby-and-the-plane/HKKSMEXQBJY23ESJZC23C6FXFA/" target="_blank" rel="noopener">Hosking: The PM, the baby and the plane</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.30</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-political-money-fight-is-on/H2MBU7BFXVUFJEC4CA6SQAQLOU/" target="_blank" rel="noopener">Mike Hosking: The political money fight is on</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-secret-to-john-keys-success/BKTH576KAV3XZLB574I3G2C5JI/" target="_blank" rel="noopener">Mike Hosking: The secret to John Key's success - NZ Herald</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.75</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-shchetkova-family-is-the-proof-our-immigration-system-is-a-farce/46BFTBT7ZKVEDQNUOIRFNCRGNY/" target="_blank" rel="noopener">Mike Hosking: This family proves our immigration system is a farce</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-simple-truth-is-people-love-cars-not-public-transport/7KXD3Z4HBH6RSU3HONRYXXTNIM/" target="_blank" rel="noopener">Hosking: The simple truth is people love cars, not public transport</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
-                    <td class="art-score" style="color:#6b7280">+0.00</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-tide-is-draining-on-support-for-the-lockdown-approach/LAG7MUDRRWAFIGVFKVV3YMS3QM/" target="_blank" rel="noopener">Hosking: Tide is draining on support for lockdown approach</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-the-world-is-waking-up-to-our-weakening-economy/OLPUSBOJPL3IXERQWDY6L53SYU/" target="_blank" rel="noopener">Hosking: What happened to our economy? We all know the answer</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-theres-hope-we-can-stop-the-legalisation-of-cannabis/E47Y67VBV5YMSBEHOGFB3HQ7QY/" target="_blank" rel="noopener">Mike Hosking: There's hope we can stop the legalisation of cannabis - NZ Herald</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.72</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-theyre-lining-up-to-slam-kiwibuild/B3KIVOFWBMY5S4FMDGRDNIU6KE/" target="_blank" rel="noopener">Hosking: This policy was conceived bad, born bad, and is bad</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-this-governments-about-to-muck-up-workplace-laws/J2LBMN2NJFV4ZU2H6IQOY7J2GA/" target="_blank" rel="noopener">Hosking: Payback - this Govt's about to muck up workplace laws</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-this-governments-attempts-to-blame-national-for-their-problems-is-tiresome/SYC6UQ3FKVD4BGXNQCCGYTWWPI/" target="_blank" rel="noopener">Mike Hosking: After six years this Govt is still blaming National for their own incompeten</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-this-inept-government-has-put-the-brakes-on-the-economy/IEPAV75MYKSEIMZ5R5ZRL3SNFA/" target="_blank" rel="noopener">Hosking: 'Inept' Govt has put the brakes on the economy</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
-                    <td class="art-score" style="color:#6b7280">+0.00</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-this-is-a-lame-hit-job-on-simon-bridges/42DRYC3WDZOZCWLR3MYOPKXMHA/" target="_blank" rel="noopener">Hosking: This is a lame hit job on Simon Bridges</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.60</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-this-is-a-lame-hit-job-on-simon-bridges/MDQWVBKXIFOMAZ7JD3ZTHGJSWI/" target="_blank" rel="noopener">Hosking: This is a lame hit job on Simon Bridges</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-three-reasons-why-legalising-cannabis-is-a-dopey-idea/4BEPQKGPXNG6RFU223VJO33LUI/" target="_blank" rel="noopener">Hosking: Three reasons why legalising cannabis a dopey idea</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-three-waters-is-a-stinker-of-a-policy/DGA4BF4COZEYFHRLZRJ36BQSHA/" target="_blank" rel="noopener">Mike Hosking: Three Waters is a stinker of a policy</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.75</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-threes-always-been-on-hiding-to-nothing/YH3AZAG4MN5IOIHMXN7ROPJZOA/" target="_blank" rel="noopener">Mike Hosking: What really sank Three</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-throwing-bullying-accusations-around-is-a-slippery-slope/5C2DDGKCRXKQT3JIID4UH6G6GA/" target="_blank" rel="noopener">Hosking: Throwing bullying accusations around is a slippery slope</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-time-for-labours-xenophobic-bollocks-on-foreign-house-buyers-to-end/5WN77CHPTDYPFPMBUUKXZI25FE/" target="_blank" rel="noopener">Hosking: Time for Labour's xenophobic bollocks on foreign house buyers to end</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-time-for-todd-muller-and-national-to-get-to-work/3D2E47NSS7HVK3YAQUHZSOPTSI/" target="_blank" rel="noopener">Hosking: Does Todd Muller have the X-factor required to win?</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.30</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-time-to-get-real-on-housing-theres-no-taming-growth/6V6PUCHRQVAN723GQC4HYKFQCM/" target="_blank" rel="noopener">Mike Hosking: Time to get real on housing - there's no taming growth - NZ Herald</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-time-to-have-a-serious-look-at-mmp/G2BL3TRWRUGOZ35JWNGSBUZ64M/" target="_blank" rel="noopener">Hosking: Time to have a serious look at MMP</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-time-to-put-trades-training-on-a-pedestal/NB2AIKKAM6JCWO4XHPFMZ7VY7I/" target="_blank" rel="noopener">Hosking: When school doesn't work trades training is the answer</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-time-to-stop-the-housing-hysteria/Q7JA6A6CFXKGTPWGSWBBLIGPEA/" target="_blank" rel="noopener">Mike Hosking: Time to stop the housing hysteria - NZ Herald</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-tinkering-with-divorce-laws-will-be-a-minefield/5XA7YFB5LB23HWRQRJ5IIVSOOQ/" target="_blank" rel="noopener">Hosking: The nightmarish changes proposed for divorce laws</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-to-be-blunt-495000-isnt-a-lot-of-money-for-christchurch-council-boss-dawn-baxendale/P7AUW7WR5O34S4HIKMJPAU7EJI/" target="_blank" rel="noopener">Hosking: To be blunt $495,000 is not a big salary for a council boss</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-to-the-entitled-little-snots-who-walked-out-of-fraser-high-school/B4XT4TGRS2VWJATVFFRP5FMASI/" target="_blank" rel="noopener">Hosking: Entitled little snots walked out of Fraser High</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-todd-mullers-clever-move/WFA4VCKEHRQSWNYZNTDWABTPEI/" target="_blank" rel="noopener">Mike Hosking: New National leader's clever move</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-tomorrows-schools-learning-the-hard-way-about-messing-around-with-education/KCDSVBD2RQTMWZ3Y4DWF7WDF4U/" target="_blank" rel="noopener">Hosking: Learning the hard way about messing around with schools</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-tvnz-radio-nz-merger-would-be-a-hare-brained-mistake/LY3ZFYQVQ3HFS3A4K6EPRLQ3V4/" target="_blank" rel="noopener">Hosking: TVNZ-Radio NZ merger would be a hare-brained mistake</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-tvnzs-in-trouble-and-they-should-blame-their-own-bad-decisions-not-google/TD2NEJRUZWW4JX7YLMQIYXUTJQ/" target="_blank" rel="noopener">Hosking: TVNZ's in trouble - blame yourselves, not Google</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-two-weeks-in-and-new-government-is-missing-in-action/PFOMJGSZOB6YP5OFHBFECTYT7A/" target="_blank" rel="noopener">Mike Hosking: So where is the evidence of urgency from this new Government?</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-unions-strikes-achieve-nothing-drag-nz-back-to-1970s/KNMKBZ3X3K6ZRJX4VW3PGORMLA/" target="_blank" rel="noopener">Hosking: Early on I realised unions were a waste of time</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-waitangi-isnt-our-national-day-its-our-grievance-day/JIG3P75GKONDE3YBPHR6LQ3NDM/" target="_blank" rel="noopener">Mike Hosking: Waitangi a grievance day, not a national day</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.30</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-wake-up-shane-jones-dont-waste-the-regional-fund/MNN3OR2JAM3NS7PCL3V6JOHPW4/" target="_blank" rel="noopener">Hosking: Wake up Shane Jones - don't waste the regional fund</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-wanted-tough-leader-to-save-city/ZYI5DRMK3GUOGIAGUQJMRABWFQ/" target="_blank" rel="noopener">Mike Hosking: Wanted - tough leader to save city - NZ Herald</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-we-are-a-country-of-lazy-excuse-making-sloths/L3YDAHCRSAGO3PSMJ3PQ4OQP2M/" target="_blank" rel="noopener">Hosking: We're a country of lazy, excuse-making sloths</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-we-know-our-kids-better-than-unions-do/S4CMBJGG6YVYW4QIYGMMZFRQ7Q/" target="_blank" rel="noopener">Hosking: We know our kids better than out-of-touch unions do</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-we-need-air-new-zealand-lets-cut-them-some-slack/BB3PLM2ZCMRXVSXEODMSGHWX6A/" target="_blank" rel="noopener">Mike Hosking: Let's stop bagging Air NZ</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-weak-government-contracting-out-the-too-hard-decisions/L23QQPMICI5MSQZT6DTCS2XHLQ/" target="_blank" rel="noopener">Hosking: Weak Govt contracting out the too-hard decisions</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-welcome-to-booming-business-of-misery/VPTNJUSMRUTUZRHDJ54ZRL2LB4/" target="_blank" rel="noopener">Mike Hosking: Misery is a booming business</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-welcome-to-the-park-n-ride-circus/AVDUX3RVRGT2GHGEZ7Z7JYYPAU/" target="_blank" rel="noopener">Hosking: Motorists subjected to Park n Ride circus</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-were-being-played-for-fools-over-the-weed-vote/RFDAFYVZ46AC2SANNVCL5EZ36M/" target="_blank" rel="noopener">Mike Hosking: We're being played for fools over the weed vote</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-were-happy-to-talk-about-climate-change-but-not-so-keen-to-do-anything-about-it/QA4SLYT4TJKHQJSXSZ4IE37ZUI/" target="_blank" rel="noopener">Mike Hosking: Climate change alarmists turn us off</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-were-on-top-of-covid-19-coronavirus-so-lets-get-on-with-it/N53IDNGUPXA556Z5YXAUE4SIXM/" target="_blank" rel="noopener">Hosking: We're on top of Covid-19, so let's get on with it</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-were-right-to-question-winston-peters/CMTY5DF6JO5DAWCFWEF3Z44FDI/" target="_blank" rel="noopener">Mike Hosking: We're right to question Winston Peters</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.65</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-what-are-we-actually-doing-about-our-road-toll/ADCZBGRKPHEPRSAO4VL5HUX47Q/" target="_blank" rel="noopener">Hosking: More to the road toll than just speed</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-what-the-fug-government-sluggish-on-vaping/QZXTFBL55CJZHCNZ2WFQ6M3WXU/" target="_blank" rel="noopener">Mike Hosking: What the fug? Govt way too slow on vaping</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-what-todd-muller-can-learn-from-judith-collins-and-john-key/NA3OB5V2X2JC22QJP5ZCVVHVIU/" target="_blank" rel="noopener">Mike Hosking: What Todd Muller can learn from Judith Collins and John Key</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-what-was-the-point-of-the-banking-inquiry/ET3C3M7AYUWATT24ZXF4KOVKOE/" target="_blank" rel="noopener">Hosking: What was the point of the banking inquiry?</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-what-we-should-be-talking-about-during-this-election-campaign/MWFOJIGP3JFRLB3ZQNGEEHBA5Q/" target="_blank" rel="noopener">Mike Hosking: Let's talk about these things during this election campaign</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.45</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-whats-in-todays-budget-plenty-of-waffle-and-not-so-much-wellbeing/2H4F26DMLU7B5X36GSXMI7W47Q/" target="_blank" rel="noopener">Hosking: This will be a waffle Budget, not a wellbeing Budget</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#3b82f620;color:#3b82f6;border:1px solid #3b82f640">centre-right</span></td>
-                    <td class="art-score" style="color:#3b82f6">+0.35</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-whats-with-the-hysteria-over-the-waka-jumping-bill/3BN4WU3VRMEOMQVFDXRT2EQKJY/" target="_blank" rel="noopener">Mike Hosking: What's with the hysteria over the waka-jumping bill?</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.30</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-when-it-comes-to-hate-this-is-why-facebooks-response-is-talk-not-action/2ZEMY5PEZ3LUKPNJWFSSSNZX74/" target="_blank" rel="noopener">Hosking: When it comes to hate, this is why Facebook's response is talk, not action</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
-                    <td class="art-score" style="color:#f97316">-0.30</td>
-                </tr>
-                <tr class="month-mike-hosking-newstalkzb-2026-04">
-                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-when-will-we-wake-up-to-our-broken-health-system/BGZM4ZXED7NOCD2AIUQT5PQEWI/" target="_blank" rel="noopener">Mike Hosking: When will we wake up to our broken health system? - NZ Herald</a></td>
-                    <td class="art-date">2026-04-06</td>
-                    <td><span class="bucket-badge" style="background:#1d4ed820;color:#1d4ed8;border:1px solid #1d4ed840">right</span></td>
-                    <td class="art-score" style="color:#1d4ed8">+0.75</td>
                 </tr>
                 <tr class="month-mike-hosking-newstalkzb-2026-04">
                     <td class="art-title"><a href="https://www.nzherald.co.nz/nz/mike-hosking-wheres-the-scandal-in-political-donations/ZCSURUED23NB546VX6L4FP76SU/" target="_blank" rel="noopener">Hosking: Where's the scandal in political donations?</a></td>
@@ -7696,7 +8138,7 @@
                 <div class="j-left">
                     <div class="j-name">Thomas Coughlan</div>
                     <div class="j-meta">NZ Herald · Political editor</div>
-                    <div class="j-formerly">Formerly: Newsroom, Stuff</div>
+                    
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="Centre (+0.01)">
@@ -8769,7 +9211,7 @@
                     <div class="j-left">
                         <div class="j-name">Heather du Plessis-Allan</div>
                         <div class="j-meta">Newstalk ZB · Newstalk ZB</div>
-                        <div class="j-formerly">Formerly: TVNZ, TV3</div>
+                        
                     </div>
                 </div>
                 <div class="accordion-body" id="details-heather-du-plessis-allan-newstalkzb">
@@ -8784,7 +9226,7 @@
                     <div class="j-left">
                         <div class="j-name">Jack Tame</div>
                         <div class="j-meta">TVNZ · Political interviews</div>
-                        <div class="j-formerly">Formerly: Newstalk ZB</div>
+                        
                     </div>
                 </div>
                 <div class="accordion-body" id="details-jack-tame-tvnz">
@@ -9050,7 +9492,7 @@
                     <div class="j-left">
                         <div class="j-name">Jesse Mulligan</div>
                         <div class="j-meta">RNZ · Current affairs</div>
-                        <div class="j-formerly">Formerly: TVNZ</div>
+                        
                     </div>
                 </div>
                 <div class="accordion-body" id="details-jesse-mulligan-rnz">
@@ -9059,13 +9501,13 @@
                 </div>
             </div>
 
-        <div class="journalist-card" data-outlet="RNZ" data-name="john campbell" data-score="-0.3811">
+        <div class="journalist-card" data-outlet="RNZ / 1News" data-name="john campbell" data-score="-0.3811">
             <div class="j-header" onclick="toggleDetails('john-campbell')">
                 <img class="j-avatar" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/John_Campbell_in_2019_%28cropped%29.jpg/330px-John_Campbell_in_2019_%28cropped%29.jpg" alt="John Campbell">
                 <div class="j-left">
                     <div class="j-name">John Campbell</div>
-                    <div class="j-meta">RNZ · Morning Report</div>
-                    <div class="j-formerly">Formerly: TVNZ, TV3</div>
+                    <div class="j-meta">RNZ / 1News · Morning Report</div>
+                    
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="Leans Centre-Left (-0.38)">
@@ -9514,7 +9956,7 @@
                     <div class="j-left">
                         <div class="j-name">Kerre Woodham</div>
                         <div class="j-meta">Newstalk ZB · Current affairs</div>
-                        <div class="j-formerly">Formerly: Radio NZ</div>
+                        
                     </div>
                 </div>
                 <div class="accordion-body" id="details-kerre-woodham-newstalkzb">

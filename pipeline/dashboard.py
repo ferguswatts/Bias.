@@ -180,7 +180,7 @@ def generate_html(conn) -> str:
                     <div class="j-left">
                         <div class="j-name">{j['name']}</div>
                         <div class="j-meta">{j['outlet']} · {j['beat'] or 'No beat set'}</div>
-                        {f'<div class="j-formerly">Formerly: {j["formerly"]}</div>' if j["formerly"] else ""}
+                        {f'<div class="j-formerly">Formerly: {j["formerly"]}</div>' if j.keys().__contains__("formerly") and j["formerly"] else ""}
                     </div>
                 </div>
                 <div class="accordion-body" id="details-{j['slug']}">
@@ -297,7 +297,7 @@ def generate_html(conn) -> str:
                 <div class="j-left">
                     <div class="j-name">{j['name']}</div>
                     <div class="j-meta">{j['outlet']} · {j['beat'] or 'Politics'}</div>
-                    {f'<div class="j-formerly">Formerly: {j["formerly"]}</div>' if j["formerly"] else ""}
+                    {f'<div class="j-formerly">Formerly: {j["formerly"]}</div>' if j.keys().__contains__("formerly") and j["formerly"] else ""}
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="{avg_label} ({avg_score:+.2f})">

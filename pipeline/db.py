@@ -162,6 +162,13 @@ def migrate_db(conn: sqlite3.Connection) -> None:
         cursor.execute("ALTER TABLE articles ADD COLUMN score_prompt_version TEXT")
         log.info("Migration: added score_prompt_version column to articles")
 
+    # Journalists table migrations
+    j_cols = {row[1] for row in cursor.execute("PRAGMA table_info(journalists)").fetchall()}
+
+    if "formerly" not in j_cols:
+        cursor.execute("ALTER TABLE journalists ADD COLUMN formerly TEXT")
+        log.info("Migration: added formerly column to journalists")
+
     # discovered_urls table migrations
     disc_cols = {row[1] for row in cursor.execute("PRAGMA table_info(discovered_urls)").fetchall()}
 
