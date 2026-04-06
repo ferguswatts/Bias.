@@ -11,6 +11,7 @@ import { loadData } from "../src/lib/data";
 const NZ_NEWS_DOMAINS = [
   "nzherald.co.nz",
   "stuff.co.nz",
+  "thepost.co.nz",
   "rnz.co.nz",
   "1news.co.nz",
   "tvnz.co.nz",
@@ -23,6 +24,7 @@ export default defineContentScript({
   matches: [
     "*://*.nzherald.co.nz/*",
     "*://*.stuff.co.nz/*",
+    "*://*.thepost.co.nz/*",
     "*://*.rnz.co.nz/*",
     "*://*.1news.co.nz/*",
     "*://*.tvnz.co.nz/*",
