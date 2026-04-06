@@ -462,14 +462,14 @@ def generate_html(conn) -> str:
   .scoring-example h3 {{ font-size: 20px; font-weight: 600; margin-bottom: 8px; }}
   .scoring-example > p {{ font-size: 14px; color: #666; margin-bottom: 20px; }}
   .example-pair {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }}
-  .example-card {{ background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; position: relative; }}
+  .example-card {{ background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }}
   .example-left {{ border-top: 3px solid #dc2626; }}
   .example-right {{ border-top: 3px solid #1d4ed8; }}
-  .example-badge {{ position: absolute; top: 12px; right: 16px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }}
+  .example-badge {{ display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 10px; }}
   .badge-left {{ background: #fef2f2; color: #dc2626; }}
   .badge-right {{ background: #eff6ff; color: #1d4ed8; }}
   .example-header {{ padding: 20px 24px 16px; }}
-  .example-article-title {{ font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; padding-right: 100px; }}
+  .example-article-title {{ font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }}
   .example-meta {{ font-size: 13px; color: #888; }}
   .example-meta strong {{ color: #1a1a1a; }}
   .example-reasoning {{ padding: 16px 24px; border-top: 1px solid #e5e7eb; }}
@@ -715,8 +715,8 @@ def generate_html(conn) -> str:
 
       <div class="example-pair">
         <div class="example-card example-left">
-          <div class="example-badge badge-left">Left-leaning example</div>
           <div class="example-header">
+            <div class="example-badge badge-left">Left-leaning example</div>
             <div class="example-article-title">"Government's housing selloff leaves thousands in limbo"</div>
             <div class="example-meta">Fictional Author · Score: <strong>-0.45</strong> · Bucket: <strong>Centre-Left</strong></div>
           </div>
@@ -734,8 +734,8 @@ def generate_html(conn) -> str:
         </div>
 
         <div class="example-card example-right">
-          <div class="example-badge badge-right">Right-leaning example</div>
           <div class="example-header">
+            <div class="example-badge badge-right">Right-leaning example</div>
             <div class="example-article-title">"Taxpayers foot the bill as council's pet project blows budget"</div>
             <div class="example-meta">Fictional Author · Score: <strong>+0.40</strong> · Bucket: <strong>Centre-Right</strong></div>
           </div>
