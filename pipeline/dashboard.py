@@ -439,6 +439,24 @@ def generate_html(conn) -> str:
   .methodology-title {{ font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }}
   .methodology-subtitle {{ font-size: 15px; color: #666; margin-bottom: 40px; }}
 
+  /* ── Scoring scale ── */
+  .scoring-scale {{ margin-bottom: 48px; position: relative; }}
+  .scale-labels-top {{ display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #888; margin-bottom: 6px; padding: 0 2px; }}
+  .scale-track {{ position: relative; height: 16px; border-radius: 8px; overflow: hidden; }}
+  .scale-gradient {{ width: 100%; height: 100%; background: linear-gradient(to right, #dc2626, #f97316 25%, #d1d5db 50%, #3b82f6 75%, #1d4ed8); border-radius: 8px; }}
+  .scale-divider {{ position: absolute; top: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.6); transform: translateX(-50%); }}
+  .scale-bucket-labels {{ position: relative; height: 28px; margin-top: 8px; }}
+  .scale-bucket {{ position: absolute; transform: translateX(-50%); font-size: 13px; font-weight: 600; white-space: nowrap; }}
+
+  @media (max-width: 768px) {{
+    .scale-labels-top {{ font-size: 10px; }}
+    .scale-bucket {{ font-size: 11px; }}
+  }}
+  @media (max-width: 480px) {{
+    .scale-bucket {{ font-size: 9px; }}
+    .scale-labels-top {{ font-size: 9px; }}
+  }}
+
   .methodology-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 48px; }}
   .methodology-card {{ background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 24px; position: relative; }}
   .methodology-step {{ position: absolute; top: -12px; left: 20px; background: #1a1a1a; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }}
@@ -638,6 +656,34 @@ def generate_html(conn) -> str:
   <div class="methodology-inner">
     <h2 class="methodology-title">How We Score</h2>
     <p class="methodology-subtitle">Complete transparency in our methodology — every step is open source</p>
+
+    <!-- Scoring scale -->
+    <div class="scoring-scale">
+      <div class="scale-labels-top">
+        <span>-1.0</span>
+        <span>-0.6</span>
+        <span>-0.2</span>
+        <span>0</span>
+        <span>+0.2</span>
+        <span>+0.6</span>
+        <span>+1.0</span>
+      </div>
+      <div class="scale-track">
+        <div class="scale-gradient"></div>
+        <div class="scale-divider" style="left:20%"></div>
+        <div class="scale-divider" style="left:40%"></div>
+        <div class="scale-divider" style="left:50%"></div>
+        <div class="scale-divider" style="left:60%"></div>
+        <div class="scale-divider" style="left:80%"></div>
+      </div>
+      <div class="scale-bucket-labels">
+        <span class="scale-bucket" style="left:10%;color:#dc2626">Left</span>
+        <span class="scale-bucket" style="left:30%;color:#f97316">Centre-Left</span>
+        <span class="scale-bucket" style="left:50%;color:#6b7280">Centre</span>
+        <span class="scale-bucket" style="left:70%;color:#3b82f6">Centre-Right</span>
+        <span class="scale-bucket" style="left:90%;color:#1d4ed8">Right</span>
+      </div>
+    </div>
 
     <div class="methodology-grid">
       <div class="methodology-card">

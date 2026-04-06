@@ -72,6 +72,24 @@
   .methodology-title { font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
   .methodology-subtitle { font-size: 15px; color: #666; margin-bottom: 40px; }
 
+  /* ── Scoring scale ── */
+  .scoring-scale { margin-bottom: 48px; position: relative; }
+  .scale-labels-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #888; margin-bottom: 6px; padding: 0 2px; }
+  .scale-track { position: relative; height: 16px; border-radius: 8px; overflow: hidden; }
+  .scale-gradient { width: 100%; height: 100%; background: linear-gradient(to right, #dc2626, #f97316 25%, #d1d5db 50%, #3b82f6 75%, #1d4ed8); border-radius: 8px; }
+  .scale-divider { position: absolute; top: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.6); transform: translateX(-50%); }
+  .scale-bucket-labels { position: relative; height: 28px; margin-top: 8px; }
+  .scale-bucket { position: absolute; transform: translateX(-50%); font-size: 13px; font-weight: 600; white-space: nowrap; }
+
+  @media (max-width: 768px) {
+    .scale-labels-top { font-size: 10px; }
+    .scale-bucket { font-size: 11px; }
+  }
+  @media (max-width: 480px) {
+    .scale-bucket { font-size: 9px; }
+    .scale-labels-top { font-size: 9px; }
+  }
+
   .methodology-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 48px; }
   .methodology-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 24px; position: relative; }
   .methodology-step { position: absolute; top: -12px; left: 20px; background: #1a1a1a; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
@@ -543,7 +561,7 @@
             </div>
         </div>
 
-        <div class="journalist-card" data-outlet="NZ Herald" data-name="jamie morton" data-score="-0.0516">
+        <div class="journalist-card" data-outlet="NZ Herald" data-name="jamie morton" data-score="-0.0525">
             <div class="j-header" onclick="toggleDetails('jamie-morton-nzherald')">
                 <img class="j-avatar" src="https://s3.amazonaws.com/arc-authors/nzme/1a606027-89b8-458f-b47c-6c8334cd13fb.png" alt="Jamie Morton">
                 <div class="j-left">
@@ -583,14 +601,14 @@
                     <div class="dist-bar-wrap">
                         <div class="dist-bar" style="width:14%;background:#f97316"></div>
                     </div>
-                    <span class="dist-count">43 <span class="dist-pct">(14%)</span></span>
+                    <span class="dist-count">51 <span class="dist-pct">(14%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre</span>
                     <div class="dist-bar-wrap">
                         <div class="dist-bar" style="width:86%;background:#6b7280"></div>
                     </div>
-                    <span class="dist-count">267 <span class="dist-pct">(86%)</span></span>
+                    <span class="dist-count">309 <span class="dist-pct">(86%)</span></span>
                 </div>
                 <div class="dist-row">
                     <span class="dist-label">Centre-Right</span>
@@ -612,7 +630,7 @@
                 <div class="card-bio"><div class="card-section-label">Background</div><p class="bio-text">Jamie Morton is a science and environment journalist with 20+ years' experience. He spent 14 years at the NZ Herald (2011-2025) before joining The Conversation New Zealand as Deputy Editor. He has reported from Antarctica and global climate summits. He has been named Science Reporter of the Year four times (2013, 2016, 2022, 2023).</p></div>
                 <div class="articles-section">
                     <div class="articles-toggle" onclick="toggleArticles('jamie-morton-nzherald')">
-                        <span>Articles (310)</span>
+                        <span>Articles (360)</span>
                         <span class="toggle-icon toggle-articles">▼</span>
                     </div>
                     <div class="accordion-body" id="articles-content-jamie-morton-nzherald">
@@ -629,8 +647,308 @@
                                 
                 <tr class="month-header" onclick="document.querySelectorAll('.month-jamie-morton-nzherald-2026-04').forEach(r=>r.style.display=r.style.display==='none'?'':'none');this.querySelector('.month-arrow').classList.toggle('open')">
                     <td colspan="4" style="background:#f9fafb;font-weight:600;font-size:12px;color:#374151;padding:8px 12px;cursor:pointer;user-select:none">
-                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(310 articles)</span>
+                        <span class="month-arrow toggle-icon open">▼</span> April 2026 <span style="font-weight:400;color:#9ca3af">(360 articles)</span>
                     </td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/waikato-measles-false-alarm-how-did-authorities-get-it-so-wrong/SPOTLG3VOZC5XOG7JNWQUEOXVE/" target="_blank" rel="noopener">Waikato measles false alarm: How did authorities get it so wrong?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/waikato-uni-science-cuts-will-have-profound-impacts-renowned-alumnus-says/JO5ZHEA27MICVBP52B4EZQK7YA/" target="_blank" rel="noopener">Waikato Uni science cuts will have 'profound' impacts - renowned alumnus</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/wallabies-a-major-threat-to-indigenous-forests/ZD7WZODX6HE55A3D4OOAE5F32Q/" target="_blank" rel="noopener">Wallabies a major threat to indigenous forests</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/want-5m-easy-pick-64-winners/7GLKKMSNBMXI46OBOMEFCKXR5Q/" target="_blank" rel="noopener">Want $5m? Easy - pick 64 winners - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/want-to-adopt-patch-youll-have-to-speak-his-language/C2DVF7HJHNCTC7CCJAZXELPBSM/" target="_blank" rel="noopener">Want to adopt Patch? You'll have to speak his language - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warkworth-observatorys-future-uncertain-amid-aut-cuts/JXRQ45QULYXF5Y3NUUD2AKP56Q/" target="_blank" rel="noopener">Warkworth observatory's future uncertain amid AUT cuts</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warm-and-wild-three-ways-la-nina-will-mess-with-our-summer/22KAYXCGOYYDYPGJYAATS7VFMU/" target="_blank" rel="noopener">Warm and wild: Three ways La Niña will mess with our summer</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warm-wet-dry-month-of-extremes/IYPPGDOGDVR45M6PUPAK5744FY/" target="_blank" rel="noopener">Warm, wet, dry: Month of extremes - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warm-years-are-piling-up-2020-was-nzs-seventh-hottest/XQKKTFW2WSHMAPJS4T7EIUJWEI/" target="_blank" rel="noopener">'Warm years are piling up' - 2020 was NZ's seventh hottest on record</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warmer-water-worsens-fish-nutritional-quality-study/D5UTQSP7RKDWXGSMDDFN5LQVDA/" target="_blank" rel="noopener">Warmer water worsens fish nutritional quality - study</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warmer-winter-set-to-follow-wider-nz-regions-third-hottest-summer/XAM2FPYMNB6T7LS2IUWJOHYZR4/" target="_blank" rel="noopener">Warmer winter set to follow wider NZ region's third-hottest summer</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warmest-autumn-ever-climate-scientist-says/QIIAACARHJCAYTMIYAFC44OINU/" target="_blank" rel="noopener">Warmest autumn yet: Climate scientist</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.20</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warmest-june-ever-recorded-in-nz/46LDYSVTOUJWIHBIAHLN76XGLY/" target="_blank" rel="noopener">NZ's warmest ever June</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warming-climate-likely-to-increase-tropical-weed-threat/PH46PFU6UN6OXCJ6B5AWUSY6CE/" target="_blank" rel="noopener">Warming climate likely to increase tropical weed threat - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warming-likely-boost-to-vineyards/4N2QGPWE3K6ILW46TUPC3ZGGZM/" target="_blank" rel="noopener">Warming a boost to vineyards</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warming-seas-what-would-tip-nz-into-marine-heatwave/R34R3T3J7STZTMGEY4BYHNXSVQ/" target="_blank" rel="noopener">Warming seas: what would tip NZ into 'marine heatwave'?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warming-water-is-another-intense-marine-heatwave-coming/SN7NOIQZAFPFZFZIFFSHD5VLMU/" target="_blank" rel="noopener">Warming water: Is another intense marine heatwave coming?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warn-young-on-evils-of-huffing-says-victims-dad/DJTNTAOYENYDCCTJGFKXE6MLL4/" target="_blank" rel="noopener">Warn young on evils of huffing, says victim's dad - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warning-as-cyber-criminals-target-nz-charities/H4GC3JSKRG6EVBAY2VIU4CZADA/" target="_blank" rel="noopener">Cyber-criminals target NZ charities</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/warning-issued-after-mauis-dolphin-numbers-drop-below-50/MZTQFB3RJILY2EXZ35MD56BOWE/" target="_blank" rel="noopener">Maui dolphin numbers hit all time low</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/was-didymo-here-all-along/FYUG67DZAZOI2LOFTGZBMGBNJQ/" target="_blank" rel="noopener">Was didymo here all along? - New Zealand News - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/waste-of-great-talent-mbie-criticised-over-high-powered-panel-to-advise-on-nzs-research-priorities/5WK3ZPFBEBARBK75HG7PANGVQU/" target="_blank" rel="noopener">‘Waste of great talent’: MBIE criticised over panel to advise on NZ’s research priorities</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.40</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/wastewater-testing-reveals-new-zealands-biggest-drinking-regions/A2GDMGE625BKZIK34ZDEPAF33M/" target="_blank" rel="noopener">Wastewater testing: Our biggest boozing regions revealed</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/watch-amazing-ice-break-out-at-scott-base/SQQFYLKBE5K34H3RHYIOUMVLTU/" target="_blank" rel="noopener">Watch: Amazing ice 'break-out' at Scott Base</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/watch-big-tornado-in-mid-canterbury/NIKFZA3IIWI3HK43NNR7VZD24A/" target="_blank" rel="noopener">Watch: 'Massive' tornado in Canterbury</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/watchdog-needed-to-halt-freshwater-decline-forum/VAP6DAWKFSFOGQMQMQJXA2NKW4/" target="_blank" rel="noopener">Watchdog needed to halt freshwater decline - forum</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/water-pollution-we-can-fix-it/CLRCBT6B5TOCRACJ4XOUPIFMOI/" target="_blank" rel="noopener">Water pollution - we can fix it - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">-0.15</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/water-testing-cuts-under-attack/FKCF5I4EHQGQ5OR55E3CD2GXBI/" target="_blank" rel="noopener">Water testing cuts under attack - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.40</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/watershed-year-for-women-in-2018-queens-birthday-honours/PQP2RMSWMOF2HO5JNMVSAIUMF4/" target="_blank" rel="noopener">Topps! Watershed year for women in 2018 QB Honours</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/wave-warning-flooding-damage-possible-for-wellingtons-south-coast/R37FFTFQ6TWEVD6J6RQ423M4IQ/" target="_blank" rel="noopener">Wave warning: Flooding, damage possible for coastal Wellington</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/ways-to-avoid-sun-and-capture-it/4GRQ7T6NJX4JWBDH6XSSOW23WE/" target="_blank" rel="noopener">Ways to avoid sun, and capture it - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/we-are-literally-on-the-front-line-report-echoes-councils-call-for-help-prepare-for-rising-seas/R5EXSOQORO7EKDQSRY4QFCEKZU/" target="_blank" rel="noopener">Report echoes councils' call for help prepare for rising seas</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.25</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/we-are-what-we-tweet-has-social-media-changed-what-we-eat/UHVZJJQAKHMXG35PE3KB64CILU/" target="_blank" rel="noopener">'We are what we tweet!': Has social media changed what we eat?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/we-didnt-know-if-he-was-going-to-survive-whats-behind-nzs-alarming-rise-in-dog-attacks/LKJFL6H5ZJE23EZGBPA7HA3UUI/" target="_blank" rel="noopener">‘We didn’t know if he was going to survive’: What’s behind the rise in dog attacks?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/we-were-had-couple-concede-to-space-rock-prank/4WTPAJ2JJCUMGXT56SVMTDWDS4/" target="_blank" rel="noopener">Pair concede space rock prank</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/we-were-just-hanging-on-father-son-bonding-trip-a-near-tragedy/52OW3U5IJ7S5F7RIYMF5AWTR7E/" target="_blank" rel="noopener">'Just hanging on': Dad-son bonding trip a near tragedy</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-after-a-chilly-may-whats-in-store-for-winter/SHANQJT7MFES3EUA3CDFP3I2TY/" target="_blank" rel="noopener">Winter's cold snaps likely to be brief</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-antarctic-air-mass-may-spell-coldest-weekend-of-year-so-far/OQAL6BU4EBEDRAXKEN6F3M6XTQ/" target="_blank" rel="noopener">Coldest weekend of year so far? Antarctic air mass to hit NZ</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-atmospheric-river-may-bring-heavy-rain-juicy-humidity-to-northern-nz/BPWTJEURIZAJ5PR3DRQPWIGQCM/" target="_blank" rel="noopener">Weather: Atmospheric river may bring heavy rain, ‘juicy’ humidity to northern NZ</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-battle-north-could-get-wet-and-windy-south-snow/OYA4ILDN5EVMXR77W6N4FSSRUA/" target="_blank" rel="noopener">Serious storm forecast to hit NZ</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-climate-why-have-there-been-so-many-big-floods-insurance-cost-is-180-million-and-counting/PXZG7YG5LF3FXYDVJTFDG3SIYQ/" target="_blank" rel="noopener">$180m and counting: Why have there been so many big floods?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-cold-windy-start-to-school-holidays-after-mild-early-winter/LZKZ5VXO6BDT7NNJQLYMQUY62Q/" target="_blank" rel="noopener">Weather: Cold, windy start to school holidays after mild early winter</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-coming-marine-heatwave-may-be-one-of-nzs-worst/EYMYOQR2X2U3HPA3WXFHFC3GDY/" target="_blank" rel="noopener">Looming 'marine heatwave' may be one of NZ's worst</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#f9731620;color:#f97316;border:1px solid #f9731640">centre-left</span></td>
+                    <td class="art-score" style="color:#f97316">-0.30</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-el-nino-to-deliver-nz-parting-shot-with-colder-than-average-may/HM5CG2KOTFDQBMB6DD75EGCK5Y/" target="_blank" rel="noopener">Weather: El Nino to deliver NZ parting shot with colder-than-average May</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-expected-to-be-warm-stable/VRNCN4SI7PKMEIIGTU2FVPDH6A/" target="_blank" rel="noopener">Weather expected to be warm, stable - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-explained-the-summer-switch-about-to-bring-warm-days-to-nz/ZIFOTU7JVB6FAKREL5AUFW4LRQ/" target="_blank" rel="noopener">Explained: The 'summer switch' about to bring warm days to NZ</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-forecast-whats-in-store-for-the-rest-of-2022/CWLZVVVGORMMYXEMUBMKLRKQ7Y/" target="_blank" rel="noopener">Wet to dry: What's in store for the rest of 2022</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-forecasters-picking-summery-warmth-for-christmas-lead-up/E6LXUPJLN5HRXLW7CELTLTVBY4/" target="_blank" rel="noopener">'Relatively sticky': Humid weather on the way for Auckland</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-giant-rainmakers-another-atmospheric-river-is-heading-our-way/S5XIOUXXOSG57WXT3DEBLUTOPI/" target="_blank" rel="noopener">Giant rainmakers: Another 'atmospheric river' is heading our way - what is it?</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
+                </tr>
+                <tr class="month-jamie-morton-nzherald-2026-04">
+                    <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-heavy-rain-brings-flooding-risk-in-north-after-unusually-dry-february/QN24MZXWT5DPJGBBT2Z4D5LP6Q/" target="_blank" rel="noopener">Weather: Heavy rain brings flooding risk in north after unusually dry February - NZ Herald</a></td>
+                    <td class="art-date">2026-04-06</td>
+                    <td><span class="bucket-badge" style="background:#6b728020;color:#6b7280;border:1px solid #6b728040">centre</span></td>
+                    <td class="art-score" style="color:#6b7280">+0.00</td>
                 </tr>
                 <tr class="month-jamie-morton-nzherald-2026-04">
                     <td class="art-title"><a href="https://www.nzherald.co.nz/nz/weather-heavy-rain-warnings-for-northern-nz-tomorrow-rare-polar-phenomenon-could-mean-stormy-conditions-in-weeks-ahead/IP5FRY677ZADRFJIZELPOE6TXU/" target="_blank" rel="noopener">'Polar vortex' to influence NZ weather patterns as intense downpour forecast</a></td>
@@ -6913,6 +7231,34 @@
   <div class="methodology-inner">
     <h2 class="methodology-title">How We Score</h2>
     <p class="methodology-subtitle">Complete transparency in our methodology — every step is open source</p>
+
+    <!-- Scoring scale -->
+    <div class="scoring-scale">
+      <div class="scale-labels-top">
+        <span>-1.0</span>
+        <span>-0.6</span>
+        <span>-0.2</span>
+        <span>0</span>
+        <span>+0.2</span>
+        <span>+0.6</span>
+        <span>+1.0</span>
+      </div>
+      <div class="scale-track">
+        <div class="scale-gradient"></div>
+        <div class="scale-divider" style="left:20%"></div>
+        <div class="scale-divider" style="left:40%"></div>
+        <div class="scale-divider" style="left:50%"></div>
+        <div class="scale-divider" style="left:60%"></div>
+        <div class="scale-divider" style="left:80%"></div>
+      </div>
+      <div class="scale-bucket-labels">
+        <span class="scale-bucket" style="left:10%;color:#dc2626">Left</span>
+        <span class="scale-bucket" style="left:30%;color:#f97316">Centre-Left</span>
+        <span class="scale-bucket" style="left:50%;color:#6b7280">Centre</span>
+        <span class="scale-bucket" style="left:70%;color:#3b82f6">Centre-Right</span>
+        <span class="scale-bucket" style="left:90%;color:#1d4ed8">Right</span>
+      </div>
+    </div>
 
     <div class="methodology-grid">
       <div class="methodology-card">
