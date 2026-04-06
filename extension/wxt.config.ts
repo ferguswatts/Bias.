@@ -13,6 +13,14 @@ export default defineConfig({
     },
     permissions: ["storage"],
     host_permissions: ["https://raw.githubusercontent.com/*"],
+    browser_specific_settings: {
+      gecko: {
+        data_collection_permissions: {
+          required: ["none"],
+          optional: [],
+        },
+      },
+    },
     web_accessible_resources: [
       {
         resources: ["data.json", "dashboard.html"],
