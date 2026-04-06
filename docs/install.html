@@ -175,8 +175,8 @@
     .right-panel video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: top right;
+      object-fit: contain;
+      object-position: top;
       background: #0f0f1a;
     }
     .panel-close {
@@ -200,14 +200,17 @@
     .panel-close:hover { background: #2a2a3e; color: #fff; }
 
     /* Split active state */
-    body.split-active .hero { width: 50%; }
-    body.split-active .right-panel { width: 50%; }
+    body.split-active .hero { width: 40%; overflow: hidden; }
+    body.split-active .right-panel { width: 60%; }
     body.split-active .panel-close { display: flex; }
-    body.split-active .headline { font-size: 26px; }
-    body.split-active .subhead { font-size: 16px; margin-bottom: 32px; }
-    body.split-active .subtitle { margin-bottom: 40px; }
-    body.split-active .logo { width: 260px; height: auto; }
-    body.split-active .platforms { margin-top: 32px; }
+    body.split-active .headline { font-size: 22px; }
+    body.split-active .subhead { font-size: 14px; margin-bottom: 24px; }
+    body.split-active .subtitle { margin-bottom: 32px; }
+    body.split-active .logo { width: 220px; height: auto; }
+    body.split-active .platforms { margin-top: 24px; }
+    body.split-active .explore-btn { font-size: 13px; padding: 10px 24px; }
+    body.split-active .install-btn { font-size: 14px; padding: 12px 32px; }
+    body.split-active .cta-group { gap: 12px; }
 
     @media (max-width: 768px) {
       .hero { padding: 60px 24px 80px; }
