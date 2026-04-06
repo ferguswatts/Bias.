@@ -177,7 +177,7 @@
           "source": "https://en.wikipedia.org/wiki/Guyon_Espiner"
         }
       ],
-      "bio": "Guyon Espiner (born 31 December 1970, Christchurch) is an investigative journalist at Radio New Zealand with over 30 years in print, television, and radio. After a decade in newspapers, including as political editor of the Sunday Star-Times, he joined TVNZ in 2003, becoming political editor in 2006 and anchoring Q+A, Agenda, and Breakfast. He moved to TV3's 60 Minutes in 2011, then joined RNZ in 2014 as co-host of Morning Report. Since 2019 he has produced acclaimed podcasts (The Ninth Floor, The Service, Red Line) and documentaries. He authored The Drinking Game. Espiner married Emma Wehipeihana in 2012; they separated in 2023. Wehipeihana had previously worked as a personal assistant to Labour MP Darren Hughes, who served as MC at their wedding.",
+      "bio": "Guyon Espiner (born 31 December 1970, Christchurch) is an investigative journalist at Radio New Zealand with over 30 years in print, television, and radio. After a decade in newspapers, including as political editor of the Sunday Star-Times, he joined TVNZ in 2003, becoming political editor in 2006 and anchoring Q+A, Agenda, and Breakfast. He moved to TV3's 60 Minutes in 2011, then joined RNZ in 2014 as co-host of Morning Report. Since 2019 he has produced podcasts (The Ninth Floor, The Service, Red Line) and documentaries. He authored The Drinking Game. Espiner married Emma Wehipeihana in 2012; they separated in 2023. Wehipeihana had previously worked as a personal assistant to Labour MP Darren Hughes, who served as MC at their wedding.",
       "methodology": "Based on 25 articles scored by AI"
     },
     "henry-cooke-stuff": {
@@ -305,7 +305,7 @@
     "john-campbell": {
       "name": "John Campbell",
       "aliases": [],
-      "outlet": "RNZ",
+      "outlet": "RNZ / 1News",
       "beat": "Morning Report",
       "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/John_Campbell_in_2019_%28cropped%29.jpg/330px-John_Campbell_in_2019_%28cropped%29.jpg",
       "article_count": 17,
@@ -342,9 +342,13 @@
         {
           "text": "Chief Correspondent at TVNZ/1News; announced in late 2025 to join RNZ Morning Report in 2026",
           "source": "https://www.rnz.co.nz/"
+        },
+        {
+          "text": "Chief Correspondent at TVNZ/1News; announced in late 2025 to join RNZ Morning Report in 2026",
+          "source": "https://www.rnz.co.nz/"
         }
       ],
-      "bio": "John Campbell (born 10 February 1964) is one of New Zealand's most recognised broadcast journalists. He began at Radio New Zealand as a business reporter in 1989. He moved to TV3 in 1991, co-anchoring 3 News (1998-2005). He fronted Campbell Live (2005-2015), whose cancellation prompted public outcry. He returned to RNZ in 2016 to host Checkpoint, then joined TVNZ in 2018. In December 2025 he was announced as co-host of RNZ's Morning Report from April 2026. He is married to documentary editor Emma Patterson.",
+      "bio": "John Campbell (born 10 February 1964) is one of New Zealand's most recognised broadcast journalists. He began at Radio New Zealand as a business reporter in 1989. He moved to TV3 in 1991, co-anchoring 3 News (1998-2005). He fronted Campbell Live (2005-2015), whose cancellation prompted significant public debate. He returned to RNZ in 2016 to host Checkpoint, then joined TVNZ in 2018. In December 2025 he was announced as co-host of RNZ's Morning Report from April 2026. He is married to documentary editor Emma Patterson.",
       "methodology": "Based on 17 articles scored by AI"
     },
     "katie-bradford-1news": {
@@ -417,7 +421,7 @@
         }
       ],
       "facts": [],
-      "bio": "Thomas Coughlan is the political editor of the New Zealand Herald. He holds a Master's degree in Political Thought and Intellectual History from the University of Cambridge (2014-2015). Coughlan joined the Parliamentary Press Gallery in 2018, working first for Newsroom and Stuff before moving to the NZ Herald in 2021. He is regarded as one of the younger generation's most authoritative political journalists.",
+      "bio": "Thomas Coughlan is the political editor of the New Zealand Herald. He holds a Master's degree in Political Thought and Intellectual History from the University of Cambridge (2014-2015). Coughlan joined the Parliamentary Press Gallery in 2018, working first for Newsroom and Stuff before moving to the NZ Herald in 2021.",
       "methodology": "Based on 36 articles scored by AI"
     }
   },
