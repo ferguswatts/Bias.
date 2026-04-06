@@ -61,17 +61,27 @@ export default defineContentScript({
         if (!byline) return;
       }
 
-      console.log(`[Bias] Byline detected: ${byline.name} @ ${byline.outlet}`);
+      console.log(`[Bias] Byline detected: ${byline.names.join(", ")} @ ${byline.outlet}`);
 
-      const match = matchJournalist(byline.name, byline.outlet, data);
+      // Try to match any of the byline authors against our database
+      let match: ReturnType<typeof matchJournalist> = null;
+      let matchedName = byline.name;
+      for (const name of byline.names) {
+        match = matchJournalist(name, byline.outlet, data);
+        if (match) {
+          matchedName = name;
+          break;
+        }
+      }
+
       if (!match) {
-        console.log(`[Bias] No match for: ${byline.name}`);
+        console.log(`[Bias] No match for: ${byline.names.join(", ")}`);
         return;
       }
 
       console.log(`[Bias] Matched: ${match.journalist.name}`);
 
-      const bylineEl = findBylineElement(byline.name);
+      const bylineEl = findBylineElement(matchedName);
       if (!bylineEl) {
         console.log("[Bias] Could not find byline DOM element.");
         return;

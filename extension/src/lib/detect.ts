@@ -5,16 +5,16 @@
 
 export interface BylineResult {
   name: string;
+  names: string[];  // All authors on the byline
   outlet: string;
 }
 
 /** Try JSON-LD structured data (most reliable — sites maintain this for SEO). */
-function tryJsonLd(doc: Document): string | null {
+function tryJsonLd(doc: Document): string[] | null {
   const scripts = doc.querySelectorAll('script[type="application/ld+json"]');
   for (const script of scripts) {
     try {
       const data = JSON.parse(script.textContent || "");
-      // Handle both single object and array
       const items = Array.isArray(data) ? data : [data];
       for (const item of items) {
         if (
@@ -23,9 +23,12 @@ function tryJsonLd(doc: Document): string | null {
           item["@type"] === "ReportageNewsArticle"
         ) {
           const author = item.author;
-          if (typeof author === "string") return author;
-          if (Array.isArray(author) && author[0]?.name) return author[0].name;
-          if (author?.name) return author.name;
+          if (typeof author === "string") return [author];
+          if (Array.isArray(author)) {
+            const names = author.map((a: any) => typeof a === "string" ? a : a?.name).filter(Boolean);
+            if (names.length > 0) return names;
+          }
+          if (author?.name) return [author.name];
         }
       }
     } catch {
@@ -76,17 +79,25 @@ export function detectByline(
 ): BylineResult | null {
   const outlet = window.location.hostname.replace("www.", "");
 
-  const name = tryJsonLd(doc) ?? tryMetaTag(doc) ?? tryCssSelector(doc, siteConfig);
+  // JSON-LD returns all authors; meta/CSS return a single string that may contain multiple names
+  const jsonLdNames = tryJsonLd(doc);
+  const rawName = jsonLdNames ? null : (tryMetaTag(doc) ?? tryCssSelector(doc, siteConfig));
 
-  if (!name) return null;
+  let allNames: string[];
 
-  // Clean up common prefixes
-  const cleaned = name
-    .replace(/^by\s+/i, "")
-    .replace(/,.*$/, "") // Remove "Katie Bradford, Chief Political Editor"
-    .trim();
+  if (jsonLdNames) {
+    allNames = jsonLdNames.map(n => n.replace(/^by\s+/i, "").trim()).filter(n => n.length >= 2);
+  } else if (rawName) {
+    // Split on commas, " and ", " & " to handle "Jamie Ensor, Thomas Coughlan, Adam Pearse"
+    allNames = rawName
+      .split(/,|\s+and\s+|\s+&\s+/)
+      .map(n => n.replace(/^by\s+/i, "").trim())
+      .filter(n => n.length >= 2 && n.length < 50);
+  } else {
+    return null;
+  }
 
-  if (!cleaned || cleaned.length < 2) return null;
+  if (allNames.length === 0) return null;
 
-  return { name: cleaned, outlet };
+  return { name: allNames[0], names: allNames, outlet };
 }
