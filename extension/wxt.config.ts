@@ -6,6 +6,11 @@ export default defineConfig({
     name: "Bias — NZ Journalist Transparency",
     description:
       "See the political lean and connections of the journalist writing the article you're reading",
+    icons: {
+      16: "icon-16.png",
+      48: "icon-48.png",
+      128: "icon-128.png",
+    },
     permissions: ["storage"],
     host_permissions: ["https://raw.githubusercontent.com/*"],
     web_accessible_resources: [
