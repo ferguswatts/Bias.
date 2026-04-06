@@ -279,7 +279,12 @@ function buildCardHTML(slug: string, j: JournalistData, version: string): string
           <div style="font-size:15px;font-weight:600;color:#1a1a1a">${j.name}</div>
           <div style="font-size:12px;color:#888;margin-top:2px">${j.outlet} · ${j.beat || "Politics"}</div>
         </div>
-        <span style="font-size:10px;color:#6b7280;font-weight:500;white-space:nowrap">Bias</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:28px;height:28px;flex-shrink:0">
+          <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+          <text x="80" y="390" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="420" font-weight="700" fill="white">B</text>
+          <line x1="340" y1="60" x2="280" y2="450" stroke="#e63946" stroke-width="36" stroke-linecap="round"/>
+          <line x1="60" y1="440" x2="452" y2="440" stroke="#e63946" stroke-width="10" stroke-linecap="round"/>
+        </svg>
       </div>
 
       <!-- Spectrum bar -->
