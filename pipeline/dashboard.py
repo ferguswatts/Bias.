@@ -460,19 +460,25 @@ def generate_html(conn) -> str:
 
   .scoring-example {{ margin-bottom: 48px; }}
   .scoring-example h3 {{ font-size: 20px; font-weight: 600; margin-bottom: 8px; }}
-  .scoring-example > p {{ font-size: 14px; color: #666; margin-bottom: 16px; }}
-  .example-card {{ background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }}
-  .example-header {{ padding: 20px 24px; border-bottom: 1px solid #e5e7eb; }}
-  .example-article-title {{ font-size: 16px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }}
+  .scoring-example > p {{ font-size: 14px; color: #666; margin-bottom: 20px; }}
+  .example-pair {{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }}
+  .example-card {{ background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; position: relative; }}
+  .example-left {{ border-top: 3px solid #dc2626; }}
+  .example-right {{ border-top: 3px solid #1d4ed8; }}
+  .example-badge {{ position: absolute; top: 12px; right: 16px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }}
+  .badge-left {{ background: #fef2f2; color: #dc2626; }}
+  .badge-right {{ background: #eff6ff; color: #1d4ed8; }}
+  .example-header {{ padding: 20px 24px 16px; }}
+  .example-article-title {{ font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; padding-right: 100px; }}
   .example-meta {{ font-size: 13px; color: #888; }}
   .example-meta strong {{ color: #1a1a1a; }}
-  .example-reasoning {{ padding: 20px 24px; border-bottom: 1px solid #e5e7eb; }}
+  .example-reasoning {{ padding: 16px 24px; border-top: 1px solid #e5e7eb; }}
   .example-label {{ font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }}
-  .example-reasoning p {{ font-size: 14px; color: #555; line-height: 1.7; }}
-  .example-dimensions {{ padding: 16px 24px; display: flex; gap: 16px; flex-wrap: wrap; }}
-  .example-dim {{ display: flex; align-items: center; gap: 8px; }}
-  .dim-name {{ font-size: 12px; color: #888; }}
-  .dim-score {{ font-size: 13px; font-weight: 700; color: #1a1a1a; background: #e5e7eb; padding: 2px 8px; border-radius: 4px; }}
+  .example-reasoning p {{ font-size: 13px; color: #555; line-height: 1.7; }}
+  .example-dimensions {{ padding: 14px 24px; border-top: 1px solid #e5e7eb; display: flex; gap: 10px; flex-wrap: wrap; }}
+  .example-dim {{ display: flex; align-items: center; gap: 6px; }}
+  .dim-name {{ font-size: 11px; color: #888; }}
+  .dim-score {{ font-size: 12px; font-weight: 700; color: #1a1a1a; background: #e5e7eb; padding: 2px 8px; border-radius: 4px; }}
 
   .scoring-prompt-section {{ margin-bottom: 48px; }}
   .scoring-prompt-section h3 {{ font-size: 20px; font-weight: 600; margin-bottom: 8px; }}
@@ -494,6 +500,7 @@ def generate_html(conn) -> str:
   @media (max-width: 768px) {{
     .methodology-grid {{ grid-template-columns: 1fr; }}
     .dimensions-grid {{ grid-template-columns: repeat(2, 1fr); }}
+    .example-pair {{ grid-template-columns: 1fr; }}
     .example-dimensions {{ flex-direction: column; gap: 8px; }}
     .methodology-title {{ font-size: 22px; }}
   }}
@@ -645,9 +652,9 @@ def generate_html(conn) -> str:
       <div class="methodology-card">
         <div class="methodology-step">2</div>
         <h3>Text Extraction</h3>
-        <p>Full article text is extracted using <a href="https://trafilatura.readthedocs.io/" target="_blank" rel="noopener">trafilatura</a>, an open-source library designed for web content extraction. For paywalled articles, we attempt to retrieve archived versions from <a href="https://archive.is" target="_blank" rel="noopener">archive.is</a>.</p>
+        <p>Full article text is extracted using <a href="https://trafilatura.readthedocs.io/" target="_blank" rel="noopener">trafilatura</a>, an open-source library designed for web content extraction. The extracted text is cleaned of navigation, ads, and boilerplate before scoring.</p>
         <div class="methodology-detail">
-          <strong>Minimum threshold:</strong> Articles under 200 characters are excluded as likely stubs or paywalled fragments
+          <strong>Minimum threshold:</strong> Articles under 200 characters are excluded as likely stubs or fragments
         </div>
       </div>
 
@@ -703,23 +710,46 @@ def generate_html(conn) -> str:
     </div>
 
     <div class="scoring-example">
-      <h3>Worked Example</h3>
-      <p>Here's how the AI scored a real article to show the process in action:</p>
-      <div class="example-card">
-        <div class="example-header">
-          <div class="example-article-title">"Audrey Young: 8 horrific child deaths since 2006 — why won't MPs act?"</div>
-          <div class="example-meta">Audrey Young · NZ Herald · Score: <strong>-0.25</strong> · Bucket: <strong>Centre-Left</strong></div>
+      <h3>Worked Examples</h3>
+      <p>Two fictional articles showing how the same scoring framework produces different results:</p>
+
+      <div class="example-pair">
+        <div class="example-card example-left">
+          <div class="example-badge badge-left">Left-leaning example</div>
+          <div class="example-header">
+            <div class="example-article-title">"Government's housing selloff leaves thousands in limbo"</div>
+            <div class="example-meta">Fictional Author · Score: <strong>-0.45</strong> · Bucket: <strong>Centre-Left</strong></div>
+          </div>
+          <div class="example-reasoning">
+            <div class="example-label">AI Reasoning</div>
+            <p>The article frames government housing policy as a "selloff" — loaded language implying reckless disposal rather than neutral "reform" or "restructuring". Sources are predominantly tenant advocacy groups and opposition MPs, with only a single paragraph quoting the Housing Minister. The cui bono test: this story benefits parties advocating for more state housing, which skews left. The omission of waiting list reduction data under the policy further tilts the framing.</p>
+          </div>
+          <div class="example-dimensions">
+            <div class="example-dim"><span class="dim-name">Story Selection</span><span class="dim-score">-0.3</span></div>
+            <div class="example-dim"><span class="dim-name">Framing</span><span class="dim-score">-0.5</span></div>
+            <div class="example-dim"><span class="dim-name">Source Selection</span><span class="dim-score">-0.5</span></div>
+            <div class="example-dim"><span class="dim-name">Language</span><span class="dim-score">-0.6</span></div>
+            <div class="example-dim"><span class="dim-name">Omission</span><span class="dim-score">-0.4</span></div>
+          </div>
         </div>
-        <div class="example-reasoning">
-          <div class="example-label">AI Reasoning</div>
-          <p>The article frames parliamentary inaction on child welfare as the central problem, implicitly criticising the government for not doing enough — a framing that aligns with left-leaning policy positions (more state intervention). However, the criticism is directed at MPs across parties and uses factual child death statistics rather than emotive language. The source selection is balanced. The "cui bono" test: this story benefits parties advocating for stronger child protection legislation, which in NZ politics skews centre-left. Overall: mild centre-left lean from topic selection and framing, tempered by factual reporting style.</p>
-        </div>
-        <div class="example-dimensions">
-          <div class="example-dim"><span class="dim-name">Story Selection</span><span class="dim-score">-0.3</span></div>
-          <div class="example-dim"><span class="dim-name">Framing</span><span class="dim-score">-0.3</span></div>
-          <div class="example-dim"><span class="dim-name">Source Selection</span><span class="dim-score">-0.1</span></div>
-          <div class="example-dim"><span class="dim-name">Language</span><span class="dim-score">-0.1</span></div>
-          <div class="example-dim"><span class="dim-name">Omission</span><span class="dim-score">-0.2</span></div>
+
+        <div class="example-card example-right">
+          <div class="example-badge badge-right">Right-leaning example</div>
+          <div class="example-header">
+            <div class="example-article-title">"Taxpayers foot the bill as council's pet project blows budget"</div>
+            <div class="example-meta">Fictional Author · Score: <strong>+0.40</strong> · Bucket: <strong>Centre-Right</strong></div>
+          </div>
+          <div class="example-reasoning">
+            <div class="example-label">AI Reasoning</div>
+            <p>The article frames a public infrastructure project as wasteful government spending — "pet project" and "foot the bill" are loaded phrases that prime the reader to see public investment negatively. Sources are dominated by a taxpayer advocacy group and business owners, with the council's justification confined to a brief quote. The cui bono test: this story benefits parties advocating for reduced government spending, which skews right. The omission of the project's employment and economic impact data tilts the narrative further.</p>
+          </div>
+          <div class="example-dimensions">
+            <div class="example-dim"><span class="dim-name">Story Selection</span><span class="dim-score">+0.3</span></div>
+            <div class="example-dim"><span class="dim-name">Framing</span><span class="dim-score">+0.5</span></div>
+            <div class="example-dim"><span class="dim-name">Source Selection</span><span class="dim-score">+0.4</span></div>
+            <div class="example-dim"><span class="dim-name">Language</span><span class="dim-score">+0.5</span></div>
+            <div class="example-dim"><span class="dim-name">Omission</span><span class="dim-score">+0.3</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -759,7 +789,7 @@ Returns: score (-1.0 to 1.0), confidence, reasoning, and per-dimension scores.</
       <ul>
         <li><strong>AI is not infallible.</strong> Large language models can misinterpret sarcasm, cultural context, or NZ-specific political nuance. Individual article scores should be taken with a grain of salt — the aggregate pattern across hundreds of articles is what matters.</li>
         <li><strong>Bias is multidimensional.</strong> A single left-right spectrum is a simplification. Journalists may be progressive on social issues but conservative on economic policy. We use five sub-dimensions to partially address this.</li>
-        <li><strong>Article availability varies.</strong> Paywalled articles may be underrepresented. We use archive.is as a fallback, but some articles are simply unavailable.</li>
+        <li><strong>Article availability varies.</strong> Not all articles are accessible for scoring. Some may be unavailable, removed, or behind access restrictions, which can affect representation.</li>
         <li><strong>Correlation is not intent.</strong> A journalist whose work scores left-leaning may be accurately reporting on a left-leaning government's policies. Context matters.</li>
         <li><strong>This is a starting point, not a verdict.</strong> Byline Card exists to surface patterns and encourage critical reading — not to label journalists as biased.</li>
       </ul>
