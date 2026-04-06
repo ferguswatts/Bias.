@@ -6,6 +6,7 @@ export interface JournalistData {
   name: string;
   aliases?: string[];
   outlet: string;
+  formerly?: string;
   beat: string;
   photo_url?: string;
   article_count: number;

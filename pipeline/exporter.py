@@ -49,6 +49,7 @@ def export_to_json(conn: sqlite3.Connection, output_path: Path) -> int:
             "name": j["name"],
             "aliases": aliases,
             "outlet": j["outlet"],
+            "formerly": j["formerly"] or "",
             "beat": j["beat"] or "",
             "photo_url": j["photo_url"] or "",
             "article_count": dist["article_count"],

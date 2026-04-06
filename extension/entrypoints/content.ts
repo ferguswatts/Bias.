@@ -278,6 +278,7 @@ function buildCardHTML(slug: string, j: JournalistData, version: string): string
         <div style="flex:1;min-width:0">
           <div style="font-size:15px;font-weight:600;color:#1a1a1a">${j.name}</div>
           <div style="font-size:12px;color:#888;margin-top:2px">${j.outlet} · ${j.beat || "Politics"}</div>
+          ${j.formerly ? `<div style="font-size:11px;color:#aaa;margin-top:1px">Formerly: ${j.formerly}</div>` : ""}
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:28px;height:28px;flex-shrink:0">
           <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
