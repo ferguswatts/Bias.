@@ -180,6 +180,7 @@ def generate_html(conn) -> str:
                     <div class="j-left">
                         <div class="j-name">{j['name']}</div>
                         <div class="j-meta">{j['outlet']} · {j['beat'] or 'No beat set'}</div>
+                        {f'<div class="j-formerly">Formerly: {j["formerly"]}</div>' if j["formerly"] else ""}
                     </div>
                 </div>
                 <div class="accordion-body" id="details-{j['slug']}">
@@ -296,6 +297,7 @@ def generate_html(conn) -> str:
                 <div class="j-left">
                     <div class="j-name">{j['name']}</div>
                     <div class="j-meta">{j['outlet']} · {j['beat'] or 'Politics'}</div>
+                    {f'<div class="j-formerly">Formerly: {j["formerly"]}</div>' if j["formerly"] else ""}
                 </div>
                 <div class="j-right">
                     <div class="spectrum-wrap" title="{avg_label} ({avg_score:+.2f})">
@@ -377,7 +379,7 @@ def generate_html(conn) -> str:
 
   /* ── Header ── */
   header {{ background: #1a1a2e; text-align: center; padding: 0; }}
-  header img {{ width: 100%; max-width: 1400px; max-height: 280px; object-fit: cover; display: block; margin: 0 auto; }}
+  header img {{ width: 100%; max-width: 1400px; height: auto; max-height: 300px; object-fit: contain; display: block; margin: 0 auto; }}
   header .how-we-score {{ display: block; padding: 10px; font-size: 13px; }}
   .stats {{ display: flex; gap: 24px; }}
   .stat {{ text-align: right; }}
@@ -401,6 +403,7 @@ def generate_html(conn) -> str:
   .j-left {{ flex: 1; min-width: 0; }}
   .j-name {{ font-size: 15px; font-weight: 600; color: #1a1a1a; }}
   .j-meta {{ font-size: 12px; color: #888; margin-top: 2px; }}
+  .j-formerly {{ font-size: 11px; color: #aaa; margin-top: 1px; font-style: italic; }}
   .j-right {{ display: flex; align-items: center; gap: 12px; flex-shrink: 0; }}
 
   /* ── Spectrum widget ── */
