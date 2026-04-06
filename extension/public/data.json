@@ -556,15 +556,15 @@
       "formerly": "",
       "beat": "Current affairs",
       "photo_url": "https://s3.amazonaws.com/arc-authors/nzme/b282519a-87f4-4f12-89a5-5314ba1a98cb.png",
-      "article_count": 120,
+      "article_count": 170,
       "confidence": "high",
-      "bias_score": 0.39,
+      "bias_score": 0.435,
       "distribution": {
-        "left": 4,
-        "centre_left": 22,
-        "centre": 8,
-        "centre_right": 22,
-        "right": 43
+        "left": 5,
+        "centre_left": 20,
+        "centre": 7,
+        "centre_right": 21,
+        "right": 48
       },
       "connections": [
         {
@@ -576,7 +576,7 @@
       ],
       "facts": [],
       "bio": "Mike Hosking (born 1965, Dunedin) is New Zealand's most prominent radio broadcaster. He left school at 16, starting as an advertising copywriter before getting his break on Wellington's Radio Windy. He hosted Radio New Zealand's Tonight Show and Morning Report, then joined Newstalk ZB in 2008 as weekday Breakfast host — a role he still holds. On television, he co-presented TVNZ's Breakfast (1997-2005) and Seven Sharp (2014-2017). He writes a regular opinion column for the NZ Herald. Hosking is an open supporter of the centre-right National Party and is frequently critical of Labour-led governments. His career has drawn multiple successful Broadcasting Standards Authority complaints. He is married to fellow Newstalk ZB broadcaster Kate Hawkesby. A landmark 2003 privacy case involving Hosking established \"the Hosking principles\" in NZ common law.",
-      "methodology": "Based on 120 articles scored by AI"
+      "methodology": "Based on 170 articles scored by AI"
     },
     "thomas-coughlan-nzherald": {
       "name": "Thomas Coughlan",
