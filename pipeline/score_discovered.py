@@ -59,33 +59,43 @@ signal.signal(signal.SIGINT, _handle_sigint)
 
 def _ensure_fetch_failures_table(conn):
     """Create fetch_failures table if it doesn't exist."""
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS fetch_failures (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            url TEXT NOT NULL UNIQUE,
-            journalist_id INTEGER,
-            outlet TEXT,
-            status_code INTEGER,
-            reason TEXT,
-            attempted_at TEXT DEFAULT (datetime('now')),
-            retry_count INTEGER DEFAULT 0,
-            resolved INTEGER DEFAULT 0
-        )
-    """)
-    conn.commit()
+    for _attempt in range(5):
+        try:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS fetch_failures (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    url TEXT NOT NULL UNIQUE,
+                    journalist_id INTEGER,
+                    outlet TEXT,
+                    status_code INTEGER,
+                    reason TEXT,
+                    attempted_at TEXT DEFAULT (datetime('now')),
+                    retry_count INTEGER DEFAULT 0,
+                    resolved INTEGER DEFAULT 0
+                )
+            """)
+            conn.commit()
+            return
+        except Exception:
+            import time; time.sleep(1 + _attempt)
 
 
 def _record_failure(conn, url, journalist_id, outlet, status_code, reason):
     """Record a fetch failure for later retry."""
-    conn.execute("""
-        INSERT INTO fetch_failures (url, journalist_id, outlet, status_code, reason)
-        VALUES (?, ?, ?, ?, ?)
-        ON CONFLICT(url) DO UPDATE SET
-            retry_count = retry_count + 1,
-            status_code = excluded.status_code,
-            reason = excluded.reason,
-            attempted_at = datetime('now')
-    """, (url, journalist_id, outlet, status_code, reason))
+    for _attempt in range(5):
+        try:
+            conn.execute("""
+                INSERT INTO fetch_failures (url, journalist_id, outlet, status_code, reason)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(url) DO UPDATE SET
+                    retry_count = retry_count + 1,
+                    status_code = excluded.status_code,
+                    reason = excluded.reason,
+                    attempted_at = datetime('now')
+            """, (url, journalist_id, outlet, status_code, reason))
+            return
+        except Exception:
+            import time; time.sleep(1 + _attempt)
 
 
 async def fetch_from_archive(session, url: str) -> str | None:
@@ -128,11 +138,74 @@ async def fetch_from_archive(session, url: str) -> str | None:
         return None
 
 
+async def fetch_stuff_api(session, url: str) -> tuple[str, str, str, int] | None:
+    """Fetch Stuff article via their internal JSON API. Returns (title, date, text, 200) or None."""
+    # Extract story ID from URL: stuff.co.nz/section/360961102/slug
+    m = re.search(r'/(\d{6,})', url)
+    if not m:
+        return None
+
+    story_id = m.group(1)
+    api_url = f"https://www.stuff.co.nz/api/v1.0/stuff/story/{story_id}"
+
+    async with FETCH_SEM:
+        try:
+            import aiohttp
+            timeout = aiohttp.ClientTimeout(total=15)
+            async with session.get(api_url, timeout=timeout, headers={
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+                "Referer": "https://www.stuff.co.nz/",
+                "Origin": "https://www.stuff.co.nz",
+                "Accept": "application/json",
+            }) as resp:
+                if resp.status != 200:
+                    return None
+                data = await resp.json()
+        except Exception:
+            return None
+
+    # Extract content from API response
+    content = data.get("content", {})
+    if isinstance(content, dict):
+        title = content.get("title", "")
+        intro = content.get("intro", "")
+        body_blocks = content.get("contentBody", {}).get("body", "") or content.get("body", "")
+    else:
+        title = ""
+        intro = ""
+        body_blocks = ""
+
+    # Clean HTML from body
+    if body_blocks:
+        text = re.sub(r'<[^>]+>', '', str(body_blocks)).strip()
+        if intro:
+            text = re.sub(r'<[^>]+>', '', intro).strip() + "\n\n" + text
+    else:
+        return None
+
+    if len(text) < 200:
+        return None
+
+    date = data.get("publishedDate", "")
+    if date:
+        date = date[:10]  # "2026-04-07T..." -> "2026-04-07"
+
+    return (title, date, text, 200)
+
+
 async def fetch_article_text(session, url: str, outlet: str) -> tuple[str, str, str, int] | None:
     """Fetch article text. Returns (title, date, text, status_code) or None.
 
-    Tries direct fetch first, then archive.is for paywalled content.
+    Uses Stuff JSON API for stuff.co.nz/thepost.co.nz, trafilatura for others.
+    Falls back to archive.is for paywalled content.
     """
+    # Stuff/The Post: use their internal JSON API (SPA site, trafilatura can't extract)
+    if "stuff.co.nz" in url or "thepost.co.nz" in url:
+        result = await fetch_stuff_api(session, url)
+        if result:
+            return result
+        # Fall through to trafilatura as backup
+
     try:
         import trafilatura
     except ImportError:
@@ -283,44 +356,65 @@ async def process_batch(conn, session, rows, lookup_name, total_for_journalist, 
 
         text_hash = hashlib.sha256(text.encode()).hexdigest()
 
-        conn.execute(
-            """INSERT OR IGNORE INTO articles
-               (journalist_id, url, title, publish_date, outlet, text_body, text_hash,
-                score_claude, median_score, bucket, score_prompt_version, scored_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))""",
-            (
-                row["journalist_id"], url, title, date or None,
-                row["outlet"], text, text_hash, score_result.score, score_result.score,
-                score_result.bucket, PROMPT_VERSION,
-            ),
-        )
-        # Mark as resolved if it was previously a failure
-        conn.execute("UPDATE fetch_failures SET resolved = 1 WHERE url = ?", (url,))
+        for _attempt in range(20):
+            try:
+                conn.execute(
+                    """INSERT OR IGNORE INTO articles
+                       (journalist_id, url, title, publish_date, outlet, text_body, text_hash,
+                        score_claude, median_score, bucket, score_prompt_version, scored_at)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))""",
+                    (
+                        row["journalist_id"], url, title, date or None,
+                        row["outlet"], text, text_hash, score_result.score, score_result.score,
+                        score_result.bucket, PROMPT_VERSION,
+                    ),
+                )
+                conn.execute("UPDATE fetch_failures SET resolved = 1 WHERE url = ?", (url,))
+                break
+            except Exception as e:
+                if "locked" in str(e):
+                    import time; time.sleep(0.5 + _attempt * 0.5)
+                    continue
+                raise
 
         stats["scored"] += 1
 
         if stats["scored"] % 10 == 0:
-            conn.commit()
+            for _attempt in range(10):
+                try:
+                    conn.commit()
+                    break
+                except Exception:
+                    import time; time.sleep(1)
             archive_str = f" | {stats.get('archive_rescued', 0)} from archive" if stats.get("archive_rescued") else ""
             log.info(
                 f"  {lookup_name}: {stats['scored']}/{total_for_journalist} scored | "
                 f"{stats['fetch_failed']} fetch fails | {stats['score_failed']} score fails{archive_str}"
             )
 
-    conn.commit()
+    for _attempt in range(10):
+        try:
+            conn.commit()
+            break
+        except Exception:
+            import time; time.sleep(1)
 
 
 async def main():
     parser = argparse.ArgumentParser(description="Score articles from discovered_urls")
-    parser.add_argument("--cap", type=int, default=0, help="Max articles per journalist (0=unlimited)")
+    parser.add_argument("--cap", type=int, default=0, help="Max articles per journalist across all rounds (0=unlimited)")
+    parser.add_argument("--per-round", type=int, default=0, help="Articles per journalist per round (0=do all in one pass)")
     parser.add_argument("--journalist", type=str, default="", help="Process only this journalist name")
     parser.add_argument("--dry-run", action="store_true", help="Count articles only, no fetching/scoring")
     parser.add_argument("--batch-size", type=int, default=50, help="Batch size for processing")
     parser.add_argument("--retry-failed", action="store_true", help="Retry previously failed URLs")
     parser.add_argument("--priority", type=str, default="", help="Comma-separated journalist names to process first, in order")
+    parser.add_argument("--only", type=str, default="", help="Comma-separated journalist names — ONLY process these (for parallel workers)")
     args = parser.parse_args()
 
+    import sqlite3 as _sqlite3
     conn = get_connection()
+    conn.execute("PRAGMA busy_timeout = 30000")  # Wait up to 30s for locks
     migrate_db(conn)
     _ensure_fetch_failures_table(conn)
 
@@ -335,6 +429,12 @@ async def main():
     if args.journalist:
         journalists = conn.execute(
             "SELECT * FROM journalists WHERE name = ?", (args.journalist,)
+        ).fetchall()
+    elif args.only:
+        only_names = [n.strip() for n in args.only.split(",")]
+        placeholders = ",".join("?" * len(only_names))
+        journalists = conn.execute(
+            f"SELECT * FROM journalists WHERE name IN ({placeholders})", only_names
         ).fetchall()
     else:
         journalists = conn.execute("SELECT * FROM journalists ORDER BY name").fetchall()
@@ -393,54 +493,95 @@ async def main():
         return
 
     import aiohttp
+    per_round = args.per_round
+    overall_cap = args.cap
+
+    # Track how many we've scored per journalist across rounds
+    scored_per_journalist: dict[str, int] = {}
+
     async with aiohttp.ClientSession() as session:
         grand_total = 0
         grand_archive = 0
         grand_failed = 0
+        round_num = 0
 
-        for j, count in work:
-            if _shutdown:
-                break
+        while not _shutdown:
+            round_num += 1
+            round_scored = 0
 
-            effective_cap = min(count, args.cap) if args.cap else count
-            log.info(f"\n{'='*60}")
-            log.info(f"{j['name']} ({j['outlet']}): {count:,} unscored → processing {effective_cap:,}")
+            if per_round:
+                log.info(f"\n{'#'*60}")
+                log.info(f"ROUND {round_num} — scoring up to {per_round} per journalist")
 
-            # Get the URLs — exclude already-failed ones
-            rows = conn.execute(
-                """SELECT d.url, d.outlet, d.journalist_id
-                   FROM discovered_urls d
-                   WHERE d.journalist_id = ?
-                   AND d.url NOT IN (SELECT url FROM articles)
-                   AND d.url NOT IN (SELECT url FROM fetch_failures WHERE resolved = 0 AND retry_count >= 2)
-                   ORDER BY d.url DESC
-                   LIMIT ?""",
-                (j["id"], effective_cap)
-            ).fetchall()
-
-            stats = {"scored": 0, "skipped": 0, "fetched": 0, "fetch_failed": 0, "score_failed": 0, "archive_rescued": 0}
-
-            # Process in batches
-            for i in range(0, len(rows), args.batch_size):
+            for j, total_unscored in work:
                 if _shutdown:
                     break
-                batch = rows[i:i + args.batch_size]
-                await process_batch(conn, session, batch, j["name"], effective_cap, stats)
 
-            # Update journalist stats
-            update_journalist_stats(conn, j["id"])
-            grand_total += stats["scored"]
-            grand_archive += stats.get("archive_rescued", 0)
-            grand_failed += stats["fetch_failed"]
+                jname = j["name"]
+                already_scored = scored_per_journalist.get(jname, 0)
 
-            archive_str = f", {stats.get('archive_rescued', 0)} from archive.is" if stats.get("archive_rescued") else ""
-            log.info(
-                f"{j['name']}: DONE — {stats['scored']} scored{archive_str}, "
-                f"{stats['fetch_failed']} fetch fails, {stats['score_failed']} score fails"
-            )
+                # Check overall cap
+                if overall_cap and already_scored >= overall_cap:
+                    continue
 
-            # Checkpoint
-            conn.execute("PRAGMA wal_checkpoint(PASSIVE)")
+                # How many to score this round
+                if per_round:
+                    this_round = per_round
+                    if overall_cap:
+                        this_round = min(this_round, overall_cap - already_scored)
+                else:
+                    this_round = min(total_unscored, overall_cap) if overall_cap else total_unscored
+
+                # Get unscored URLs — newest first
+                rows = conn.execute(
+                    """SELECT d.url, d.outlet, d.journalist_id
+                       FROM discovered_urls d
+                       LEFT JOIN articles a ON a.url = d.url
+                       WHERE d.journalist_id = ?
+                       AND a.id IS NULL
+                       AND d.url NOT IN (SELECT url FROM fetch_failures WHERE resolved = 0 AND retry_count >= 2)
+                       ORDER BY d.id DESC
+                       LIMIT ?""",
+                    (j["id"], this_round)
+                ).fetchall()
+
+                if not rows:
+                    continue
+
+                log.info(f"\n{'='*60}")
+                log.info(f"{jname} ({j['outlet']}): scoring {len(rows)} (round {round_num}, {already_scored} already done)")
+
+                stats = {"scored": 0, "skipped": 0, "fetched": 0, "fetch_failed": 0, "score_failed": 0, "archive_rescued": 0}
+
+                for i in range(0, len(rows), args.batch_size):
+                    if _shutdown:
+                        break
+                    batch = rows[i:i + args.batch_size]
+                    await process_batch(conn, session, batch, jname, len(rows), stats)
+
+                # Update stats
+                update_journalist_stats(conn, j["id"])
+                scored_per_journalist[jname] = already_scored + stats["scored"]
+                grand_total += stats["scored"]
+                grand_archive += stats.get("archive_rescued", 0)
+                grand_failed += stats["fetch_failed"]
+                round_scored += stats["scored"]
+
+                archive_str = f", {stats.get('archive_rescued', 0)} from archive.is" if stats.get("archive_rescued") else ""
+                log.info(
+                    f"{jname}: {stats['scored']} scored this round{archive_str}, "
+                    f"{scored_per_journalist[jname]} total, "
+                    f"{stats['fetch_failed']} fetch fails"
+                )
+
+                # Checkpoint
+                conn.execute("PRAGMA wal_checkpoint(PASSIVE)")
+
+            if not per_round or round_scored == 0:
+                # Single pass mode, or nothing left to score
+                break
+
+            log.info(f"\nRound {round_num} complete: {round_scored} articles scored")
 
         log.info(f"\n{'='*60}")
         log.info(f"COMPLETE: {grand_total:,} articles scored ({grand_archive:,} rescued from archive.is)")
