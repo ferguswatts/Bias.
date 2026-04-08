@@ -1031,6 +1031,13 @@ function initRangeSliders() {{
       if (fill) {{ fill.style.left = lp + '%'; fill.style.width = (rp - lp) + '%'; }}
       section.querySelector('.range-label-min').textContent = curMin;
       section.querySelector('.range-label-max').textContent = curMax;
+      // When at same position, put min on top if at right edge, max on top if at left edge
+      if (curMin === curMax) {{
+        if (curMin === rMax) {{ thumbMin.style.zIndex = 3; thumbMax.style.zIndex = 2; }}
+        else {{ thumbMin.style.zIndex = 2; thumbMax.style.zIndex = 3; }}
+      }} else {{
+        thumbMin.style.zIndex = 2; thumbMax.style.zIndex = 2;
+      }}
       updateDisplay(slug, curMin, curMax);
     }}
 
@@ -1064,10 +1071,42 @@ function initRangeSliders() {{
       }};
     }}
 
+    // When thumbs overlap, pick the right one based on click position relative to edges
+    function pickThumb(e) {{
+      const x = (e.touches ? e.touches[0].clientX : e.clientX);
+      const rect = track.getBoundingClientRect();
+      const pct = ((x - rect.left) / rect.width) * 100;
+      const minPct = valToPct(curMin);
+      const maxPct = valToPct(curMax);
+
+      // If thumbs are at same position, pick based on which edge is closer
+      if (Math.abs(minPct - maxPct) < 2) {{
+        // If near the left end, move min; if near right end, move max
+        if (pct <= minPct) return [thumbMin, true];
+        return [thumbMax, false];
+      }}
+
+      // Otherwise pick the closer thumb
+      if (Math.abs(pct - minPct) <= Math.abs(pct - maxPct)) return [thumbMin, true];
+      return [thumbMax, false];
+    }}
+
     thumbMin.addEventListener('mousedown', startDrag(thumbMin, true));
     thumbMin.addEventListener('touchstart', startDrag(thumbMin, true), {{passive: false}});
     thumbMax.addEventListener('mousedown', startDrag(thumbMax, false));
     thumbMax.addEventListener('touchstart', startDrag(thumbMax, false), {{passive: false}});
+
+    // Also allow clicking on the track itself to grab the nearest thumb
+    track.addEventListener('mousedown', function(e) {{
+      if (e.target === thumbMin || e.target === thumbMax) return;
+      const [thumb, isMin] = pickThumb(e);
+      startDrag(thumb, isMin)(e);
+    }});
+    track.addEventListener('touchstart', function(e) {{
+      if (e.target === thumbMin || e.target === thumbMax) return;
+      const [thumb, isMin] = pickThumb(e);
+      startDrag(thumb, isMin)(e);
+    }}, {{passive: false}});
   }});
 }}
 
