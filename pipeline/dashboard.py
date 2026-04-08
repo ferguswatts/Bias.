@@ -375,14 +375,14 @@ def generate_html(conn) -> str:
                 {f"""<div class="year-range-section" data-slug="{j['slug']}" data-years='{year_data_attr.replace("&quot;", chr(34))}' data-min="{min(int(y) for y in year_data.keys())}" data-max="{max(int(y) for y in year_data.keys())}">
                     <div class="card-section-label">Filter by period</div>
                     <div class="range-slider-wrap">
-                        <span class="range-label range-label-min">{min(year_data.keys())}</span>
+                        <span class="range-label" style="color:#999">{min(year_data.keys())}</span>
                         <div class="range-track" id="range-track-{j['slug']}">
                             <div class="range-rail"></div>
                             <div class="range-fill" id="range-fill-{j['slug']}" style="left:0%;width:100%"></div>
-                            <div class="range-thumb" id="range-thumb-min-{j['slug']}" style="left:0%"></div>
-                            <div class="range-thumb" id="range-thumb-max-{j['slug']}" style="left:100%"></div>
+                            <div class="range-thumb" id="range-thumb-min-{j['slug']}" style="left:0%"><span class="range-thumb-label" id="range-val-min-{j['slug']}">{min(year_data.keys())}</span></div>
+                            <div class="range-thumb" id="range-thumb-max-{j['slug']}" style="left:100%"><span class="range-thumb-label" id="range-val-max-{j['slug']}">{max(year_data.keys())}</span></div>
                         </div>
-                        <span class="range-label range-label-max">{max(year_data.keys())}</span>
+                        <span class="range-label" style="color:#999">{max(year_data.keys())}</span>
                     </div>
                     <div class="range-info" id="range-info-{j['slug']}">All years · {total} articles</div>
                 </div>""" if year_data and len(year_data) > 1 else ""}
@@ -516,9 +516,10 @@ def generate_html(conn) -> str:
   .range-track {{ position: relative; flex: 1; height: 32px; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: none; }}
   .range-rail {{ position: absolute; top: 13px; left: 0; right: 0; height: 6px; background: #e5e7eb; border-radius: 3px; }}
   .range-fill {{ position: absolute; top: 13px; height: 6px; background: linear-gradient(to right, #f97316, #6b7280, #3b82f6); border-radius: 3px; pointer-events: none; }}
-  .range-thumb {{ position: absolute; top: 6px; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 2px solid #1a1a1a; box-shadow: 0 1px 4px rgba(0,0,0,0.15); cursor: grab; transform: translateX(-50%); z-index: 2; transition: box-shadow 0.15s; }}
+  .range-thumb {{ position: absolute; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 2px solid #1a1a1a; box-shadow: 0 1px 4px rgba(0,0,0,0.15); cursor: grab; transform: translateX(-50%); z-index: 2; transition: box-shadow 0.15s; }}
   .range-thumb:hover {{ box-shadow: 0 2px 8px rgba(0,0,0,0.25); }}
   .range-thumb.dragging {{ cursor: grabbing; box-shadow: 0 2px 10px rgba(0,0,0,0.3); background: #f9fafb; }}
+  .range-thumb-label {{ position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: #1a1a1a; white-space: nowrap; pointer-events: none; font-variant-numeric: tabular-nums; background: #fff; padding: 0 3px; border-radius: 3px; }}
   .range-info {{ font-size: 11px; color: #888; margin-top: 6px; display: flex; align-items: center; gap: 6px; }}
   .range-govt-badge {{ display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; }}
   .range-govt-labour {{ background: #fef2f2; color: #dc2626; }}
@@ -1029,8 +1030,10 @@ function initRangeSliders() {{
       thumbMax.style.left = rp + '%';
       const fill = document.getElementById(`range-fill-${{slug}}`);
       if (fill) {{ fill.style.left = lp + '%'; fill.style.width = (rp - lp) + '%'; }}
-      section.querySelector('.range-label-min').textContent = curMin;
-      section.querySelector('.range-label-max').textContent = curMax;
+      const valMin = document.getElementById(`range-val-min-${{slug}}`);
+      const valMax = document.getElementById(`range-val-max-${{slug}}`);
+      if (valMin) valMin.textContent = curMin;
+      if (valMax) valMax.textContent = curMax;
       // When at same position, put min on top if at right edge, max on top if at left edge
       if (curMin === curMax) {{
         if (curMin === rMax) {{ thumbMin.style.zIndex = 3; thumbMax.style.zIndex = 2; }}
