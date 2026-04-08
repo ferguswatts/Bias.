@@ -497,17 +497,24 @@ def generate_html(conn) -> str:
   .topic-pct {{ color: #999; font-weight: 400; margin-left: 2px; }}
 
   /* ── Year range slider ── */
-  .year-range-section {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; }}
-  .range-slider-wrap {{ display: flex; align-items: center; gap: 10px; margin-top: 6px; }}
-  .range-label {{ font-size: 11px; font-weight: 600; color: #555; min-width: 32px; }}
+  .year-range-section {{ padding: 14px 18px; border-top: 1px solid #f3f4f6; }}
+  .range-slider-wrap {{ display: flex; align-items: center; gap: 12px; margin-top: 8px; }}
+  .range-label {{ font-size: 12px; font-weight: 700; color: #1a1a1a; min-width: 34px; font-variant-numeric: tabular-nums; }}
   .range-label-max {{ text-align: right; }}
-  .range-track {{ position: relative; flex: 1; height: 24px; }}
-  .range-fill {{ position: absolute; top: 10px; height: 4px; background: #1a1a1a; border-radius: 2px; pointer-events: none; }}
-  .range-input {{ position: absolute; top: 0; left: 0; width: 100%; height: 24px; -webkit-appearance: none; appearance: none; background: transparent; pointer-events: none; margin: 0; }}
-  .range-input::-webkit-slider-runnable-track {{ height: 4px; background: #e5e7eb; border-radius: 2px; }}
-  .range-input::-webkit-slider-thumb {{ -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #1a1a1a; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); cursor: pointer; pointer-events: all; margin-top: -6px; }}
-  .range-input::-moz-range-thumb {{ width: 16px; height: 16px; border-radius: 50%; background: #1a1a1a; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); cursor: pointer; pointer-events: all; }}
-  .range-info {{ font-size: 11px; color: #888; margin-top: 4px; }}
+  .range-track {{ position: relative; flex: 1; height: 32px; }}
+  .range-fill {{ position: absolute; top: 13px; height: 6px; background: linear-gradient(to right, #f97316, #6b7280, #3b82f6); border-radius: 3px; pointer-events: none; z-index: 1; }}
+  .range-input {{ position: absolute; top: 0; left: 0; width: 100%; height: 32px; -webkit-appearance: none; appearance: none; background: transparent; pointer-events: none; margin: 0; z-index: 2; }}
+  .range-input::-webkit-slider-runnable-track {{ height: 6px; background: #e5e7eb; border-radius: 3px; margin-top: 13px; }}
+  .range-input::-webkit-slider-thumb {{ -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 2px solid #1a1a1a; box-shadow: 0 1px 4px rgba(0,0,0,0.15); cursor: pointer; pointer-events: all; margin-top: -7px; transition: box-shadow 0.15s, transform 0.15s; }}
+  .range-input::-webkit-slider-thumb:hover {{ box-shadow: 0 2px 8px rgba(0,0,0,0.25); transform: scale(1.15); }}
+  .range-input::-webkit-slider-thumb:active {{ box-shadow: 0 1px 6px rgba(0,0,0,0.3); transform: scale(1.05); background: #f9fafb; }}
+  .range-input::-moz-range-track {{ height: 6px; background: #e5e7eb; border-radius: 3px; border: none; }}
+  .range-input::-moz-range-thumb {{ width: 20px; height: 20px; border-radius: 50%; background: #fff; border: 2px solid #1a1a1a; box-shadow: 0 1px 4px rgba(0,0,0,0.15); cursor: pointer; pointer-events: all; }}
+  .range-info {{ font-size: 11px; color: #888; margin-top: 6px; display: flex; align-items: center; gap: 6px; }}
+  .range-govt-badge {{ display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; }}
+  .range-govt-labour {{ background: #fef2f2; color: #dc2626; }}
+  .range-govt-national {{ background: #eff6ff; color: #1d4ed8; }}
+  .range-govt-mixed {{ background: #f3f4f6; color: #555; }}
 
   /* ── Methodology Section ── */
   .methodology-section {{ background: #fff; border-top: 1px solid #e5e7eb; margin-top: 48px; padding: 64px 0; }}
@@ -1038,11 +1045,12 @@ function updateYearRange(slug) {{
   const leanEl = card.querySelector('.lean-text');
   const infoEl = document.getElementById(`range-info-${{slug}}`);
 
-  // Government period label
-  let govLabel = '';
-  if (minVal >= 2023) govLabel = ' · National govt';
-  else if (maxVal <= 2017) govLabel = ' · National govt';
-  else if (minVal >= 2017 && maxVal <= 2023) govLabel = ' · Labour govt';
+  // Government period badge
+  let govBadge = '';
+  if (minVal >= 2023) govBadge = '<span class="range-govt-badge range-govt-national">National govt</span>';
+  else if (maxVal <= 2017) govBadge = '<span class="range-govt-badge range-govt-national">National govt</span>';
+  else if (minVal >= 2017 && maxVal <= 2023) govBadge = '<span class="range-govt-badge range-govt-labour">Labour govt</span>';
+  else govBadge = '<span class="range-govt-badge range-govt-mixed">Mixed</span>';
 
   if (scores.length > 0 && marker && leanEl) {{
     let weightedScore = scores.reduce((s, d) => s + d.median * d.count, 0) / totalCount;
@@ -1060,10 +1068,10 @@ function updateYearRange(slug) {{
       leanEl.textContent = pct + '% right leaning';
       leanEl.style.color = '#3b82f6';
     }}
-    if (infoEl) infoEl.textContent = `${{minVal}}–${{maxVal}}${{govLabel}} · ${{totalCount}} articles`;
+    if (infoEl) infoEl.innerHTML = `${{minVal}}–${{maxVal}} ${{govBadge}} · ${{totalCount}} articles`;
   }} else {{
     if (leanEl) {{ leanEl.textContent = 'No data'; leanEl.style.color = '#ccc'; }}
-    if (infoEl) infoEl.textContent = `${{minVal}}–${{maxVal}} · No articles`;
+    if (infoEl) infoEl.innerHTML = `${{minVal}}–${{maxVal}} · No articles`;
   }}
 }}
 
