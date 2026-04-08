@@ -237,8 +237,7 @@
   <p class="subhead">Every journalist has a perspective. Now you can see theirs before it shapes yours.</p>
 
   <div class="cta-group">
-    <a href="index.html" class="explore-btn" id="explore-btn">Explore journalist bias →</a>
-    <a href="#" class="demo-btn" id="demo-btn">See it in action →</a>
+    <a href="#" class="explore-btn" id="demo-btn">See it in action →</a>
     <div id="primary-cta"></div>
   </div>
 
@@ -300,47 +299,33 @@
   document.getElementById('link-chrome').href = CHROME_URL;
   document.getElementById('link-firefox').href = FIREFOX_URL;
 
-  // Split-view panels
-  var exploreBtn = document.getElementById('explore-btn');
+  // Split-view demo video
   var demoBtn = document.getElementById('demo-btn');
   var panel = document.getElementById('right-panel');
   var closeBtn = document.getElementById('panel-close');
   var isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  function openPanel(content) {
-    // Clear previous content (except close button)
-    var children = panel.children;
-    for (var i = children.length - 1; i >= 0; i--) {
-      if (children[i] !== closeBtn) panel.removeChild(children[i]);
-    }
-    panel.appendChild(content);
-    document.body.classList.add('split-active');
-  }
-
-  function closePanel() {
-    document.body.classList.remove('split-active');
-  }
-
   if (!isMobile) {
-    exploreBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      var iframe = document.createElement('iframe');
-      iframe.src = 'index.html';
-      openPanel(iframe);
-    });
-
     demoBtn.addEventListener('click', function(e) {
       e.preventDefault();
+      // Clear previous content (except close button)
+      var children = panel.children;
+      for (var i = children.length - 1; i >= 0; i--) {
+        if (children[i] !== closeBtn) panel.removeChild(children[i]);
+      }
       var video = document.createElement('video');
       video.src = 'demo.mp4';
       video.autoplay = true;
       video.loop = true;
       video.muted = true;
       video.playsInline = true;
-      openPanel(video);
+      panel.appendChild(video);
+      document.body.classList.add('split-active');
     });
 
-    closeBtn.addEventListener('click', closePanel);
+    closeBtn.addEventListener('click', function() {
+      document.body.classList.remove('split-active');
+    });
   }
   // On mobile, explore navigates to index.html, demo plays inline
 })();
