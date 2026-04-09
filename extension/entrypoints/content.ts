@@ -121,6 +121,15 @@ export default defineContentScript({
         const shadow = cardEl.attachShadow({ mode: "open" });
         shadow.innerHTML = buildCardHTML(match!.slug, match!.journalist, data.version);
 
+        // Wire up year slider if the journalist has year data
+        const mj = match!.journalist;
+        if (mj.articles_by_year && mj.articles_by_year.length > 0 && mj.years) {
+          const yearKeys = Object.keys(mj.years).map(Number).sort();
+          if (yearKeys.length > 1) {
+            setupYearSlider(shadow, mj.articles_by_year, yearKeys[0], yearKeys[yearKeys.length - 1]);
+          }
+        }
+
         document.body.appendChild(cardEl);
 
         cardEl.addEventListener("mouseenter", () => {
@@ -314,7 +323,7 @@ function buildCardHTML(slug: string, j: JournalistData, version: string): string
       *::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
     </style>
     <div role="dialog" aria-label="Journalist profile: ${j.name}" style="
-      width:400px;max-height:580px;overflow-y:auto;background:#fff;border:1px solid #e5e7eb;
+      width:400px;background:#fff;border:1px solid #e5e7eb;
       border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.12),0 2px 8px rgba(0,0,0,0.06);
       animation:fadein 150ms ease-out;
     ">
@@ -325,7 +334,14 @@ function buildCardHTML(slug: string, j: JournalistData, version: string): string
           <div style="font-size:14px;font-weight:600;color:#1a1a1a">${j.name}</div>
           <div style="font-size:11px;color:#888;margin-top:1px">${j.outlet} · ${j.beat || "Politics"}</div>
         </div>
-        <span style="font-size:9px;color:#999;font-weight:500">Bias</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 115" width="48" height="16" style="flex-shrink:0">
+          <text font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="100" font-weight="600" y="90">
+            <tspan x="20" fill="#1a1a1a">B</tspan>
+            <tspan fill="#e63946" font-style="italic">I</tspan>
+            <tspan fill="#1a1a1a">AS</tspan>
+          </text>
+          <line x1="16" y1="102" x2="313" y2="102" stroke="#e63946" stroke-width="5" stroke-linecap="round"/>
+        </svg>
       </div>
 
       <!-- Spectrum -->
@@ -377,111 +393,105 @@ function buildCardHTML(slug: string, j: JournalistData, version: string): string
       </div>
     </div>
 
-    ${hasYearRange ? `<script>
-      (function() {
-        const root = document.currentScript.getRootNode();
-        const track = root.getElementById('yr-track');
-        const fill = root.getElementById('yr-fill');
-        const tmin = root.getElementById('yr-tmin');
-        const tmax = root.getElementById('yr-tmax');
-        const lmin = root.getElementById('yr-lmin');
-        const lmax = root.getElementById('yr-lmax');
-        const info = root.getElementById('yr-info');
-        const marker = root.getElementById('spec-marker');
-        const leanEl = root.getElementById('lean-text');
-        const articles = ${articlesData};
-        const rMin = ${minYear}, rMax = ${maxYear};
-        let curMin = rMin, curMax = rMax;
-
-        function v2p(v) { return ((v - rMin) / (rMax - rMin || 1)) * 100; }
-        function p2v(p) { return Math.round(rMin + (p / 100) * (rMax - rMin)); }
-
-        function render() {
-          const lp = v2p(curMin), rp = v2p(curMax);
-          tmin.style.left = lp + '%';
-          tmax.style.left = rp + '%';
-          fill.style.left = lp + '%';
-          fill.style.width = (rp - lp) + '%';
-          lmin.textContent = "'" + String(curMin).slice(-2);
-          lmax.textContent = "'" + String(curMax).slice(-2);
-
-          // Filter articles
-          const f = articles.filter(a => a.y >= curMin && a.y <= curMax);
-          const bk = {left:0,'centre-left':0,centre:0,'centre-right':0,right:0};
-          const scores = [];
-          f.forEach(a => { if (bk.hasOwnProperty(a.b)) bk[a.b]++; scores.push(a.s); });
-          const total = f.length;
-
-          // Update dist bars
-          [['l','left'],['cl','centre-left'],['c','centre'],['cr','centre-right'],['r','right']].forEach(([id,b]) => {
-            const bar = root.getElementById('db-' + id);
-            const num = root.getElementById('db-' + id + '-n');
-            const count = bk[b] || 0;
-            const pct = total > 0 ? Math.round((count/total)*100) : 0;
-            if (bar) bar.style.width = pct + '%';
-            if (num) num.textContent = pct + '%';
-          });
-
-          // Update spectrum
-          scores.sort((a,b) => a - b);
-          const n = scores.length;
-          const med = n > 0 ? (n%2===1 ? scores[Math.floor(n/2)] : (scores[n/2-1]+scores[n/2])/2) : 0;
-          if (marker) marker.style.left = (((med+1)/2)*100).toFixed(1) + '%';
-          const pct = Math.abs(Math.round(med * 100));
-          if (leanEl) {
-            if (pct <= 2) { leanEl.textContent = 'Centre'; leanEl.style.color = '#6b7280'; }
-            else if (med < 0) { leanEl.textContent = pct + '% left leaning'; leanEl.style.color = '#d97706'; }
-            else { leanEl.textContent = pct + '% right leaning'; leanEl.style.color = '#3b82f6'; }
-          }
-
-          // Govt badge
-          let gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f3f4f6;color:#555">Mixed</span>';
-          if (curMin >= 2023) gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#eff6ff;color:#1d4ed8">National</span>';
-          else if (curMax <= 2017) gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#eff6ff;color:#1d4ed8">National</span>';
-          else if (curMin >= 2017 && curMax <= 2023) gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fef2f2;color:#dc2626">Labour</span>';
-          if (info) info.innerHTML = curMin + '–' + curMax + ' ' + gov + ' · ' + total + ' articles';
-        }
-
-        function drag(thumb, isMin) {
-          return function(e) {
-            e.preventDefault();
-            thumb.style.cursor = 'grabbing';
-            const rect = track.getBoundingClientRect();
-            function onMove(e2) {
-              const x = (e2.touches ? e2.touches[0].clientX : e2.clientX) - rect.left;
-              const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
-              const val = p2v(pct);
-              if (isMin) curMin = Math.min(val, curMax);
-              else curMax = Math.max(val, curMin);
-              render();
-            }
-            function onUp() {
-              thumb.style.cursor = 'grab';
-              document.removeEventListener('mousemove', onMove);
-              document.removeEventListener('mouseup', onUp);
-              document.removeEventListener('touchmove', onMove);
-              document.removeEventListener('touchend', onUp);
-            }
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onUp);
-            document.addEventListener('touchmove', onMove, {passive:false});
-            document.addEventListener('touchend', onUp);
-          };
-        }
-        tmin.addEventListener('mousedown', drag(tmin, true));
-        tmin.addEventListener('touchstart', drag(tmin, true), {passive:false});
-        tmax.addEventListener('mousedown', drag(tmax, false));
-        tmax.addEventListener('touchstart', drag(tmax, false), {passive:false});
-        track.addEventListener('mousedown', function(e) {
-          if (e.target === tmin || e.target === tmax) return;
-          const x = e.clientX - track.getBoundingClientRect().left;
-          const pct = (x / track.getBoundingClientRect().width) * 100;
-          const minD = Math.abs(pct - v2p(curMin)), maxD = Math.abs(pct - v2p(curMax));
-          drag(minD <= maxD ? tmin : tmax, minD <= maxD)(e);
-        });
-      })();
-    </script>` : ""}
+    ${hasYearRange ? `<!-- slider-data:${articlesData.replace(/"/g, '&quot;')}:${minYear}:${maxYear} -->` : ""}
   `;
+}
+
+function setupYearSlider(root: ShadowRoot, articles: Array<{y:number;b:string;s:number}>, rMin: number, rMax: number) {
+  const track = root.getElementById('yr-track');
+  const fill = root.getElementById('yr-fill');
+  const tmin = root.getElementById('yr-tmin');
+  const tmax = root.getElementById('yr-tmax');
+  const lmin = root.getElementById('yr-lmin');
+  const lmax = root.getElementById('yr-lmax');
+  const info = root.getElementById('yr-info');
+  const marker = root.getElementById('spec-marker');
+  const leanEl = root.getElementById('lean-text');
+  if (!track || !tmin || !tmax) return;
+
+  let curMin = rMin, curMax = rMax;
+  const v2p = (v: number) => ((v - rMin) / (rMax - rMin || 1)) * 100;
+  const p2v = (p: number) => Math.round(rMin + (p / 100) * (rMax - rMin));
+
+  function render() {
+    const lp = v2p(curMin), rp = v2p(curMax);
+    tmin.style.left = lp + '%';
+    tmax!.style.left = rp + '%';
+    if (fill) { fill.style.left = lp + '%'; fill.style.width = (rp - lp) + '%'; }
+    if (lmin) lmin.textContent = "'" + String(curMin).slice(-2);
+    if (lmax) lmax.textContent = "'" + String(curMax).slice(-2);
+
+    const f = articles.filter(a => a.y >= curMin && a.y <= curMax);
+    const bk: Record<string, number> = {left:0,'centre-left':0,centre:0,'centre-right':0,right:0};
+    const scores: number[] = [];
+    f.forEach(a => { if (a.b in bk) bk[a.b]++; scores.push(a.s); });
+    const total = f.length;
+
+    ([['l','left'],['cl','centre-left'],['c','centre'],['cr','centre-right'],['r','right']] as const).forEach(([id, b]) => {
+      const bar = root.getElementById('db-' + id);
+      const num = root.getElementById('db-' + id + '-n');
+      const count = bk[b] || 0;
+      const pct = total > 0 ? Math.round((count/total)*100) : 0;
+      if (bar) bar.style.width = pct + '%';
+      if (num) num.textContent = pct + '%';
+    });
+
+    scores.sort((a,b) => a - b);
+    const n = scores.length;
+    const med = n > 0 ? (n%2===1 ? scores[Math.floor(n/2)] : (scores[Math.floor(n/2)-1]+scores[Math.floor(n/2)])/2) : 0;
+    if (marker) marker.style.left = (((med+1)/2)*100).toFixed(1) + '%';
+    if (leanEl) {
+      const pct = Math.abs(Math.round(med * 100));
+      if (pct <= 2) { leanEl.textContent = 'Centre'; leanEl.style.color = '#6b7280'; }
+      else if (med < 0) { leanEl.textContent = pct + '% left leaning'; leanEl.style.color = '#d97706'; }
+      else { leanEl.textContent = pct + '% right leaning'; leanEl.style.color = '#3b82f6'; }
+    }
+
+    let gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#f3f4f6;color:#555">Mixed</span>';
+    if (curMin >= 2023) gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#eff6ff;color:#1d4ed8">National</span>';
+    else if (curMax <= 2017) gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#eff6ff;color:#1d4ed8">National</span>';
+    else if (curMin >= 2017 && curMax <= 2023) gov = '<span style="font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:#fef2f2;color:#dc2626">Labour</span>';
+    if (info) info.innerHTML = curMin + '–' + curMax + ' ' + gov + ' · ' + total + ' articles';
+  }
+
+  function drag(thumb: HTMLElement, isMin: boolean) {
+    return function(e: MouseEvent | TouchEvent) {
+      e.preventDefault();
+      thumb.style.cursor = 'grabbing';
+      const rect = track!.getBoundingClientRect();
+      function onMove(e2: MouseEvent | TouchEvent) {
+        const x = ('touches' in e2 ? e2.touches[0].clientX : e2.clientX) - rect.left;
+        const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        const val = p2v(pct);
+        if (isMin) curMin = Math.min(val, curMax);
+        else curMax = Math.max(val, curMin);
+        render();
+      }
+      function onUp() {
+        thumb.style.cursor = 'grab';
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+      document.addEventListener('touchmove', onMove, {passive: false});
+      document.addEventListener('touchend', onUp);
+    };
+  }
+
+  tmin.addEventListener('mousedown', drag(tmin, true));
+  tmin.addEventListener('touchstart', drag(tmin, true), {passive: false});
+  tmax.addEventListener('mousedown', drag(tmax, false));
+  tmax.addEventListener('touchstart', drag(tmax, false), {passive: false});
+  track.addEventListener('mousedown', (e) => {
+    if (e.target === tmin || e.target === tmax) return;
+    const x = e.clientX - track!.getBoundingClientRect().left;
+    const pct = (x / track!.getBoundingClientRect().width) * 100;
+    const minD = Math.abs(pct - v2p(curMin)), maxD = Math.abs(pct - v2p(curMax));
+    drag(minD <= maxD ? tmin : tmax, minD <= maxD)(e);
+  });
 }
 
 
