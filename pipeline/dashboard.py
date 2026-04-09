@@ -1186,13 +1186,13 @@ function updateDisplay(slug, minVal, maxVal) {{
     const rightPct = Math.round(rightArts / total * 100);
     const medStr = (median >= 0 ? '+' : '') + median.toFixed(2);
     if (leftPct > rightPct && leftPct > 10) {{
-      leanEl.textContent = leftPct + '% of articles lean left;
+      leanEl.textContent = leftPct + '% of articles lean left';
       leanEl.style.color = '#d97706';
     }} else if (rightPct > leftPct && rightPct > 10) {{
-      leanEl.textContent = rightPct + '% of articles lean right;
+      leanEl.textContent = rightPct + '% of articles lean right';
       leanEl.style.color = '#3b82f6';
     }} else {{
-      leanEl.textContent = 'Centre;
+      leanEl.textContent = 'Centre';
       leanEl.style.color = '#6b7280';
     }}
     if (infoEl) infoEl.innerHTML = `${{minVal}}-${{maxVal}} ${{govBadge}} . ${{total}} articles`;
