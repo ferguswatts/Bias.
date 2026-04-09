@@ -107,6 +107,7 @@ def generate_html(conn) -> str:
     ).fetchone()[0]
 
     journalist_sections = []
+    all_article_data = dict()  # slug -> article_buckets for JS year slider
 
     for j in journalists:
         articles = conn.execute(
@@ -207,6 +208,7 @@ def generate_html(conn) -> str:
                 article_buckets.append(dict(y=int(yr), b=b, s=round(a["median_score"] or 0, 3)))
         import json as _json2
         article_buckets_json = _json2.dumps(article_buckets)
+        all_article_data[j['slug']] = article_buckets
 
         dist_bars = ""
         for bucket in BUCKET_ORDER:
@@ -378,7 +380,7 @@ def generate_html(conn) -> str:
                 </div>
             </div>
             <div class="accordion-body" id="details-{j['slug']}">
-                <div class="dist-section" id="dist-section-{j['slug']}" data-articles='{article_buckets_json}'>
+                <div class="dist-section" id="dist-section-{j['slug']}"
                     {dist_bars}
                 </div>
                 {f"""<div class="year-range-section" data-slug="{j['slug']}" data-years='{year_data_attr.replace("&quot;", chr(34))}' data-min="{min(int(y) for y in year_data.keys())}" data-max="{max(int(y) for y in year_data.keys())}">
@@ -455,19 +457,19 @@ def generate_html(conn) -> str:
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: #f8f9fa; color: #1a1a1a; -webkit-font-smoothing: antialiased; }}
 
-  /* ── Header (matching install page) ── */
+  /* -- Header (matching install page) -- */
   header {{ background: #0f0f1a; text-align: center; padding: 48px 24px 32px; }}
   header .logo-wrap {{ margin-bottom: 8px; }}
   header .subtitle {{ font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: #555; margin-bottom: 16px; }}
   header .how-we-score {{ display: inline-block; padding: 8px 24px; border: 1px solid #e63946; border-radius: 6px; color: #e63946; font-size: 13px; font-weight: 500; text-decoration: none; transition: background 0.2s, color 0.2s; }}
   header .how-we-score:hover {{ background: #e63946; color: #fff; }}
 
-  /* ── Layout ── */
+  /* -- Layout -- */
   .container {{ max-width: 1600px; margin: 0 auto; padding: 24px 16px; }}
   .card-grid {{ display: flex; gap: 8px; align-items: flex-start; }}
   .card-column {{ flex: 1; min-width: 0; }}
 
-  /* ── Cards ── */
+  /* -- Cards -- */
   .journalist-card {{ background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: box-shadow 0.2s; }}
   .journalist-card:hover {{ box-shadow: 0 4px 12px rgba(0,0,0,0.08); }}
 
@@ -482,7 +484,7 @@ def generate_html(conn) -> str:
   .j-formerly {{ font-size: 11px; color: #aaa; margin-top: 1px; font-style: italic; }}
   .j-right {{ display: flex; align-items: center; gap: 12px; flex-shrink: 0; }}
 
-  /* ── Spectrum widget ── */
+  /* -- Spectrum widget -- */
   .spectrum-wrap {{ display: flex; align-items: center; gap: 4px; width: 140px; flex-shrink: 0; }}
   .spectrum-label-l {{ font-size: 10px; font-weight: 700; color: #dc2626; }}
   .spectrum-label-r {{ font-size: 10px; font-weight: 700; color: #1d4ed8; }}
@@ -497,11 +499,11 @@ def generate_html(conn) -> str:
   .toggle-icon {{ font-size: 11px; color: #bbb; transition: transform 0.2s; }}
   .toggle-icon.open {{ transform: rotate(180deg); }}
 
-  /* ── Accordion sections (Pretext-animated) ── */
-  .accordion-body {{ height: 0; overflow: clip; transition: height 250ms ease; }}
+  /* -- Accordion sections (Pretext-animated) -- */
+  .accordion-body {{ height: 0; overflow: hidden; transition: height 250ms ease; }}
   .accordion-body.open {{ /* height set by JS */ }}
 
-  /* ── Distribution ── */
+  /* -- Distribution -- */
   .dist-section {{ padding: 10px 18px 12px; border-top: 1px solid #f3f4f6; }}
   .dist-row {{ display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }}
   .dist-label {{ width: 88px; font-size: 11px; font-weight: 500; color: #555; text-align: right; flex-shrink: 0; }}
@@ -512,13 +514,13 @@ def generate_html(conn) -> str:
 
   .no-data {{ padding: 10px 18px; font-size: 12px; color: #aaa; }}
 
-  /* ── Topic profile ── */
+  /* -- Topic profile -- */
   .topic-profile {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; }}
   .topic-pills {{ display: flex; flex-wrap: wrap; gap: 6px; }}
   .topic-pill {{ font-size: 11px; padding: 3px 10px; border-radius: 12px; background: #f3f4f6; color: #555; font-weight: 500; white-space: nowrap; }}
   .topic-pct {{ color: #999; font-weight: 400; margin-left: 2px; }}
 
-  /* ── Year range slider (custom) ── */
+  /* -- Year range slider (custom) -- */
   .year-range-section {{ padding: 14px 18px; border-top: 1px solid #f3f4f6; }}
   .range-slider-wrap {{ display: flex; align-items: center; gap: 12px; margin-top: 8px; }}
   .range-label {{ font-size: 12px; font-weight: 700; color: #1a1a1a; min-width: 34px; font-variant-numeric: tabular-nums; }}
@@ -536,13 +538,13 @@ def generate_html(conn) -> str:
   .range-govt-national {{ background: #eff6ff; color: #1d4ed8; }}
   .range-govt-mixed {{ background: #f3f4f6; color: #555; }}
 
-  /* ── Methodology Section ── */
+  /* -- Methodology Section -- */
   .methodology-section {{ background: #fff; border-top: 1px solid #e5e7eb; margin-top: 48px; padding: 64px 0; }}
   .methodology-inner {{ max-width: 960px; margin: 0 auto; padding: 0 24px; }}
   .methodology-title {{ font-size: 28px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }}
   .methodology-subtitle {{ font-size: 15px; color: #666; margin-bottom: 40px; }}
 
-  /* ── Scoring scale ── */
+  /* -- Scoring scale -- */
   .scoring-scale {{ margin-bottom: 48px; position: relative; }}
   .scale-labels-top {{ display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #888; margin-bottom: 6px; padding: 0 2px; }}
   .scale-track {{ position: relative; height: 16px; border-radius: 8px; overflow: hidden; }}
@@ -630,7 +632,7 @@ def generate_html(conn) -> str:
   }}
   .conf-badge {{ font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }}
 
-  /* ── Connections & bio ── */
+  /* -- Connections & bio -- */
   .card-connections {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; }}
   .card-section-label {{ font-size: 11px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }}
   .conn-row {{ font-size: 12px; color: #444; margin-bottom: 4px; line-height: 1.4; }}
@@ -651,7 +653,7 @@ def generate_html(conn) -> str:
   .card-bio {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; }}
   .bio-text {{ font-size: 12px; color: #555; line-height: 1.6; margin: 0; }}
 
-  /* ── Articles ── */
+  /* -- Articles -- */
   .details-section {{ }}
   .articles-toggle {{ padding: 10px 18px; border-top: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; font-size: 12px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.4px; min-height: 44px; transition: background 0.15s; }}
   .articles-toggle:hover {{ background: #f9fafb; }}
@@ -671,7 +673,7 @@ def generate_html(conn) -> str:
   .month-arrow.open {{ transform: rotate(0deg); }}
   .month-arrow:not(.open) {{ transform: rotate(-90deg); }}
 
-  /* ── Filter bar ── */
+  /* -- Filter bar -- */
   .filter-bar {{ display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; position: sticky; top: 0; z-index: 10; background: #f8f9fa; padding: 8px 0; }}
   .filter-btn {{ padding: 8px 14px; border-radius: 20px; border: 1px solid #e5e7eb; background: #fff; font-size: 12px; cursor: pointer; color: #555; min-height: 36px; transition: all 0.15s; }}
   .filter-btn:hover, .filter-btn.active {{ background: #1a1a1a; color: #fff; border-color: #1a1a1a; }}
@@ -682,18 +684,18 @@ def generate_html(conn) -> str:
   footer {{ text-align: center; font-size: 11px; color: #bbb; padding: 24px; }}
   footer a {{ transition: color 0.15s; }}
 
-  /* ── Responsive: 3-col → 2-col ── */
+  /* -- Responsive: 3-col → 2-col -- */
   @media (max-width: 1200px) {{
     .card-grid {{ flex-wrap: wrap; }}
     .card-column {{ flex: 0 0 calc(50% - 4px); }}
   }}
 
-  /* ── Responsive: 2-col → 1-col ── */
+  /* -- Responsive: 2-col → 1-col -- */
   @media (max-width: 1024px) {{
     .card-column {{ flex: 0 0 100%; }}
   }}
 
-  /* ── Responsive: tablet ── */
+  /* -- Responsive: tablet -- */
   @media (max-width: 768px) {{
     header {{ padding: 16px; flex-direction: column; align-items: flex-start; gap: 12px; }}
     .stats {{ width: 100%; }}
@@ -704,7 +706,7 @@ def generate_html(conn) -> str:
     .art-table tbody td:nth-child(4) {{ display: none; }}
   }}
 
-  /* ── Responsive: phone ── */
+  /* -- Responsive: phone -- */
   @media (max-width: 480px) {{
     .container {{ padding: 12px 8px; }}
     .j-header {{ flex-wrap: wrap; padding: 10px 12px; }}
@@ -719,7 +721,7 @@ def generate_html(conn) -> str:
     .articles-toggle {{ padding: 10px 12px; }}
   }}
 
-  /* ── Reduced motion ── */
+  /* -- Reduced motion -- */
   @media (prefers-reduced-motion: reduce) {{
     .accordion-body, .toggle-icon, .month-arrow, .dist-bar, .journalist-card, .filter-btn, .social-link {{ transition: none !important; }}
   }}
@@ -769,7 +771,7 @@ def generate_html(conn) -> str:
   </div>
 </div>
 
-<!-- ── Methodology Section ── -->
+<!-- -- Methodology Section -- -->
 <div class="methodology-section" id="methodology">
   <div class="methodology-inner">
     <h2 class="methodology-title">How We Score</h2>
@@ -972,7 +974,10 @@ Returns: score (-1.0 to 1.0), confidence, reasoning, and per-dimension scores.</
 </footer>
 
 <script>
-/* ── Accordion toggle — smooth height animation ── */
+var ARTICLE_DATA = {json.dumps(all_article_data)};
+</script>
+<script>
+/* -- Accordion toggle - smooth height animation -- */
 function toggleAccordion(el) {{
   if (el.classList.contains('open')) {{
     // Collapse: set explicit height first, then animate to 0
@@ -1013,7 +1018,7 @@ function toggleArticles(slug) {{
   if (icon) icon.classList.toggle('open');
 }}
 
-/* ── Filters ── */
+/* -- Filters -- */
 let activeShowFilter = 'all';
 let activeOutletFilter = 'all';
 let activeSearchTerm = '';
@@ -1028,7 +1033,7 @@ function applyFilters() {{
   }});
 }}
 
-/* ── Per-journalist year range slider (custom drag) ── */
+/* -- Per-journalist year range slider (custom drag) -- */
 function initRangeSliders() {{
   document.querySelectorAll('.year-range-section').forEach(section => {{
     const slug = section.dataset.slug;
@@ -1151,7 +1156,7 @@ function updateDisplay(slug, minVal, maxVal) {{
   else govBadge = '<span class="range-govt-badge range-govt-mixed">Mixed</span>';
 
   if (!distSection) return;
-  const allArticles = JSON.parse(distSection.dataset.articles || '[]');
+  const allArticles = (typeof ARTICLE_DATA !== 'undefined' && ARTICLE_DATA[slug]) ? ARTICLE_DATA[slug] : [];
   const filtered = allArticles.filter(a => a.y >= minVal && a.y <= maxVal);
   const buckets = {{'left': 0, 'centre-left': 0, 'centre': 0, 'centre-right': 0, 'right': 0}};
   let filteredScores = [];
@@ -1190,10 +1195,10 @@ function updateDisplay(slug, minVal, maxVal) {{
       leanEl.textContent = 'Centre;
       leanEl.style.color = '#6b7280';
     }}
-    if (infoEl) infoEl.innerHTML = `${{minVal}}–${{maxVal}} ${{govBadge}} · ${{total}} articles`;
+    if (infoEl) infoEl.innerHTML = `${{minVal}}-${{maxVal}} ${{govBadge}} . ${{total}} articles`;
   }} else {{
     if (leanEl) {{ leanEl.textContent = 'No data'; leanEl.style.color = '#ccc'; }}
-    if (infoEl) infoEl.innerHTML = `${{minVal}}–${{maxVal}} · No articles`;
+    if (infoEl) infoEl.innerHTML = `${{minVal}}-${{maxVal}} . No articles`;
   }}
 }}
 
@@ -1218,7 +1223,7 @@ function searchCards(term) {{
   applyFilters();
 }}
 
-/* ── Expand / Collapse all ── */
+/* -- Expand / Collapse all -- */
 function expandAll() {{
   document.querySelectorAll('.accordion-body:not(.open)').forEach(el => {{
     el.style.height = 'auto';
@@ -1235,7 +1240,7 @@ function collapseAll() {{
   document.querySelectorAll('.toggle-icon').forEach(el => el.classList.remove('open'));
 }}
 
-/* ── Sort ── */
+/* -- Sort -- */
 function sortCards(mode, btn) {{
   document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1256,7 +1261,7 @@ function sortCards(mode, btn) {{
   cards.forEach((c, i) => columns[i % columns.length].appendChild(c));
 }}
 
-/* ── Deep linking via URL hash ── */
+/* -- Deep linking via URL hash -- */
 function openFromHash() {{
   const slug = window.location.hash.replace('#', '');
   if (!slug) return;
