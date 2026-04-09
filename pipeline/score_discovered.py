@@ -42,20 +42,91 @@ EXTENSION_DATA = Path(__file__).parent.parent / "extension" / "public" / "data.j
 HERALD_COOKIE_FILE = Path(__file__).parent / ".herald_cookies.json"
 
 
-def _load_herald_cookies() -> dict[str, str] | None:
-    """Load saved Herald cookies as a dict for aiohttp. Returns None if missing."""
+def _load_herald_cookies() -> list[dict] | None:
+    """Load saved Herald cookies as a list for Playwright. Returns None if missing."""
     if not HERALD_COOKIE_FILE.exists():
         return None
     try:
         cookies_list = json.loads(HERALD_COOKIE_FILE.read_text())
-        return {
-            c["name"]: c["value"]
-            for c in cookies_list
-            if "nzherald" in c.get("domain", "")
-        }
+        if not cookies_list:
+            return None
+        return cookies_list
     except Exception as e:
         log.warning(f"Failed to load Herald cookies: {e}")
         return None
+
+
+# Shared Playwright browser for Herald fetches — reused across articles
+_herald_browser = None
+_herald_context = None
+_herald_page = None
+HERALD_SEM = asyncio.Semaphore(1)  # One Herald fetch at a time (single browser)
+
+
+async def _get_herald_page(cookies_list: list[dict]):
+    """Get or create a shared Playwright page with Herald cookies loaded."""
+    global _herald_browser, _herald_context, _herald_page
+    if _herald_page and not _herald_page.is_closed():
+        return _herald_page
+    try:
+        from playwright.async_api import async_playwright
+        pw = await async_playwright().start()
+        _herald_browser = await pw.chromium.launch(headless=True)
+        _herald_context = await _herald_browser.new_context()
+        await _herald_context.add_cookies(cookies_list)
+        _herald_page = await _herald_context.new_page()
+        log.info("Herald Playwright browser started")
+        return _herald_page
+    except Exception as e:
+        log.error(f"Failed to start Herald browser: {e}")
+        return None
+
+
+async def fetch_herald_playwright(url: str, cookies_list: list[dict]) -> tuple[str, str, str, int] | None:
+    """Fetch Herald article using Playwright with premium cookies."""
+    import trafilatura
+
+    async with HERALD_SEM:
+        page = await _get_herald_page(cookies_list)
+        if not page:
+            return None
+        try:
+            resp = await page.goto(url, wait_until="networkidle", timeout=30000)
+            status_code = resp.status if resp else 0
+            if status_code == 404:
+                return None
+            await page.wait_for_timeout(3000)
+            html = await page.content()
+        except Exception as e:
+            log.debug(f"Herald Playwright fetch failed {url}: {e}")
+            return None
+
+    text = trafilatura.extract(html, include_comments=False, include_tables=False)
+    if not text or len(text) < 500:
+        return None
+
+    # Check article ends properly (not truncated mid-sentence)
+    last_char = text.strip()[-1] if text.strip() else ""
+    if last_char not in ".?!\"'":
+        log.debug(f"Herald article may be truncated (ends with '{last_char}'): {url}")
+
+    title = ""
+    date = ""
+    meta = trafilatura.extract_metadata(html)
+    if meta:
+        title = meta.title or ""
+        if meta.date:
+            from datetime import date as dt_date
+            if meta.date != dt_date.today().isoformat():
+                date = meta.date
+
+    if not date:
+        import re
+        ld_m = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})', html)
+        if ld_m:
+            date = ld_m.group(1)
+
+    return (title, date, text, status_code)
 
 # Concurrency limits
 FETCH_SEM = asyncio.Semaphore(10)
@@ -212,7 +283,7 @@ async def fetch_stuff_api(session, url: str) -> tuple[str, str, str, int] | None
     return (title, date, text, 200)
 
 
-async def fetch_article_text(session, url: str, outlet: str, herald_cookies: dict | None = None) -> tuple[str, str, str, int] | None:
+async def fetch_article_text(session, url: str, outlet: str, herald_cookies: list | None = None) -> tuple[str, str, str, int] | None:
     """Fetch article text. Returns (title, date, text, status_code) or None.
 
     Uses Stuff JSON API for stuff.co.nz/thepost.co.nz, trafilatura for others.
@@ -235,22 +306,14 @@ async def fetch_article_text(session, url: str, outlet: str, herald_cookies: dic
     status_code = 0
     html = None
 
-    # NZ Herald: use premium cookies if available
+    # NZ Herald: use Playwright with premium cookies (React SPA needs JS rendering)
     if "nzherald.co.nz" in url and herald_cookies:
-        async with FETCH_SEM:
-            try:
-                import aiohttp
-                timeout = aiohttp.ClientTimeout(total=30)
-                async with aiohttp.ClientSession(cookies=herald_cookies) as auth_session:
-                    async with auth_session.get(url, timeout=timeout, headers={
-                        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
-                    }) as resp:
-                        status_code = resp.status
-                        if resp.status == 200:
-                            html = await resp.text()
-            except Exception as e:
-                log.debug(f"Herald cookie fetch failed {url}: {e}")
-    else:
+        result = await fetch_herald_playwright(url, herald_cookies)
+        if result:
+            return result
+        # Fall through to archive.is if Playwright failed
+
+    if "nzherald.co.nz" not in url:
         async with FETCH_SEM:
             try:
                 import aiohttp

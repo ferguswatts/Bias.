@@ -16,6 +16,7 @@ log = logging.getLogger(__name__)
 
 COOKIE_FILE = Path(__file__).parent / ".herald_cookies.json"
 LOGIN_URL = "https://www.nzherald.co.nz/my-account/login/"
+VERIFY_URL = "https://www.nzherald.co.nz/my-account/"
 
 
 async def main():
@@ -27,7 +28,9 @@ async def main():
 
     print("Opening NZ Herald login page...")
     print("Please log in with your premium account credentials.")
-    print("The browser will close automatically once login is detected.\n")
+    print()
+    print("Once you are fully logged in, press ENTER here in the terminal.")
+    print()
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)
@@ -36,60 +39,55 @@ async def main():
 
         await page.goto(LOGIN_URL, wait_until="domcontentloaded")
 
-        # Wait for the user to complete login — detect by URL change away from login page
-        # or by presence of account elements. Poll every 2 seconds, timeout after 3 minutes.
-        print("Waiting for login (timeout: 3 minutes)...")
-        try:
-            for _ in range(90):  # 90 * 2s = 3 minutes
-                await page.wait_for_timeout(2000)
-                url = page.url
-                # Check if we've navigated away from the login page
-                if "/login" not in url and "/sign-in" not in url:
-                    break
-                # Also check for logged-in indicators in the DOM
-                logged_in = await page.evaluate("""
-                    () => {
-                        // Check for common logged-in indicators
-                        const accountMenu = document.querySelector('[data-testid="user-menu"], .user-menu, .account-menu, [class*="logged-in"]');
-                        return !!accountMenu;
-                    }
-                """)
-                if logged_in:
-                    break
-            else:
-                print("Timeout waiting for login. Please try again.")
-                await browser.close()
-                return
-        except Exception as e:
-            print(f"Error during login wait: {e}")
+        # Wait for user to press Enter — they control when they're done
+        await asyncio.get_event_loop().run_in_executor(None, input, "Press ENTER after you have logged in... ")
 
-        # Give the page a moment to fully load post-login cookies
+        # Navigate to account page to verify login worked
+        print("\nVerifying login...")
+        await page.goto(VERIFY_URL, wait_until="domcontentloaded")
         await page.wait_for_timeout(3000)
+
+        body = await page.inner_text("body")
+        body_lower = body[:1000].lower()
+
+        # Check for logged-in vs logged-out indicators
+        is_logged_out = "sign in" in body_lower and "subscribe" in body_lower
+        is_logged_in = any(x in body_lower for x in ["my account", "my profile", "log out", "sign out", "manage", "subscription"])
+
+        if is_logged_out and not is_logged_in:
+            print("\nERROR: Login not detected. The page still shows 'Sign In'.")
+            print("Please try again and make sure you complete the login process.")
+            await browser.close()
+            return
 
         # Save all cookies
         cookies = await context.cookies()
         herald_cookies = [c for c in cookies if "nzherald" in c.get("domain", "")]
 
-        COOKIE_FILE.write_text(json.dumps(herald_cookies, indent=2))
-        print(f"\nSaved {len(herald_cookies)} Herald cookies to {COOKIE_FILE}")
+        # Verify we have auth-related cookies
+        auth_names = [c["name"] for c in herald_cookies if any(x in c["name"].lower() for x in ["session", "auth", "token", "piano", "__tp", "user"])]
 
-        # Test the cookies by fetching a premium article
+        COOKIE_FILE.write_text(json.dumps(herald_cookies, indent=2))
+        print(f"\nSaved {len(herald_cookies)} cookies to {COOKIE_FILE}")
+        if auth_names:
+            print(f"Auth cookies found: {', '.join(auth_names)}")
+
+        # Test by loading a premium article
+        print("\nTesting premium access...")
         test_url = "https://www.nzherald.co.nz/nz/politics/"
         await page.goto(test_url, wait_until="domcontentloaded")
-        await page.wait_for_timeout(2000)
+        await page.wait_for_timeout(3000)
+        body = await page.inner_text("body")
 
-        # Check if we're still logged in
-        content = await page.content()
-        if "premium" in content.lower() or "subscriber" in content.lower() or len(content) > 50000:
-            print("Login verified — premium access confirmed.")
+        if "sign in" not in body[:500].lower():
+            print("Premium access confirmed.")
         else:
-            print("Warning: could not confirm premium access. Cookies saved anyway.")
+            print("WARNING: Could not confirm premium access. You may need to log in again.")
 
         await browser.close()
 
-    print(f"\nDone. The scraper will now use these cookies for NZ Herald articles.")
-    print(f"Cookie file: {COOKIE_FILE}")
-    print(f"To refresh cookies, run this script again.")
+    print(f"\nDone. Cookie file: {COOKIE_FILE}")
+    print("To refresh cookies, run this script again.")
 
 
 if __name__ == "__main__":
